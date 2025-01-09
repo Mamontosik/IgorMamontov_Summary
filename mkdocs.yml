@@ -1,0 +1,8 @@
+site_name: Igor Mamontov Summary
+site_url: https://Mamontosik.github.io/IgorMamontov_Summary
+theme:
+  name: material
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
