@@ -1,7 +1,9 @@
 site_name: Summary Igor Mamontov ver.1
 site_url: https://Mamontosik.github.io/IgorMamontov_Summary
 theme:
-  name: material
+  name: 'material'
+  icon:
+    set: 'material'
 markdown_extensions:
   - admonition
   - pymdownx.details
