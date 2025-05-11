@@ -1,1 +1,1 @@
-Доступ к странице справочника по ссылке https://mamontosik.github.io/IgorMamontov_Summary/admin/
+Доступ к странице справочника по ссылке https://mamontosik.github.io/IgorMamontov_Summary
