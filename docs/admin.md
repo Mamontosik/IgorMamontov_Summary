@@ -168,18 +168,17 @@
     <br>
  
 ## Команды для работы с сетью и проведению анализа работы
-!!! note "Trubbleshooting на стороне сети"
-    
-    ???+ info "Вызов справочника help для команд"
+???+ info "Вызов справочника help для команд"
 
-        ```bash
-        Linux/Unix: 
-        man ping
-        ```
-        ```bash
-        Windows:
-        ping /?
-        ```
+    ```bash
+    Linux/Unix: 
+    man ping
+    ```
+    ```bash
+    Windows:
+    ping /?
+    ```
+!!! note "Trubbleshooting на стороне сети"
 
     **ping:** используется для проверки доступности узла в сети и измерения времени отклика (с помощью icmp протокола)
     <br>
