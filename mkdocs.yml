@@ -4,6 +4,8 @@ theme:
   name: 'material'
   icon:
     set: 'material'
+  features:
+    - navigation.path
 markdown_extensions:
   - admonition
   - pymdownx.details
