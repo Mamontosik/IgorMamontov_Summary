@@ -1,10 +1,20 @@
 site_name: Summary Igor Mamontov ver.1
 site_url: https://Mamontosik.github.io/IgorMamontov_Summary
+nav:
+  - Обо мне: index.md
+  - Linux команды: admin.md
+  - Про DevSecOps: admin_sec.md
+  - Полезные метрики: admin_metrics.md
+  - Про Kubernetes: admin_kubernetes.md
+  - Блокер сообщений Kafka: admin_kafka.md
+  - Git команды: admin_git.md
+
+  - Вопрос/Ответ для assesment: assesment_unswer.md
 theme:
   name: 'material'
   icon:
     set: 'material'
-  features:
+  features: 
     - navigation.path
 markdown_extensions:
   - admonition
