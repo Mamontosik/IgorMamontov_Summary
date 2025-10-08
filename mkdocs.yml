@@ -14,5 +14,3 @@ markdown_extensions:
   - md_in_html
   - tables
   - pymdownx.critic
-nav:
-  - Обо мне: 'index.md'
