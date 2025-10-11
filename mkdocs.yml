@@ -2,20 +2,29 @@ site_name: Summary Igor Mamontov ver.1
 site_url: https://Mamontosik.github.io/IgorMamontov_Summary
 nav:
   - Обо мне: index.md
-  - Linux команды: admin.md
-  - Про DevSecOps: admin_sec.md
-  - Полезные метрики: admin_metrics.md
-  - Про Kubernetes: admin_kubernetes.md
-  - Блокер сообщений Kafka: admin_kafka.md
-  - Git команды: admin_git.md
+  - Руководство DevOps инженера:
+    - Linux команды: admin.md
+    - Про DevSecOps: admin_sec.md
+    - Полезные метрики: admin_metrics.md
+    - Про Kubernetes: admin_kubernetes.md
+    - Блокер сообщений Kafka: admin_kafka.md
+    - Git команды: admin_git.md
 
-  - Вопрос/Ответ для assesment: assesment_unswer.md
+  - Подготовка к assesment:
+    - Ответы для assesment (unsorted): assesment_unswer.md
+    - Список используемых портов: assesment_port_unswer.md
+    - Взаимодействие с kafka: assesment_kafka_unswer.md
+    - Взаимодействие с linux: assesment_linux_unswer.md
+
 theme:
   name: 'material'
   icon:
     set: 'material'
-  features: 
-    - navigation.path
+  # features removed: navigation.path handled by mkdocs-breadcrumbs-plugin
+  features:
+    - toc.integrate    # вставляет TOC как часть навигации (левый сайдбар)
+    - toc.follow       # автоскролл/подсветка активного якоря
+    - navigation.tracking  # обновляет URL при переходе по якорям
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -24,3 +33,17 @@ markdown_extensions:
   - md_in_html
   - tables
   - pymdownx.critic
+plugins:
+  - search
+  - mermaid2:
+      theme: forest
+      maxWidth: 100%
+      indentFunction: 2
+      flowchartDiagrams: true
+      sequenceDiagrams: true
+      ganttDiagrams: true
+      classDiagrams: true
+  - mkdocs-breadcrumbs-plugin:
+      delimiter: " / "
+      use_page_titles: true
+      home_text: "Обо мне"
