@@ -34,7 +34,7 @@
 
 <details>
 <summary>Install and start Nginx</summary>
-```ansible
+```yaml
 - name: Install and start Nginx on web servers
   hosts: web
   become: true
@@ -56,13 +56,12 @@
         name: nginx
         state: started
         enabled: yes
-
 ```
 </details>
 
 <details>
 <summary>Deploy simple app binary</summary>
-```ansible
+```yaml
 - name: Deploy simple app binary and systemd service
   hosts: app
   become: true
@@ -107,7 +106,7 @@
 
 <details>
 <summary>Create simple cron job</summary>
-```ansible
+```yaml
 - name: Create simple cron job on target hosts
   hosts: utils
   become: true
