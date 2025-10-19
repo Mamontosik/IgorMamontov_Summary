@@ -85,7 +85,7 @@
 - **5601/TCP** — Kibana.
 - **161/162/UDP** — SNMP (agent/trap).
 
-**Проверка:** `ss -ltn | grep 9090` / `curl http://host:3000` 
+**Проверка:** `ss -ltn | grep 9090` / `curl http://host:3000`
 
 ### Прочее / вспомогательные
 

@@ -13,6 +13,7 @@
 | 1 | Физический (Physical) | Передача битов: электрические/оптические/радиосигналы, коннекторы | Кабели (UTP, fiber), Wi‑Fi, разъёмы (RJ‑45, SFP) | Физические порты/разъёмы (RJ‑45, SFP и т.д.) | Полоса, дальность, помехи, аппаратные поломки |
 
 ## Краткая таблица протоколов
+
 | Протокол | Расшифровка | Краткое описание | Поведение / особенности | Типичные порты / номера | Команды |
 |---|---|---|---|---:|---|
 | `TCP` | Transmission Control Protocol | Надёжный протокол с установкой соединения и гарантией доставки | Connection‑oriented, handshake, retransmit | любые TCP‑порты (напр. 22, 80, 443) | `ss -tna` / `tcpdump -n 'tcp port 22' -c 5` |
@@ -74,6 +75,7 @@
 | `git config` | Настройки Git (имя, email, алиасы и т.д.). | `--global` (для пользователя), `--local` (для репозитория), `user.name` (параметр) | `git config --global user.name "Ivan"` |
 
 ### Популярные приложения/клиенты для работы с Git
+
 !!! note ""
 
     - Git (CLI) — официальная командная строка.  
@@ -87,7 +89,7 @@
     - IntelliJ IDEA / PhpStorm / WebStorm — встроенная поддержка Git (JetBrains).  
     - Git Extensions — GUI для Windows.
 
-## Docker - открытая платформа для разработки, доставки и запуска приложений в контейнерах.
+## Docker - открытая платформа для разработки, доставки и запуска приложений в контейнерах
 
 | Команда | Описание | Дополнительные параметры (с пояснением) | Пример команды |
 |---|---|---|---|
@@ -110,4 +112,3 @@
 | `docker volume ls` | Показать тома Docker | `docker volume inspect <volume>` | `docker volume ls` |
 | `docker-compose up` | (docker-compose) Поднять multi‑container приложение | `-d` (detached), `--build`, `--scale svc=n` | `docker-compose up -d --build` |
 | `docker system prune` | Очистить неиспользуемые объекты | `-a` (удалить все неиспользуемые образы), `--volumes` | `docker system prune -a --volumes` |
-
