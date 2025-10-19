@@ -65,21 +65,6 @@ cat /proc/meminfo
 | 8. User login | getty / display manager | `systemctl status graphical.target` |
 | 9. Runtime | Стабильная работа, таймеры, cron | `top`, `journalctl -f` |
 
-#### Визуализация (Mermaid)
-
-```mermaid
-flowchart LR
-  POST --> Bootloader
-  Bootloader --> Kernel
-  Kernel --> initramfs
-  initramfs --> switch_root
-  switch_root --> systemd
-  systemd --> Services
-  Services --> UserLogin
-```
-
-> Примечание: для рендеринга Mermaid включите поддержку в `mkdocs.yml` (например, mkdocs-mermaid2-plugin).
-
 ### Полезные команды диагностики загрузки
 
 <details>
@@ -111,3 +96,27 @@ mount
 ```
 
 </details>
+
+## Список команды для работы в UNIX Terminal
+
+| Команда | Описание | Параметры | Пример |
+|---|---|---|---|
+| `ls` | Список файлов/папок | `-l` (long — подробный список); `-a` (all — показать скрытые); `-h` (human — размеры в удобном виде) | `ls -la -h /var/www` |
+| `cd` | Перемещение по каталогам | (без параметров) — путь или `-` (предыдущая директория) | `cd /etc/nginx` / `cd -` |
+| `cp` | Копирование файлов/каталогов | `-r` (recursive — рекурсивно для директорий); `-p` (preserve — сохранить права/время) | `cp -r -p src/ dest/` |
+| `mv` | Перемещение/переименование | (без параметров) | `mv old.conf new.conf` |
+| `rm` | Удаление файлов/каталогов | `-r` (recursive); `-f` (force — без подтверждения) — вместе `-rf` очень опасно | `rm -rf /tmp/build` |
+| `find` | Поиск файлов по условиям | `-name` (по имени); `-type` (f/d); `-mtime` (по возрасту) | `find /var -name "*.log" -mtime +7` |
+| `grep` | Поиск по тексту | `-R` (recursive); `-n` (show line numbers); `-E` (extended regex) | `grep -R -n "ERROR" /var/log` |
+| `awk` | Текстовая обработка колонок | (скрипт/выражение) — `{print $N}` | `awk '{print $5}' file` |
+| `sed` | Потоковая замена/редактирование | `-i` (in-place — заменить в файле); `-E` (extended regex) | `sed -i 's/old/new/g' file` |
+| `ps` / `top` / `htop` | Процессы/ресурсы | `ps aux` (все процессы, подробный вывод); `ps -ef` (альтернативный формат) | `ps aux | grep nginx` / `top` / `htop` |
+| `systemctl` | Управление systemd сервисами | `status|start|stop|restart|enable|disable` | `systemctl restart nginx` |
+| `journalctl` | Просмотр системного журнала | `-u <service>` (фильтр по юниту); `-b` (текущий boot); `-f` (follow) | `journalctl -u nginx -f` |
+| `ssh` | Подключение к удалённым хостам | `-i <key>` (ключ); `-p <port>` (порт); `-o` (опции) | `ssh -i ~/.ssh/id_rsa -p 2222 user@host` |
+| `scp` / `rsync` | Копирование файлов между хостами | `scp -i <key>`; `rsync -avz` (`-a` archive, `-v` verbose, `-z` compress); `--delete` (удалять лишние файлы на приёмнике) | `rsync -avz --delete ./dist user@host:/srv/` |
+| `curl` / `wget` | HTTP‑запросы / скачивание | `-I` (HEAD запрос); `-s` (silent); `-L` (follow redirects); `-o` (output file) | `curl -I -s -L https://example.com` |
+| `tar` | Архивация/распаковка | `-c` (create); `-x` (extract); `-z` (gzip); `-f` (file) | `tar czf backup.tgz /etc` / `tar xzf file.tgz` |
+| `chmod` / `chown` | Права и владелец | `chmod u/g/o` или `chmod -R` (рекурсивно); `chown user:group -R` | `chown -R www:www /var/www` / `chmod 644 file` |
+| `df` / `du` | Диск/занятость | `df -h` (human); `du -sh` (суммарный размер) | `df -h` / `du -sh /var/log` |
+| `ip` / `ss` | Сеть: адреса, сокеты, маршруты | `ip addr` (показ адресов); `ip route` (маршруты); `ss -tuna` (`-t` TCP, `-u` UDP, `-n` numeric, `-a` all) | `ip addr show` / `ss -tuna | grep LISTEN` |

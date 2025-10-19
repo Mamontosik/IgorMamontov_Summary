@@ -15,6 +15,9 @@ nav:
     - Список используемых портов: assesment_port_unswer.md
     - Взаимодействие с kafka: assesment_kafka_unswer.md
     - Взаимодействие с linux: assesment_linux_unswer.md
+    - Взаимодействие с k8s: assesment_kubernetes_unswer.md
+    - Взаимодействие с docker: assesment_docker_unswer.md
+    - Взаимодействие с ansible: assesment_ansible_unswer.md
 
 theme:
   name: 'material'

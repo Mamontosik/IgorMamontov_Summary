@@ -42,6 +42,103 @@
 | `503` | Service Unavailable | Сервис недоступен | Health checks, metrics | Масштаб/maintenance |
 | `504` | Gateway Timeout | Таймаут upstream | Nginx logs, slow backend | Оптимизировать backend/таймаут |
 
+## Команды для поиска проблем на сети
+
+| Команда | Описание | Важные параметры | Пример | Как интерпретировать |
+|---|---|---|---|---|
+| `ping` | Проверка доступности хоста и RTT | `-c <n>` (кол‑во), `-W` (timeout) | `ping -c 4 8.8.8.8` | Пакеты теряются → потеря связи/packet loss; высокий RTT → задержки |
+| `traceroute` / `tracert` | Трассировка маршрута пакетов | `-n` (без DNS), `-w` (timeout) | `traceroute -n 8.8.8.8` | Узкие места по hop; if * — ICMP/TTL blocking |
+| `mtr` | Комбинация ping+traceroute (реaltime) | `-r` (report), `-c` | `mtr -r 8.8.8.8` | Показывает packet loss и latency по hop |
+| `tcpdump` | Сниффинг трафика (пакеты) | `-i <iface>`, `-w file`, фильтры BPF | `sudo tcpdump -i eth0 port 80 -c 100` | Смотрим пакеты/handshake/RST; полезно для детального анализа |
+| `ss` / `netstat` | Сокеты, порты, состояния соединений | `-tuna`, `-l`, `-p` | `ss -tuna` | TIME_WAIT/RST → проблемы закрытия; нет LISTEN → сервис не поднят |
+| `ip route` | Таблица маршрутизации | — | `ip route show` | Неправильный маршрут → трафик идёт не туда |
+| `ip neigh` | ARP/NDP таблица | — | `ip neigh` | Нет MAC → ARP проблемы, duplicate → ARP conflict |
+| `dig` / `nslookup` | DNS резолвинг и диагностика | `+short`, `@server`, тип запроса | `dig +short example.com` | NXDOMAIN → нет записи; ответ от неправильного сервера → DNS конфиг |
+| `curl` / `wget` | HTTP‑проверки (headers/body) | `-I`, `-v`, `--max-time` | `curl -I https://example.com` | HTTP code 5xx → backend ошибка; TLS handshake failure → cert/ALPN issues |
+| `nmap` | Сканирование портов/хостов | `-p`, `-sT/-sS`, `-Pn` | `nmap -p 22,80 host` | Closed/Filtered/Open помогает понять firewall/NAT |
+| `iftop` / `nload` | Мониторинг трафика в реальном времени | интерфейс | `iftop -i eth0` | Высокая полоса → нагрузка/утечка трафика |
+| `arping` | Проверка ARP‑ответов | `-c`, `-I` | `arping -c 3 -I eth0 192.168.1.1` | Нет ответа → L2/ARP проблема |
+
+## Таблица популярных HTTP методов
+
+| Метод | Описание | Пример использования | Рекомендации |
+|---|---|---|---|
+| GET | Получение ресурса (без изменения) | `GET /api/users/123` | Идёмпотентен; кешировать, не использовать для изменений |
+| POST | Создание ресурса или выполнение операции | `POST /api/users` с JSON body | Не идёмпотентен; валидация входных данных |
+| PUT | Полная замена ресурса | `PUT /api/users/123` с полным объектом | Идёмпотентен; использовать для полной замены |
+| PATCH | Частичное обновление ресурса | `PATCH /api/users/123` с частичным JSON | Использовать для частичных изменений |
+| DELETE | Удаление ресурса | `DELETE /api/users/123` | Идёмпотентен (повторный DELETE — OK) |
+| HEAD | Получить только заголовки ответа | `HEAD /api/users/123` | Быстрое наличие ресурса, кеш/мета‑данные |
+| OPTIONS | Получить поддерживаемые методы / CORS preflight | `OPTIONS /api/users` | Используется для CORS и описания возможностей ресурса |
+
+## Список регулярных выражений
+
+| Назначение | Regex (PCRE/ECMAScript) | Пример строки | Примечание |
+|---|---:|---|---|
+| Email | `^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$` | `user@example.com` | Простая проверка, не для 100% RFC‑совместимости |
+| IPv4 | `^((25[0-5]|2[0-4]\d|[01]?\d\d?)(\.|$)){4}$` | `192.168.0.1` | Валидирует октеты 0–255 |
+| URL (http/https) | `^https?://[^\s/$.?#].[^\s]*$` | `https://example.com/path` | Простая проверка, не для всех кейсов |
+| Дата YYYY-MM-DD | `^\d{4}-\d{2}-\d{2}$` | `2025-10-19` | Доп. валидация на корректность даты не выполняется |
+| Целое число (опционально знак) | `^-?\d+$` | `-42` | |
+| Дробное число | `^-?\d+(\.\d+)?$` | `3.14` | |
+| UUID v4 | `^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$` | `550e8400-e29b-41d4-a716-446655440000` | Проверяет вариант v4 |
+| Логический поисковый паттерн (contains) | `(?i)error|fail|exception` | `Error: something` | `(?i)` — case‑insensitive |
+
+## Список используемых файловых систем
+
+| Файловая система | Где используется | Особенности | Ограничения |
+|---|---|---|---|
+| ext4 | Linux серверы/рабочие станции | Надёжная, широкая поддержка, journaling | Ограничения на масштаб (очень большие FS поддерживаются) |
+| XFS | Высокопроизводительные диски, большие файлы | Отлично с большими объёмами и параллельной записью | Нельзя уменьшать файловую систему онлайн |
+| Btrfs | Снэпшоты, дедупликация, субтомы | Copy‑on‑write, снэпшоты, компрессия | Исторически стабильность/производительность — проверить перед продом |
+| ZFS | Большие хранилища, NAS, аналитика | Copy‑on‑write, контроль целостности, дедупликация, снэпшоты | Память и ресурсоёмкость; лицензирование/совместимость |
+| NTFS | Windows, совместный доступ с Linux (ntfs-3g) | Поддерживает ACL, большие файлы | Плохо подходит как основной Linux FS (производительность/совместимость) |
+| FAT32 / exFAT | Removable media, USB | Совместимость с ОС, простота | FAT32: max file 4GB; exFAT: лучше для больших файлов, менее защищённая |
+| tmpfs | Временное хранение в памяти (RAM) | Очень быстро, tmpfs монтируется в RAM | Не персистентна; ограничена объёмом RAM |
+| overlayfs | Контейнерные файловые слои (Docker) | Union FS, слои образов, copy‑up | Подходит для контейнеров, но имеет нюансы с permission/locks |
+
+## Crontab - способ запуска заданий по расписанию
+
+| Поле | Значение | Описание | Пример поля |
+|---:|---|---|---|
+| minute | 0-59 | Минуты запуска | `30` |
+| hour | 0-23 | Часы запуска | `2` |
+| day_of_month | 1-31 | День месяца | `1` |
+| month | 1-12 или Jan-Dec | Месяц | `*/6` |
+| day_of_week | 0-7 или Sun-Sat (0/7 = Sun) | День недели | `1-5` |
+| special | @reboot/@daily/... | Специальные строки вместо 5 полей | `@daily` |
+
+Примеры записей crontab:
+
+| Cron entry | Описание |
+|---|---|
+| `30 2 * * * /usr/local/bin/backup.sh` | Запуск backup.sh каждый день в 02:30 |
+| `*/5 * * * * /usr/bin/php /srv/app/cron.php` | Каждые 5 минут |
+| `0 0 1 * * /usr/bin/find /var/log -type f -mtime +30 -delete` | Удалять логи старше 30 дней 1-го числа месяца |
+| `@reboot /usr/bin/docker start myservice` | Запустить контейнер при загрузке системы |
+| `0 3 * * 0 root /usr/bin/apt-get update && apt-get -y upgrade` | Обновление по воскресеньям в 03:00 (пример в /etc/crontab с полем user) |
+
+## Описание записей DNS зон
+
+| Тип записи | Описание | Пример записи | Использование |
+|---|---|---|---|
+| A | IPv4 адрес для хоста | `www  IN  A   192.0.2.10` | Указывает IPv4 адрес для имени |
+| AAAA | IPv6 адрес для хоста | `www  IN  AAAA  2001:db8::1` | IPv6 эквивалент A |
+| CNAME | Каноническое имя (алиас) | `app  IN  CNAME  www.example.com.` | Алиас на другое имя (не на IP) |
+| MX | Почтовый сервер и приоритет | `@    IN  MX   10 mail.example.com.` | Маршрутизация почты |
+| TXT | Произвольный текст, SPF, DKIM, verification | `@ IN TXT "v=spf1 mx -all"` | SPF, DKIM, доменная валидация |
+| NS | Делегирование зоны | `example.com. IN NS ns1.example.net.` | Указывает авторитативные NS |
+| SOA | Start of Authority — метаданные зоны | `@ IN SOA ns1.example.net. hostmaster.example.com. (...)` | Обязательная запись зоны |
+| SRV | Сервисы с приоритетом/портом | `_sip._tcp  IN SRV 10 60 5060 sipserver.example.` | SIP, XMPP, Kubernetes headless discovery |
+| PTR | Обратная запись (IP → имя) | `10.2.0.192.in-addr.arpa. IN PTR host.example.com.` | Reverse DNS для почты/логов |
+| CAA | Разрешение CA выдавать сертификаты | `@ IN CAA 0 issue "letsencrypt.org"` | Контроль выдачи TLS сертификатов |
+
+### Что такое DNS зона
+
+!!! note ""
+
+    Выделенный сегмент интернета, где хранится информация о доменах и связанных с ними ресурсах, которые находятся под управлением определённой организации или лица.
+
 ## GIT - команды для работы с репозиториями
 
 | Команда | Результат / что делает команда | Доступные параметры (частые) | Пример команды |
@@ -89,26 +186,19 @@
     - IntelliJ IDEA / PhpStorm / WebStorm — встроенная поддержка Git (JetBrains).  
     - Git Extensions — GUI для Windows.
 
-## Docker - открытая платформа для разработки, доставки и запуска приложений в контейнерах
+## CI/CD: этапы, описание, лучшие практики
 
-| Команда | Описание | Дополнительные параметры (с пояснением) | Пример команды |
-|---|---|---|---|
-| `docker run` | Создать и запустить контейнер из образа | `-d` (detached), `--name <name>`, `-p host:container` (порт-маппинг), `-v host:container` (том), `--rm` (удалить после выхода), `-e KEY=VAL` (env) | `docker run -d --name web -p 8080:80 nginx` |
-| `docker build` | Построить образ из Dockerfile | `-t name:tag` (имя/тег), `-f <Dockerfile>` (файл), `--build-arg KEY=VAL` | `docker build -t myapp:1.0 .` |
-| `docker pull` | Скачать образ из реестра | `<image>:<tag>` (по умолчанию `latest`) | `docker pull redis:6.2` |
-| `docker push` | Отправить образ в реестр | Требует `docker login` и корректного имени репозитория | `docker push myrepo/myapp:1.0` |
-| `docker ps` | Показать запущенные контейнеры | `-a` (включая остановленные), `--format` (кастомный вывод) | `docker ps -a --format '{{.ID}}\t{{.Names}}\t{{.Status}}'` |
-| `docker images` | Показать локальные образы | `--format`, `-a` (включая промежуточные) | `docker images --format '{{.Repository}}:{{.Tag}}\t{{.Size}}'` |
-| `docker stop` | Остановить запущенный контейнер (graceful) | `-t <secs>` (таймаут перед SIGKILL) | `docker stop -t 10 web` |
-| `docker start` | Запустить ранее созданный/остановленный контейнер | — | `docker start web` |
-| `docker restart` | Перезапустить контейнер (stop + start) | `-t <secs>` | `docker restart -t 5 web` |
-| `docker rm` | Удалить один или несколько контейнеров | `-f` (force), `-v` (удалить связанные тома) | `docker rm -f old_container` |
-| `docker rmi` | Удалить локальный образ | `-f` (принудительно) | `docker rmi myapp:1.0` |
-| `docker exec` | Выполнить команду внутри запущенного контейнера | `-it` (интерактивный терминал), `-u` (пользователь) | `docker exec -it web bash` |
-| `docker logs` | Просмотреть логи контейнера | `-f` (follow), `--since`, `--tail <n>` | `docker logs -f --tail 100 web` |
-| `docker inspect` | Полная JSON‑информация о контейнере/образе/сети | `--format '{{.Config}}'` для конкретных полей | `docker inspect --format '{{.NetworkSettings.IPAddress}}' web` |
-| `docker stats` | Живые метрики (CPU, память) контейнеров | `--no-stream` (одноразовый снимок), указывать контейнеры | `docker stats --no-stream web db` |
-| `docker network ls` | Показать сети Docker | `docker network inspect <network>` для деталей | `docker network ls` / `docker network inspect bridge` |
-| `docker volume ls` | Показать тома Docker | `docker volume inspect <volume>` | `docker volume ls` |
-| `docker-compose up` | (docker-compose) Поднять multi‑container приложение | `-d` (detached), `--build`, `--scale svc=n` | `docker-compose up -d --build` |
-| `docker system prune` | Очистить неиспользуемые объекты | `-a` (удалить все неиспользуемые образы), `--volumes` | `docker system prune -a --volumes` |
+| Этап | Описание | Лучшие практики |
+|---|---|---|
+| Source / Commit | Разработка, контроль версий | Малые коммиты, ветки feature, PR с ревью |
+| Build | Компиляция/сборка артефакта | Детерминированные сборки, кэширование, BuildKit |
+| Static analysis / Lint | Анализ кода, правила стиля | Запуск линтеров в CI, fail on error, авто‑форматирование |
+| Unit tests | Быстрые модульные тесты | Быстро, изолированно, покрытие критичных модулей |
+| Integration tests | Тесты взаимодействий компонентов | Использовать тестовые окружения/контейнеры, mock зависимости |
+| Security / SCA | Сканы уязвимостей и секретов | Trivy/Dependabot, сканинг зависимостей, secret scanning |
+| Package / Artifact | Упаковка, версияция артефактов | Хранить в registry/artifact repo, семантические теги |
+| Deploy to staging | Деплой в тест/стейдж | Автоматический deploy, smoke tests, feature flags |
+| E2E / Acceptance | End‑to‑end тесты на staging | Стабильные сценарии, изолированные данные |
+| Release / Deploy to prod | Промежуток релиза в прод | Canary/Blue‑Green/Rolling, мониторинг и откат |
+| Monitor & Observe | Логи, метрики, алерты | SLO/SLI, автоматические тревоги, runbooks |
+| Rollback / Remediation | Откат при проблемах | Быстрые откаты, автоматический rollback при failed healthchecks |
