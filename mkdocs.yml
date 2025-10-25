@@ -12,6 +12,7 @@ nav:
 
   - Подготовка к assesment:
     - Ответы для assesment (unsorted): assesment_unswer.md
+    - Названия, краткий справочник: assesment_handbook_unswer.md
     - Список используемых портов: assesment_port_unswer.md
     - Взаимодействие с kafka: assesment_kafka_unswer.md
     - Взаимодействие с linux: assesment_linux_unswer.md
