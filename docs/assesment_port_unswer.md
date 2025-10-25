@@ -1,95 +1,86 @@
-### Web
+# Порты — краткий справочник
 
-- **80/TCP** — HTTP (нешифрованный веб). Применение: веб‑сайты, API (dev/test).
-- **443/TCP** — HTTPS (HTTP over TLS). Применение: защищённый веб, API (prod).
+Кратко: таблица для быстрого поиска; раскрываемые секции — для деталей и проверок.
 
-**Проверка:** `ss -ltn sport = :80` / `ss -ltn sport = :443` / `curl -I http(s)://<host>`
+## Список популярных портов
+| Порт | Протокол | Сервис | Применение | Быстрая проверка |
+|---:|:---:|---|---|---|
+| 80 | TCP | HTTP | Веб (dev/test) | `ss -ltn sport = :80` |
+| 443 | TCP | HTTPS | Веб (prod/TLS) | `ss -ltn sport = :443` |
+| 22 | TCP | SSH | Админ/ssh/git | `ss -ltn sport = :22` |
+| 53 | UDP/TCP | DNS | Резолвинг / zone transfer | `dig @<dns> example.com` |
+| 67/68 | UDP | DHCP | Авто IP (DORA) | `tcpdump -n udp port 67 or 68 -c 5` |
+| 3306 | TCP | MySQL | БД | `ss -ltn | grep 3306` |
+| 5432 | TCP | PostgreSQL | БД | `ss -ltn | grep 5432` |
+| 6443 | TCP | K8s API | Kubernetes API | `kubectl get nodes --server=https://host:6443` |
+| 2379/2380 | TCP | etcd | KV store (k8s) | `ss -ltn | grep 2379` |
+| 9090 | TCP | Prometheus | Monitoring | `ss -ltn | grep 9090` |
+| 3000 | TCP | Grafana | Dashboards | `curl -I http://host:3000` |
+| 5672 | TCP | RabbitMQ | Messaging | `ss -ltn | grep 5672` |
+| 27017 | TCP | MongoDB | NoSQL | `ss -ltn | grep 27017` |
+| 6379 | TCP | Redis | In‑memory | `redis-cli -h host ping` |
+| 445 | TCP | SMB | Windows shares | `smbclient -L //host` |
 
-### Доступ / администрирование
+---
 
-- **22/TCP** — SSH / SFTP (удалённый доступ, git over SSH).
-- **3389/TCP** — RDP (удалённый рабочий стол Windows).
-- **23/TCP** — Telnet (deprecated, небезопасно).
+<details>
+<summary><strong>Web & TLS</strong></summary>
 
-**Проверка:** `ss -ltn sport = :22` / `ssh -v user@host`
+- 80/TCP — HTTP (dev/test). Check: `curl -I http://<host>`<br>  
+- 443/TCP — HTTPS (prod/TLS). Check: `openssl s_client -connect host:443 -servername host`
 
-### Почта
+</details>
 
-- **25/TCP** — SMTP (transfer between mail servers).
-- **587/TCP** — Submission (SMTP client submission).
-- **465/TCP** — SMTPS (legacy SMTP over TLS).
-- **110/TCP** — POP3.
-- **143/TCP** — IMAP.
-- **993/TCP** — IMAPS.
-- **995/TCP** — POP3S.
+<details>
+<summary><strong>Администрирование</strong></summary>
 
-**Проверка:** `ss -ltn sport = :25` / `openssl s_client -starttls smtp -connect host:587`
+- 22/TCP — SSH. Check: `ssh -v user@host`<br>  
+- 3389/TCP — RDP (Windows)<br>  
+- 23/TCP — Telnet (не рекомендуется)
 
-### Сетевая инфраструктура (DNS/DHCP/NTP)
+</details>
 
-- **53/UDP, TCP** — DNS (UDP для резолвинга, TCP для zone transfer / больших ответов).
-- **67/68/UDP** — DHCP (server/client).
-- **123/UDP** — NTP.
+<details>
+<summary><strong>DNS / DHCP / NTP</strong></summary>
 
-**Проверка:** `dig @<dns> example.com` / `tcpdump -n udp port 67 or udp port 68 -c 20`
+- 53/UDP,TCP — DNS. Check: `dig @<dns> example.com`<br>  
+- 67/68/UDP — DHCP (DORA). Check: `tcpdump -n udp port 67 or 68 -c 10`<br>  
+- 123/UDP — NTP. Check: `ntpq -p host`
 
-### Каталог / аутентификация
+</details>
 
-- **389/TCP,UDP** — LDAP.
-- **636/TCP** — LDAPS.
-- **3268/3269/TCP** — AD Global Catalog.
+<details>
+<summary><strong>Databases</strong></summary>
 
-**Проверка:** `ldapsearch -H ldap://host -x` / `ss -ltn sport = :389`
+- 3306/TCP — MySQL/MariaDB (`ss -ltn | grep 3306`)<br>  
+- 5432/TCP — PostgreSQL (`pg_isready -h host`)<br>  
+- 27017/TCP — MongoDB (`ss -ltn | grep 27017`)<br>  
+- 6379/TCP — Redis (`redis-cli -h host ping`)
 
-### Базы данных
+</details>
 
-- **3306/TCP** — MySQL / MariaDB.
-- **5432/TCP** — PostgreSQL.
-- **1433/TCP** — MS SQL Server.
-- **27017/TCP** — MongoDB.
-- **6379/TCP** — Redis (in‑memory).
+<details>
+<summary><strong>Messaging & Orchestration</strong></summary>
 
-**Проверка:** `ss -ltn | grep 5432` / `pg_isready -h host`
+- 5672/TCP — RabbitMQ (AMQP)<br>  
+- 15672/TCP — RabbitMQ UI (`curl -I http://host:15672`)<br>  
+- 9092/9093/TCP — Kafka brokers <br> 
+- 6443/10250/TCP — Kubernetes API / kubelet
 
-### Messaging / очереди
+</details>
 
-- **5672/TCP** — AMQP (RabbitMQ).
-- **15672/TCP** — RabbitMQ Management UI.
-- **9092/TCP** — Kafka broker (PLAINTEXT).
-- **9093/TCP** — Kafka broker (SSL).
-- **2181/TCP** — ZooKeeper (координация для старых кластеров).
+<details>
+<summary><strong>Storage & Fileservices</strong></summary>
 
-**Проверка:** `ss -ltn | grep 9092` / `curl http://host:15672` (если management доступен)
+- 445/TCP — SMB/CIFS (`smbclient -L //host`) <br> 
+- 2049/TCP — NFS (`ss -ltn | grep 2049`) <br> 
+- 5000/TCP — Local Docker registry (`curl -I http://host:5000/v2/`)
 
-### Хранилище / файловые сервисы
+</details>
 
-- **445/TCP** — SMB / CIFS (Windows shares, Samba).
-- **2049/TCP,UDP** — NFS.
-- **5000/TCP** — Docker Registry (локальный).
+---
 
-**Проверка:** `rpcinfo -p host` / `ss -ltn | grep 2049`
-
-### Оркестрация / кластерные сервисы
-
-- **6443/TCP** — Kubernetes API server.
-- **10250/TCP** — Kubelet API.
-- **2379/TCP** — etcd client.
-- **2380/TCP** — etcd peer.
-
-**Проверка:** `kubectl get nodes --server=https://host:6443` / `ss -ltn | grep 6443`
-
-### Мониторинг / логирование / визуализация
-
-- **9090/TCP** — Prometheus.
-- **3000/TCP** — Grafana.
-- **5601/TCP** — Kibana.
-- **161/162/UDP** — SNMP (agent/trap).
-
-**Проверка:** `ss -ltn | grep 9090` / `curl http://host:3000`
-
-### Прочее / вспомогательные
-
-- **9418/TCP** — Git (git://).
-- **Ephemeral** — Client ephemeral ports (динамические) — TCP/UDP.
-
-**Проверка:** `ss -tn sport :ephemeral-range` (проверить на хосте диапазон ephemeral портов)
+## Рекомендации по использованию
+- Для быстрого локального аудита: `ss -ltn` + `ss -lun`.  
+- Для сетевого трафика/пакетов: `tcpdump -n -i <iface> port <num> -c 100`.  
+- Используйте `nmap` аккуратно (может считаться сканированием).
