@@ -126,3 +126,7 @@
 
 !!! note
     Примечание: многие настройки влияют совместно (например, readinessProbe + Service + NetworkPolicy). Для диагностики часто используются: `kubectl describe`, `kubectl logs`, `kubectl get events`, `kubectl top`, `kubectl get endpoints` и сетевые трассировки (`tcpdump`/`curl`/`dig`) внутри/снаружи Pod.
+
+???+ info "Алгоритм поиска и устранения проблем при развертывании Kubernetes"
+
+[Открыть PDF (предпросмотр на GitHub)](/learn_k8s.pdf)
