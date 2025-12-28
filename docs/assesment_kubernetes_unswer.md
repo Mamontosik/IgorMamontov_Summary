@@ -129,4 +129,14 @@
 
 ???+ info "Алгоритм поиска и устранения проблем при развертывании Kubernetes"
 
-    <object data="[/learn_k8s.pdf](https://mamontosik.github.io/IgorMamontov_Summary/learn_k8s.pdf)" type="application/pdf" width="100%" height="800"> Ваш браузер не поддерживает просмотр PDF. <a href="[/learn_k8s.pdf](https://mamontosik.github.io/IgorMamontov_Summary/learn_k8s.pdf)">Скачать PDF</a>. </object>
+    <object 
+     data="https://mamontosik.github.io/IgorMamontov_Summary/learn_k8s.pdf"
+     type="application/pdf"
+     width="100%"
+     height="800"
+     >
+     Ваш браузер не поддерживает просмотр PDF. 
+     <a href="https://mamontosik.github.io/IgorMamontov_Summary/learn_k8s.pdf">
+        Скачать PDF
+     </a>
+    </object>
