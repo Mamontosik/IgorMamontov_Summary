@@ -129,4 +129,4 @@
 
 ???+ info "Алгоритм поиска и устранения проблем при развертывании Kubernetes"
 
-[Открыть PDF (предпросмотр на GitHub)](/learn_k8s.pdf)
+    [Открыть PDF (предпросмотр на GitHub)](https://mamontosik.github.io/IgorMamontov_Summary/learn_k8s.pdf)
