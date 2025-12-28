@@ -1,0 +1,1523 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://Mamontosik.github.io/IgorMamontov_Summary/assesment_linux_unswer/">
+      
+      
+        <link rel="prev" href="../assesment_kafka_unswer/">
+      
+      
+        <link rel="next" href="../assesment_kubernetes_unswer/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Взаимодействие с linux - Summary Igor Mamontov ver.1</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Summary Igor Mamontov ver.1" class="md-header__button md-logo" aria-label="Summary Igor Mamontov ver.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Summary Igor Mamontov ver.1
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Взаимодействие с linux
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Summary Igor Mamontov ver.1" class="md-nav__button md-logo" aria-label="Summary Igor Mamontov ver.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Summary Igor Mamontov ver.1
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обо мне
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Руководство DevOps инженера
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Руководство DevOps инженера
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux команды
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_sec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Про DevSecOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Полезные метрики
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Про Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_kafka/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Блокер сообщений Kafka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git команды
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Подготовка к assesment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Подготовка к assesment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ответы для assesment (unsorted)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_handbook_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Названия, краткий справочник
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_port_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список используемых портов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Все о мониторинге
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_kafka_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с kafka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с linux
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux — структура и этапы загрузки операционной системы
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linux — структура и этапы загрузки операционной системы">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Критичные каталоги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Приложения и пользовательские каталоги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime и виртуальные FS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Команды для быстрого просмотра
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Этапы загрузки Linux — краткая схема
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Полезные команды диагностики загрузки
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unix-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Список команды для работы в UNIX Terminal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Список команды для работы в UNIX Terminal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Команды [grep] для поиска и фильтрации текста
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grep_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Таблица самых популярных регулярных выражений для grep
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ключевые пояснения
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_kubernetes_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с k8s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_docker_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_ansible_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Взаимодействие с linux</h1>
+
+<p><a href="/IgorMamontov_Summary/">Обо мне</a> / Подготовка к assesment</p>
+<h2 id="linux">Linux — структура и этапы загрузки операционной системы</h2>
+<h3 id="_1">Критичные каталоги</h3>
+<table>
+<thead>
+<tr>
+<th>Путь</th>
+<th>Назначение</th>
+<th>Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/</td>
+<td>Корень файловой системы</td>
+<td>Точка монтирования всего дерева</td>
+</tr>
+<tr>
+<td>/boot</td>
+<td>Файлы загрузчика/ядра (vmlinuz, initramfs, grub)</td>
+<td>Должна быть доступна загрузчику</td>
+</tr>
+<tr>
+<td>/etc</td>
+<td>Конфигурация системы</td>
+<td>Бэкапируйте конфиги перед изменениями</td>
+</tr>
+<tr>
+<td>/lib, /lib64</td>
+<td>Библиотеки ранних утилит и ядра</td>
+<td>Критично для загрузки</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">Приложения и пользовательские каталоги</h3>
+<table>
+<thead>
+<tr>
+<th>Путь</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/usr, /usr/bin, /usr/lib</td>
+<td>Приложения и библиотеки пользователей</td>
+</tr>
+<tr>
+<td>/usr/local</td>
+<td>Локально установленное ПО</td>
+</tr>
+<tr>
+<td>/home</td>
+<td>Домашние директории пользователей</td>
+</tr>
+</tbody>
+</table>
+<h3 id="runtime-fs">Runtime и виртуальные FS</h3>
+<table>
+<thead>
+<tr>
+<th>Путь</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/var, /var/log</td>
+<td>Изменяемые данные и логи</td>
+</tr>
+<tr>
+<td>/run</td>
+<td>Runtime данные (PID, locks, sockets) — tmpfs</td>
+</tr>
+<tr>
+<td>/tmp</td>
+<td>Временные файлы (часто очищается при reboot)</td>
+</tr>
+<tr>
+<td>/proc, /sys</td>
+<td>Виртуальные FS (процессы и устройства)</td>
+</tr>
+<tr>
+<td>/dev</td>
+<td>Device nodes (udev)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">Команды для быстрого просмотра</h3>
+<details>
+<summary>Нажмите, чтобы раскрыть команды</summary>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># Обзор точек монтирования и свободного места</span>
+df<span class="w"> </span>-hT
+mount<span class="w"> </span><span class="p">|</span><span class="w"> </span>column<span class="w"> </span>-t
+
+<span class="c1"># Содержимое root и критичных директорий</span>
+ls<span class="w"> </span>-la<span class="w"> </span>/boot<span class="w"> </span>/etc<span class="w"> </span>/var/log
+
+<span class="c1"># Информация о дисках и устройствах</span>
+lsblk<span class="w"> </span>-f
+blkid
+
+<span class="c1"># Информация ядра/памяти</span>
+cat<span class="w"> </span>/proc/cpuinfo
+cat<span class="w"> </span>/proc/meminfo
+</code></pre></div>
+
+</details>
+
+<h3 id="linux_1">Этапы загрузки Linux — краткая схема</h3>
+<table>
+<thead>
+<tr>
+<th>Этап</th>
+<th>Что происходит</th>
+<th>Диагностика</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Power on / POST</td>
+<td>Инициализация BIOS/UEFI</td>
+<td>Проверить настройки прошивки, secure boot</td>
+</tr>
+<tr>
+<td>2. Boot device selection</td>
+<td>Выбор загрузочного устройства (MBR/GPT)</td>
+<td><code>efibootmgr -v</code> (UEFI)</td>
+</tr>
+<tr>
+<td>3. Bootloader (GRUB)</td>
+<td>Работа GRUB, выбор ядра</td>
+<td>Проверить <code>/boot/grub/grub.cfg</code></td>
+</tr>
+<tr>
+<td>4. Kernel + initramfs</td>
+<td>Загрузка ядра и initramfs, монтирование ранних модулей</td>
+<td><code>cat /proc/cmdline</code>, <code>dmesg</code></td>
+</tr>
+<tr>
+<td>5. switch_root / pivot_root</td>
+<td>Переключение на реальный root</td>
+<td><code>mount</code> после загрузки</td>
+</tr>
+<tr>
+<td>6. init (PID 1 — systemd)</td>
+<td>Запуск юнитов и таргетов</td>
+<td><code>systemctl --failed</code>, <code>journalctl -b</code></td>
+</tr>
+<tr>
+<td>7. Services</td>
+<td>Демоны (sshd, cron, network)</td>
+<td><code>systemctl list-units --state=failed</code></td>
+</tr>
+<tr>
+<td>8. User login</td>
+<td>getty / display manager</td>
+<td><code>systemctl status graphical.target</code></td>
+</tr>
+<tr>
+<td>9. Runtime</td>
+<td>Стабильная работа, таймеры, cron</td>
+<td><code>top</code>, <code>journalctl -f</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">Полезные команды диагностики загрузки</h3>
+<details>
+<summary>Нажмите, чтобы раскрыть команды</summary>
+
+<div class="highlight"><pre><span></span><code>uname<span class="w"> </span>-a
+cat<span class="w"> </span>/proc/cmdline
+
+<span class="c1"># Журнал текущей загрузки</span>
+journalctl<span class="w"> </span>-b
+journalctl<span class="w"> </span>-b<span class="w"> </span>-u<span class="w"> </span>sshd.service
+
+<span class="c1"># Последние ошибки</span>
+journalctl<span class="w"> </span>-p<span class="w"> </span>err<span class="w"> </span>-b
+
+<span class="c1"># Статус systemd</span>
+systemctl<span class="w"> </span>--failed
+systemctl<span class="w"> </span>list-dependencies<span class="w"> </span>multi-user.target
+
+<span class="c1"># Проверка GRUB/UEFI</span>
+ls<span class="w"> </span>/boot
+efibootmgr<span class="w"> </span>-v
+
+<span class="c1"># Для проблем с root/инициализацией</span>
+dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
+cat<span class="w"> </span>/proc/mounts
+mount
+</code></pre></div>
+
+</details>
+
+<h2 id="unix-terminal">Список команды для работы в UNIX Terminal</h2>
+<table>
+<thead>
+<tr>
+<th>Команда</th>
+<th>Описание</th>
+<th>Параметры</th>
+<th>Пример</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ls</code></td>
+<td>Список файлов/папок</td>
+<td><code>-l</code> (long — подробный список); <code>-a</code> (all — показать скрытые); <code>-h</code> (human — размеры в удобном виде)</td>
+<td><code>ls -la -h /var/www</code></td>
+</tr>
+<tr>
+<td><code>cd</code></td>
+<td>Перемещение по каталогам</td>
+<td>(без параметров) — путь или <code>-</code> (предыдущая директория)</td>
+<td><code>cd /etc/nginx</code> / <code>cd -</code></td>
+</tr>
+<tr>
+<td><code>cp</code></td>
+<td>Копирование файлов/каталогов</td>
+<td><code>-r</code> (recursive — рекурсивно для директорий); <code>-p</code> (preserve — сохранить права/время)</td>
+<td><code>cp -r -p src/ dest/</code></td>
+</tr>
+<tr>
+<td><code>mv</code></td>
+<td>Перемещение/переименование</td>
+<td>(без параметров)</td>
+<td><code>mv old.conf new.conf</code></td>
+</tr>
+<tr>
+<td><code>rm</code></td>
+<td>Удаление файлов/каталогов</td>
+<td><code>-r</code> (recursive); <code>-f</code> (force — без подтверждения) — вместе <code>-rf</code> очень опасно</td>
+<td><code>rm -rf /tmp/build</code></td>
+</tr>
+<tr>
+<td><code>find</code></td>
+<td>Поиск файлов по условиям</td>
+<td><code>-name</code> (по имени); <code>-type</code> (f/d); <code>-mtime</code> (по возрасту)</td>
+<td><code>find /var -name "*.log" -mtime +7</code></td>
+</tr>
+<tr>
+<td><code>grep</code></td>
+<td>Поиск по тексту</td>
+<td><code>-R</code> (recursive); <code>-n</code> (show line numbers); <code>-E</code> (extended regex)</td>
+<td><code>grep -R -n "ERROR" /var/log</code></td>
+</tr>
+<tr>
+<td><code>awk</code></td>
+<td>Текстовая обработка колонок</td>
+<td>(скрипт/выражение) — <code>{print $N}</code></td>
+<td><code>awk '{print $5}' file</code></td>
+</tr>
+<tr>
+<td><code>sed</code></td>
+<td>Потоковая замена/редактирование</td>
+<td><code>-i</code> (in-place — заменить в файле); <code>-E</code> (extended regex)</td>
+<td><code>sed -i 's/old/new/g' file</code></td>
+</tr>
+<tr>
+<td><code>ps</code> / <code>top</code> / <code>htop</code></td>
+<td>Процессы/ресурсы</td>
+<td><code>ps aux</code> (все процессы, подробный вывод); <code>ps -ef</code> (альтернативный формат)</td>
+<td><code>ps aux | grep nginx</code> / <code>top</code> / <code>htop</code></td>
+</tr>
+<tr>
+<td><code>systemctl</code></td>
+<td>Управление systemd сервисами</td>
+<td><code>status|start|stop|restart|enable|disable</code></td>
+<td><code>systemctl restart nginx</code></td>
+</tr>
+<tr>
+<td><code>journalctl</code></td>
+<td>Просмотр системного журнала</td>
+<td><code>-u &lt;service&gt;</code> (фильтр по юниту); <code>-b</code> (текущий boot); <code>-f</code> (follow)</td>
+<td><code>journalctl -u nginx -f</code></td>
+</tr>
+<tr>
+<td><code>ssh</code></td>
+<td>Подключение к удалённым хостам</td>
+<td><code>-i &lt;key&gt;</code> (ключ); <code>-p &lt;port&gt;</code> (порт); <code>-o</code> (опции)</td>
+<td><code>ssh -i ~/.ssh/id_rsa -p 2222 user@host</code></td>
+</tr>
+<tr>
+<td><code>scp</code> / <code>rsync</code></td>
+<td>Копирование файлов между хостами</td>
+<td><code>scp -i &lt;key&gt;</code>; <code>rsync -avz</code> (<code>-a</code> archive, <code>-v</code> verbose, <code>-z</code> compress); <code>--delete</code> (удалять лишние файлы на приёмнике)</td>
+<td><code>rsync -avz --delete ./dist user@host:/srv/</code></td>
+</tr>
+<tr>
+<td><code>curl</code> / <code>wget</code></td>
+<td>HTTP‑запросы / скачивание</td>
+<td><code>-I</code> (HEAD запрос); <code>-s</code> (silent); <code>-L</code> (follow redirects); <code>-o</code> (output file)</td>
+<td><code>curl -I -s -L https://example.com</code></td>
+</tr>
+<tr>
+<td><code>tar</code></td>
+<td>Архивация/распаковка</td>
+<td><code>-c</code> (create); <code>-x</code> (extract); <code>-z</code> (gzip); <code>-f</code> (file)</td>
+<td><code>tar czf backup.tgz /etc</code> / <code>tar xzf file.tgz</code></td>
+</tr>
+<tr>
+<td><code>chmod</code> / <code>chown</code></td>
+<td>Права и владелец</td>
+<td><code>chmod u/g/o</code> или <code>chmod -R</code> (рекурсивно); <code>chown user:group -R</code></td>
+<td><code>chown -R www:www /var/www</code> / <code>chmod 644 file</code></td>
+</tr>
+<tr>
+<td><code>df</code> / <code>du</code></td>
+<td>Диск/занятость</td>
+<td><code>df -h</code> (human); <code>du -sh</code> (суммарный размер)</td>
+<td><code>df -h</code> / <code>du -sh /var/log</code></td>
+</tr>
+<tr>
+<td><code>ip</code> / <code>ss</code></td>
+<td>Сеть: адреса, сокеты, маршруты</td>
+<td><code>ip addr</code> (показ адресов); <code>ip route</code> (маршруты); <code>ss -tuna</code> (<code>-t</code> TCP, <code>-u</code> UDP, <code>-n</code> numeric, <code>-a</code> all)</td>
+<td><code>ip addr show</code> / <code>ss -tuna | grep LISTEN</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="grep">Команды [grep] для поиска и фильтрации текста</h3>
+<table>
+<thead>
+<tr>
+<th>Команда</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>grep iodmin file.txt</code></td>
+<td>Поиск <code>iodmin</code> в файле <code>file.txt</code>, вывод полностью совпавшей строки</td>
+</tr>
+<tr>
+<td><code>grep -o iodmin file.txt</code></td>
+<td>Поиск <code>iodmin</code> в файле <code>file.txt</code> и вывод только совпавшего куска строки</td>
+</tr>
+<tr>
+<td><code>grep -i iodmin file.txt</code></td>
+<td>Игнорирование регистра при поиске</td>
+</tr>
+<tr>
+<td><code>grep -bn iodmin file.txt</code></td>
+<td>Показать строку (<code>-n</code>) и столбец (<code>-b</code>), где был найден <code>iodmin</code></td>
+</tr>
+<tr>
+<td><code>grep -v iodmin file.txt</code></td>
+<td>Инверсия поиска (найдёт все строки, которые не совпадают с шаблоном <code>iodmin</code>)</td>
+</tr>
+<tr>
+<td><code>grep -A 3 iodmin file.txt</code></td>
+<td>Вывод трёх дополнительных строк после совпавшей</td>
+</tr>
+<tr>
+<td><code>grep -B 3 iodmin file.txt</code></td>
+<td>Вывод трёх дополнительных строк перед совпавшей</td>
+</tr>
+<tr>
+<td><code>grep -C 3 iodmin file.txt</code></td>
+<td>Вывод трёх дополнительных строк перед и после совпавшей</td>
+</tr>
+<tr>
+<td><code>grep -r iodmin $HOME</code></td>
+<td>Рекурсивный поиск по директории <code>$HOME</code> и всем вложенным</td>
+</tr>
+<tr>
+<td><code>grep -c iodmin file.txt</code></td>
+<td>Подсчёт совпадений</td>
+</tr>
+<tr>
+<td><code>grep -L iodmin *.txt</code></td>
+<td>Вывод списка txt‑файлов, которые не содержат <code>iodmin</code></td>
+</tr>
+<tr>
+<td><code>grep -l iodmin *.txt</code></td>
+<td>Вывод списка txt‑файлов, которые содержат <code>iodmin</code></td>
+</tr>
+<tr>
+<td><code>grep -w iodmin file.txt</code></td>
+<td>Совпадение только с полным словом <code>iodmin</code></td>
+</tr>
+<tr>
+<td><code>grep -f iodmins.txt file.txt</code></td>
+<td>Поиск по нескольким <code>iodmin</code> из файла <code>iodmins.txt</code> (шаблоны разделяются новой строкой)</td>
+</tr>
+<tr>
+<td><code>grep -I iodmin file.txt</code></td>
+<td>Игнорирование бинарных файлов</td>
+</tr>
+<tr>
+<td><code>grep -v -f file2 file1 &gt; file3</code></td>
+<td>Вывод строк, которые есть в <code>file1</code> и нет в <code>file2</code></td>
+</tr>
+<tr>
+<td><code>grep -in -e 'python' \</code>find -type f`<code>| Рекурсивный поиск файлов, содержащих слово</code>python`, с выводом номера строки и совпадений</td>
+<td></td>
+</tr>
+<tr>
+<td><code>grep -inc -e 'test' find -type f \| grep -v :0</code></td>
+<td>Рекурсивный поиск файлов, содержащих слово <code>test</code>, с выводом количества совпадений (исключая файлы без совпадений)</td>
+</tr>
+<tr>
+<td><code>grep . *.py</code></td>
+<td>Вывод содержимого всех py‑файлов, предваряя каждую строку именем файла</td>
+</tr>
+<tr>
+<td><code>grep "Http404" apps/**/*.py</code></td>
+<td>Рекурсивный поиск упоминаний <code>Http404</code> в директории <code>apps</code> в py‑файлах</td>
+</tr>
+</tbody>
+</table>
+<h3 id="grep_1">Таблица самых популярных регулярных выражений для <code>grep</code></h3>
+<table>
+<thead>
+<tr>
+<th>Выражение</th>
+<th>Описание</th>
+<th>Пример команды</th>
+<th>Что найдёт</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.</code></td>
+<td>Любой символ (кроме перевода строки)</td>
+<td><code>grep 'c.t' file.txt</code></td>
+<td><code>cat</code>, <code>cut</code>, <code>cot</code> и т. п.</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Ноль или более повторений предыдущего символа</td>
+<td><code>grep 'ab*c' file.txt</code></td>
+<td><code>ac</code>, <code>abc</code>, <code>abbc</code></td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>Начало строки</td>
+<td><code>grep '^Error' log.txt</code></td>
+<td>Строки, начинающиеся с <code>Error</code></td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>Конец строки</td>
+<td><code>grep 'success$' log.txt</code></td>
+<td>Строки, заканчивающиеся на <code>success</code></td>
+</tr>
+<tr>
+<td><code>^$</code></td>
+<td>Пустая строка</td>
+<td><code>grep '^$' file.txt</code></td>
+<td>Пустые строки</td>
+</tr>
+<tr>
+<td><code>[abc]</code></td>
+<td>Один из перечисленных символов</td>
+<td><code>grep '[aeiou]' words.txt</code></td>
+<td>Слова с гласными буквами</td>
+</tr>
+<tr>
+<td><code>[^abc]</code></td>
+<td>Любой символ, кроме перечисленных</td>
+<td><code>grep '[^0-9]' data.txt</code></td>
+<td>Нецифровые символы</td>
+</tr>
+<tr>
+<td><code>[a-z]</code></td>
+<td>Диапазон символов</td>
+<td><code>grep '[0-9]{3}' numbers.txt</code></td>
+<td>Трёхзначные числа</td>
+</tr>
+<tr>
+<td><code>\&lt;word</code></td>
+<td>Начало слова (граница)</td>
+<td><code>grep '\&lt;test' text.txt</code></td>
+<td><code>test</code> в начале слова (например, <code>testing</code>)</td>
+</tr>
+<tr>
+<td><code>word\&gt;</code></td>
+<td>Конец слова (граница)</td>
+<td><code>grep 'end\&gt;' text.txt</code></td>
+<td><code>end</code> в конце слова (например, <code>friend</code>)</td>
+</tr>
+<tr>
+<td><code>(...)</code></td>
+<td>Группировка (с <code>-E</code>)</td>
+<td><code>grep -E '(ab)+' text.txt</code></td>
+<td><code>ab</code>, <code>abab</code>, <code>ababab</code></td>
+</tr>
+<tr>
+<td><code>\|</code></td>
+<td>Альтернатива (ИЛИ, с <code>-E</code>)</td>
+<td><code>grep -E 'cat\|dog' animals.txt</code></td>
+<td>Строки с <code>cat</code> <strong>или</strong> <code>dog</code></td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td>Экранирование спецсимволов</td>
+<td><code>grep '\.' sentences.txt</code></td>
+<td>Точку как символ (не «любой символ»)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">Ключевые пояснения</h3>
+<ol>
+<li><strong>Практические примеры</strong>:
+   ```bash
+   # Найти строки с «error» или «warning»
+   grep -E 'error|warning' log.txt</li>
+</ol>
+<p># Найти слова, начинающиеся на «pre»
+   grep '\&lt;pre' dictionary.txt</p>
+<p># Найти трёхзначные числа
+   grep '[0-9][0-9][0-9]' numbers.txt</p>
+<p># Найти строки только с цифрами
+   grep '^[0-9]+$' data.txt</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["toc.integrate", "toc.follow", "navigation.tracking"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

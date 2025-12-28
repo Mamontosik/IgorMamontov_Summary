@@ -1,0 +1,1585 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://Mamontosik.github.io/IgorMamontov_Summary/assesment_kubernetes_unswer/">
+      
+      
+        <link rel="prev" href="../assesment_linux_unswer/">
+      
+      
+        <link rel="next" href="../assesment_docker_unswer/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Взаимодействие с k8s - Summary Igor Mamontov ver.1</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kubernetes-k8s" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Summary Igor Mamontov ver.1" class="md-header__button md-logo" aria-label="Summary Igor Mamontov ver.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Summary Igor Mamontov ver.1
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Взаимодействие с k8s
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Summary Igor Mamontov ver.1" class="md-nav__button md-logo" aria-label="Summary Igor Mamontov ver.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Summary Igor Mamontov ver.1
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обо мне
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Руководство DevOps инженера
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Руководство DevOps инженера
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux команды
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_sec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Про DevSecOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Полезные метрики
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Про Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_kafka/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Блокер сообщений Kafka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git команды
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Подготовка к assesment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Подготовка к assesment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ответы для assesment (unsorted)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_handbook_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Названия, краткий справочник
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_port_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список используемых портов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Все о мониторинге
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_kafka_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с kafka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_linux_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с k8s
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с k8s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-k8s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes (K8s) — автоматизация развёртывания и управления контейнеризированными приложениями
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes (K8s) — автоматизация развёртывания и управления контейнеризированными приложениями">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Основные компоненты Kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Основные компоненты Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#podcontainer-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сеть: поведение Pod/Container и потоки трафика (по namespace)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Список команды kubectl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Список ошибок и рекомендации по исправлению
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Типы ресурсов Kubernetes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k8s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Механизм управления трафиком в K8s
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_docker_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_ansible_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Взаимодействие с k8s</h1>
+
+<p><a href="/IgorMamontov_Summary/">Обо мне</a> / Подготовка к assesment</p>
+<h2 id="kubernetes-k8s">Kubernetes (K8s) — автоматизация развёртывания и управления контейнеризированными приложениями</h2>
+<h3 id="kubernetes">Основные компоненты Kubernetes</h3>
+<table>
+<thead>
+<tr>
+<th>Группа</th>
+<th>Компонент</th>
+<th>Описание</th>
+<th>Полезные советы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Control Plane (мастер‑ноды)</strong></td>
+<td>kube‑apiserver</td>
+<td>Входная точка API кластера — обеспечивает взаимодействие пользователей и компонентов с кластером</td>
+<td>Разместить за балансировщиком нагрузки (LB); включить аутентификацию и авторизацию; настроить логирование</td>
+</tr>
+<tr>
+<td></td>
+<td>etcd</td>
+<td>Распределённое хранилище метаданных кластера (key‑value)</td>
+<td>Выделить отдельные диски/узлы; регулярно делать бэкапы; мониторить I/O‑нагрузку</td>
+</tr>
+<tr>
+<td></td>
+<td>kube‑scheduler</td>
+<td>Назначает Pod на Node: фильтрует узлы, оценивает их пригодность, выбирает лучший узел для пода</td>
+<td>Использовать affinity/taints/tolerations; тестировать политики планирования</td>
+</tr>
+<tr>
+<td></td>
+<td>kube‑controller‑manager</td>
+<td>Запускает контроллеры, поддерживающие желаемое состояние кластера (ReplicaSet, Deployment, Node и др.)</td>
+<td>Мониторить failed controllers; выделить достаточные ресурсы; следить за здоровьем контроллеров</td>
+</tr>
+<tr>
+<td></td>
+<td>cloud‑controller‑manager</td>
+<td>Интегрирует кластер с облачными провайдерами (Node Controller, Route Controller, Service Controller)</td>
+<td>Ограничивать права; использовать минимальные IAM‑роли; обновлять до актуальных версий</td>
+</tr>
+<tr>
+<td><strong>Worker Node (рабочие ноды)</strong></td>
+<td>kubelet</td>
+<td>Агент на Node: регистрирует ноду в кластере, запускает и контролирует контейнеры, работает с Container Runtime</td>
+<td>Минимизировать привилегии; следить за потреблением ресурсов ноды; настраивать параметры безопасности</td>
+</tr>
+<tr>
+<td></td>
+<td>kube‑proxy</td>
+<td>Реализует сервисы Kubernetes через iptables или IPVS; управляет сетевыми правилами для доступа к подам</td>
+<td>Предпочесть IPVS при высокой нагрузке; настраивать healthchecks; мониторить правила NAT/маршрутизации</td>
+</tr>
+<tr>
+<td></td>
+<td>Container Runtime (containerd/CRI‑O/Docker)</td>
+<td>Среда исполнения контейнеров: загружает образы, запускает и останавливает контейнеры</td>
+<td>Использовать поддерживаемую версию; применять безопасные конфиги; обновлять вовремя</td>
+</tr>
+<tr>
+<td></td>
+<td>CNI (Calico/Flannel/Weave/etc.)</td>
+<td>Сетевая подсистема: назначает IP‑адреса подам, настраивает маршрутизацию и сетевые политики</td>
+<td>Выбрать CNI по требованиям (policy, MTU, производительность); тестировать обновления; документировать настройки</td>
+</tr>
+<tr>
+<td><strong>Дополнительные/расширяющие компоненты</strong></td>
+<td>Ingress Controller (NGINX/Traefik/etc.)</td>
+<td>Обеспечивает внешний HTTP/HTTPS‑доступ к сервисам кластера; управляет TLS, маршрутизацией, лимитами</td>
+<td>Настроить TLS на Ingress; включить healthchecks; применять rate limiting; обновлять правила маршрутизации</td>
+</tr>
+<tr>
+<td></td>
+<td>scheduler extender / custom controllers</td>
+<td>Дополнительные плагины планировщика и кастомные контроллеры (через CRD)</td>
+<td>Выносить сложную логику в отдельные контроллеры; тестировать CRD; документировать API расширений</td>
+</tr>
+</tbody>
+</table>
+<h4 id="podcontainer-namespace">Сеть: поведение Pod/Container и потоки трафика (по namespace)</h4>
+<table>
+<thead>
+<tr>
+<th>Направление трафика</th>
+<th>Как это работает (сеть)</th>
+<th>Ключевые объекты</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pod → Pod (внутри namespace)</td>
+<td>Прямой обмен по Pod IP внутри cluster network; пакеты идут через veth → CNI</td>
+<td>veth pair, CNI routing/bridge/overlay; нет NAT между Pod</td>
+</tr>
+<tr>
+<td>Pod → Pod (между namespace)</td>
+<td>Аналогично, маршрутизация по Pod IP; DNS/FQDN зависит от namespace</td>
+<td>NetworkPolicy может блокировать/разрешать трафик по namespace/label</td>
+</tr>
+<tr>
+<td>Pod → Service (ClusterIP, внутри namespace)</td>
+<td>Запрос на ClusterIP DNAT'ится kube-proxy в один из целевых Pod</td>
+<td>Service (ClusterIP), kube-proxy (iptables/ipvs), DNS резолвинг</td>
+</tr>
+<tr>
+<td>Pod → Service (в другой namespace)</td>
+<td>Используется FQDN svc.namespace.svc.cluster.local или указание namespace</td>
+<td>Убедиться в правильном DNS запросе и разрешениях NetworkPolicy</td>
+</tr>
+<tr>
+<td>Ingress → Service → Pod (входящий HTTP(S))</td>
+<td>Ingress controller принимает внешний трафик, делает TLS termination и форвардит на Service → Pod</td>
+<td>Ingress controller, TLS certs, healthchecks; обычно reverse‑proxy</td>
+</tr>
+<tr>
+<td>External → NodePort / LoadBalancer → Pod</td>
+<td>Внешний трафик приходит на NodePort или облачный LB → Node → kube-proxy DNAT → Pod</td>
+<td>NodePort открывает порт на Node; LB направляет на Node/целевые группы</td>
+</tr>
+<tr>
+<td>Pod → External (egress)</td>
+<td>Под отправляет пакет наружу; обычно SNAT выполняется на Node или egress gateway</td>
+<td>Egress контролируется NAT, firewall или egress gateway</td>
+</tr>
+<tr>
+<td>DNS внутри кластера</td>
+<td>CoreDNS (ClusterIP) резолвит service/pod FQDN</td>
+<td>CoreDNS критичен для discovery; следить за его ресурсами/health</td>
+</tr>
+<tr>
+<td>NetworkPolicy (ingress/egress)</td>
+<td>Политики ограничивают потоки на уровне Pod селекторов</td>
+<td>По умолчанию отсутствие политики = открыто; политики по умолчанию блокируют</td>
+</tr>
+<tr>
+<td>HostNetwork / HostPort</td>
+<td>Pod использует сетевой стек ноды или занимает порт хоста</td>
+<td>Обходит kube-proxy; возможны конфликты портов и повышенные риски безопасности</td>
+</tr>
+<tr>
+<td>Overlay / MTU</td>
+<td>Меж‑Node трафик инкапсулируется (vxlan/ipip); MTU влияет на производительность</td>
+<td>Неправильный MTU → фрагментация/потеря пакетов; тестировать MTU при развертывании</td>
+</tr>
+<tr>
+<td>Multicast / Broadcast</td>
+<td>Обычно не проходит через overlay между Node</td>
+<td>Discovery, зависящий от broadcast, может не работать без L2‑поддержки</td>
+</tr>
+<tr>
+<td>Egress Gateway / NAT</td>
+<td>Управление исходящим трафиком через выделенный gateway</td>
+<td>Позволяет контролировать исходящие IP и политики безопасности</td>
+</tr>
+</tbody>
+</table>
+<h3 id="kubectl">Список команды kubectl</h3>
+<table>
+<thead>
+<tr>
+<th>Команда</th>
+<th>Описание</th>
+<th>Параметры (описание)</th>
+<th>Пример</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get</code></td>
+<td>Список ресурсов</td>
+<td><code>-n &lt;ns&gt;</code> — указать namespace; <code>-o wide</code> — показать дополнительные колонки (NODE, IP); <code>-o yaml/json</code> — вывести в структурированном формате</td>
+<td><code>kubectl get pods -n prod -o wide</code></td>
+</tr>
+<tr>
+<td><code>kubectl describe</code></td>
+<td>Детали ресурса и события</td>
+<td>указывать тип и имя ресурса <code>pod|svc|node &lt;name&gt;</code>; выводит события и состояние</td>
+<td><code>kubectl describe pod myapp -n staging</code></td>
+</tr>
+<tr>
+<td><code>kubectl logs</code></td>
+<td>Логи контейнера</td>
+<td><code>-f</code> — follow (подписка); <code>-c &lt;container&gt;</code> — выбрать контейнер в Pod; <code>--since=&lt;duration&gt;</code> — показать логи за период</td>
+<td><code>kubectl logs -f pod/myapp -c web</code></td>
+</tr>
+<tr>
+<td><code>kubectl exec</code></td>
+<td>Выполнить команду в контейнере</td>
+<td><code>-it</code> — интерактивно + TTY; указывайте <code>pod -- &lt;cmd&gt;</code></td>
+<td><code>kubectl exec -it pod/myapp -- /bin/sh</code></td>
+</tr>
+<tr>
+<td><code>kubectl apply</code></td>
+<td>Применить манифест (idempotent)</td>
+<td><code>-f &lt;file|dir&gt;</code> — файл или директория манифестов; <code>--prune</code> — удалять ресурсы не описанные (в сочетании с селектором)</td>
+<td><code>kubectl apply -f k8s/</code></td>
+</tr>
+<tr>
+<td><code>kubectl delete</code></td>
+<td>Удалить ресурс</td>
+<td><code>-f</code> — файл/директория; <code>--grace-period=&lt;s&gt;</code> — время завершения; <code>--force</code> — принудительное удаление</td>
+<td><code>kubectl delete -f deploy.yaml</code></td>
+</tr>
+<tr>
+<td><code>kubectl rollout</code></td>
+<td>Статус/undo/restart deployment</td>
+<td>подкоманды: <code>status</code> — проверить rollout; <code>undo</code> — откат; <code>restart</code> — перезапуск rollout</td>
+<td><code>kubectl rollout status deploy/myapp</code></td>
+</tr>
+<tr>
+<td><code>kubectl scale</code></td>
+<td>Масштабирование</td>
+<td><code>--replicas=&lt;n&gt;</code> — задать количество реплик</td>
+<td><code>kubectl scale deploy myapp --replicas=3</code></td>
+</tr>
+<tr>
+<td><code>kubectl top</code></td>
+<td>Метрики (metrics-server)</td>
+<td><code>pods|nodes</code> — выбрать уровень, <code>-n &lt;ns&gt;</code> — namespace</td>
+<td><code>kubectl top pod -n prod</code></td>
+</tr>
+<tr>
+<td><code>kubectl port-forward</code></td>
+<td>Проброс порта локально</td>
+<td><code>local:remote</code> — формат проброса; можно указывать <code>pod/&lt;name&gt;</code> или <code>svc/&lt;name&gt;</code></td>
+<td><code>kubectl port-forward svc/my-svc 8080:80</code></td>
+</tr>
+<tr>
+<td><code>kubectl get events</code></td>
+<td>События в namespace</td>
+<td><code>-n &lt;ns&gt;</code> — namespace; <code>--sort-by=.metadata.creationTimestamp</code> — сортировать по времени</td>
+<td><code>kubectl get events -n default</code></td>
+</tr>
+<tr>
+<td><code>kubectl config</code></td>
+<td>Управление kubeconfig/контекстами</td>
+<td><code>use-context &lt;name&gt;</code> — переключить контекст; <code>view</code> — показать конфигурацию; <code>set-context</code> — создать/изменить контекст</td>
+<td><code>kubectl config use-context prod</code></td>
+</tr>
+<tr>
+<td><code>kubectl cp</code></td>
+<td>Копировать файлы в/из контейнера</td>
+<td>синтаксис <code>&lt;src&gt; &lt;dest&gt;</code>; <code>pod:/path</code> и локальные пути; поддерживает папки</td>
+<td><code>kubectl cp pod/myapp:/app/log.txt ./log.txt</code></td>
+</tr>
+<tr>
+<td><code>kubectl auth</code></td>
+<td>Проверка RBAC (can-i)</td>
+<td><code>can-i &lt;verb&gt; &lt;resource&gt; [--as=&lt;user&gt;]</code> — проверить права для субъекта</td>
+<td><code>kubectl auth can-i create pods --as system:serviceaccount:default:sa</code></td>
+</tr>
+<tr>
+<td><code>kubectl apply --server-side</code></td>
+<td>Server-side apply</td>
+<td><code>-f</code> — файл манифеста; делает server-side конфигурационное слияние и ownership полей</td>
+<td><code>kubectl apply --server-side -f deploy.yaml</code></td>
+</tr>
+<tr>
+<td><code>kubectl explain</code></td>
+<td>Описание полей ресурса</td>
+<td>указывать путь полей <code>kubectl explain deployment.spec</code> — показать описание и типы полей</td>
+<td><code>kubectl explain pod.spec.containers</code></td>
+</tr>
+<tr>
+<td><code>kubectl wait</code></td>
+<td>Ожидание условия</td>
+<td><code>--for=condition=&lt;cond&gt;</code> — условие (например available); <code>--timeout=&lt;duration&gt;</code> — таймаут ожидания</td>
+<td><code>kubectl wait --for=condition=available deployment/myapp --timeout=120s</code></td>
+</tr>
+<tr>
+<td><code>kubectl label</code> / <code>kubectl annotate</code></td>
+<td>Управление метками/аннотациями</td>
+<td><code>-n &lt;ns&gt;</code> — namespace; <code>key=value</code> — формат метки; <code>--overwrite</code> для перезаписи</td>
+<td><code>kubectl label pod mypod env=prod</code></td>
+</tr>
+<tr>
+<td><code>kubectl patch</code></td>
+<td>Частичное изменение ресурса</td>
+<td><code>--type=json/merge -p '&lt;patch&gt;'</code> — указать тип патча и содержимое; поддерживает JSON/merge/strategic</td>
+<td><code>kubectl patch deploy myapp -p '{"spec":{"replicas":3}}'</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">Список ошибок и рекомендации по исправлению</h3>
+<table>
+<thead>
+<tr>
+<th>Ошибки</th>
+<th style="text-align: right;">Причины</th>
+<th>Диагностика</th>
+<th>Рекомендации по исправлению</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CrashLoopBackOff</td>
+<td style="text-align: right;">Ошибка запуска приложения</td>
+<td><code>kubectl describe pod</code>, <code>kubectl logs -p</code></td>
+<td>Проверить логи, исправить образ/entrypoint, добавить startupProbe</td>
+</tr>
+<tr>
+<td>ImagePullBackOff / ErrImagePull</td>
+<td style="text-align: right;">Неверный image/tag или auth</td>
+<td><code>kubectl describe pod</code> (events)</td>
+<td>Исправить image, добавить imagePullSecrets, проверить registry</td>
+</tr>
+<tr>
+<td>Pending</td>
+<td style="text-align: right;">Нет доступных Node (ресурсы/taints)</td>
+<td><code>kubectl describe pod</code> (events), <code>kubectl get nodes</code></td>
+<td>Увеличить capacity, снять taints, изменить requests</td>
+</tr>
+<tr>
+<td>OOMKilled / Exit 137</td>
+<td style="text-align: right;">Превышен лимит памяти или OOM killer</td>
+<td><code>kubectl describe pod</code>, <code>kubectl top pod</code>, <code>dmesg</code></td>
+<td>Увеличить limits/requests, оптимизировать память, проверить node OOM</td>
+</tr>
+<tr>
+<td>NodeNotReady</td>
+<td style="text-align: right;">Проблемы с kubelet/сетью/диском</td>
+<td><code>kubectl get nodes</code>, <code>kubectl describe node &lt;name&gt;</code>, <code>journalctl -u kubelet</code></td>
+<td>Проверить kubelet, сеть, диск; drain и ремонт node</td>
+</tr>
+<tr>
+<td>DNS Failures</td>
+<td style="text-align: right;">CoreDNS упал/перегружен или NetworkPolicy блокирует</td>
+<td><code>kubectl get pods -n kube-system</code>, <code>kubectl logs -n kube-system coredns</code></td>
+<td>Перезапустить CoreDNS, увеличить resources, проверить NetworkPolicy</td>
+</tr>
+<tr>
+<td>Probe failures</td>
+<td style="text-align: right;">Неправильные readiness/liveness настройки</td>
+<td><code>kubectl describe pod</code>, <code>kubectl logs</code></td>
+<td>Исправить путь/порт/таймауты probe или увеличить initialDelaySeconds</td>
+</tr>
+<tr>
+<td>High restarts</td>
+<td style="text-align: right;">Нестабильность приложения/циклические ошибки</td>
+<td><code>kubectl get pods --sort-by=.status.restartCount</code>, <code>kubectl logs -p</code></td>
+<td>Анализ логов, изменить retry/backoff, проверить зависимости</td>
+</tr>
+<tr>
+<td>Evicted</td>
+<td style="text-align: right;">Давление на ресурсы (disk/memory)</td>
+<td><code>kubectl describe pod</code> (reason Evicted), <code>kubectl describe node</code></td>
+<td>Очистить диск, добавить ресурсы, настроить eviction thresholds</td>
+</tr>
+<tr>
+<td>API server not reachable</td>
+<td style="text-align: right;">LB/network/auth проблемы</td>
+<td><code>kubectl cluster-info</code>, <code>curl -k https://&lt;apiserver&gt;</code></td>
+<td>Проверить LB, firewall, certs; посмотреть логи apiserver</td>
+</tr>
+<tr>
+<td>RBAC / auth errors</td>
+<td style="text-align: right;">Неправильные роли/контексты</td>
+<td><code>kubectl auth can-i ...</code>, <code>kubectl config view</code></td>
+<td>Исправить роли/rolebindings, обновить kubeconfig</td>
+</tr>
+<tr>
+<td>Certificate / TLS errors</td>
+<td style="text-align: right;">Просроченные или неверные сертификаты</td>
+<td><code>kubectl get csr</code>, <code>openssl s_client -connect apiserver:6443</code></td>
+<td>Обновить certs, пересоздать kubeconfig, проверить time sync</td>
+</tr>
+</tbody>
+</table>
+<h3 id="kubernetes_1">Типы ресурсов Kubernetes</h3>
+<table>
+<thead>
+<tr>
+<th>Ресурс</th>
+<th>Описание</th>
+<th>Виды применения</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pod</td>
+<td>Минимальная единица деплоя — один/несколько контейнеров, общий сетевой namespace и тома</td>
+<td>Запуск приложений, sidecar, кратковременные задачи</td>
+</tr>
+<tr>
+<td>Deployment</td>
+<td>Декларативное управление ReplicaSet, обеспечивает rollout/rollback</td>
+<td>Бесстейтные сервисы, rolling updates, CI/CD</td>
+</tr>
+<tr>
+<td>ReplicaSet</td>
+<td>Поддерживает заданное число реплик Pod</td>
+<td>Обеспечение необходимого количества экземпляров</td>
+</tr>
+<tr>
+<td>StatefulSet</td>
+<td>Управляет stateful-приложениями с устойчивой идентичностью и PVC</td>
+<td>БД, очереди, stateful сервисы (Postgres, Kafka)</td>
+</tr>
+<tr>
+<td>DaemonSet</td>
+<td>Запускает Pod на каждой (или выбранных) ноде</td>
+<td>Лог‑агенты, мониторинг, сетевые плагины</td>
+</tr>
+<tr>
+<td>Job</td>
+<td>Одноразовая задача с гарантией завершения</td>
+<td>Batch‑задания, миграции, миграционные скрипты</td>
+</tr>
+<tr>
+<td>CronJob</td>
+<td>Планирование Job по расписанию</td>
+<td>Регулярные бэкапы, отчёты, периодические задачи</td>
+</tr>
+<tr>
+<td>Service</td>
+<td>Абстракция доступа к набору Pod (ClusterIP/NodePort/LoadBalancer)</td>
+<td>Внутренний/внешний доступ к приложениям</td>
+</tr>
+<tr>
+<td>Ingress</td>
+<td>Правила внешнего HTTP(S) доступа, TLS termination</td>
+<td>Маршрутизация внешнего веб‑трафика</td>
+</tr>
+<tr>
+<td>ConfigMap</td>
+<td>Хранение неконфиденциальных конфигураций</td>
+<td>Передача конфигураций в Pod без пересборки образа</td>
+</tr>
+<tr>
+<td>Secret</td>
+<td>Хранение конфиденциальных данных (пароли, ключи)</td>
+<td>Передача секретов в Pod/CSI секреты</td>
+</tr>
+<tr>
+<td>Namespace</td>
+<td>Логическая изоляция ресурсов и политик</td>
+<td>Мульти‑тенантность, разделение окружений</td>
+</tr>
+<tr>
+<td>PersistentVolume (PV)</td>
+<td>Физический ресурс хранилища в кластере</td>
+<td>Долговременное хранение для Pod</td>
+</tr>
+<tr>
+<td>PersistentVolumeClaim (PVC)</td>
+<td>Запрос тома от Pod (связь с PV)</td>
+<td>Динамическое/статическое выделение хранилища</td>
+</tr>
+<tr>
+<td>StorageClass</td>
+<td>Политика динамического provision‑а томов</td>
+<td>Настройка типов дисков и параметров provisioner</td>
+</tr>
+<tr>
+<td>Node</td>
+<td>Физическая или виртуальная нода в кластере</td>
+<td>Размещение Pod, capacity planning</td>
+</tr>
+<tr>
+<td>ServiceAccount</td>
+<td>Идентификатор для Pod при обращении к API</td>
+<td>RBAC для приложений, автоматические токены</td>
+</tr>
+<tr>
+<td>Role / ClusterRole</td>
+<td>Набор прав (namespaced / cluster)</td>
+<td>Ограничение доступа к API</td>
+</tr>
+<tr>
+<td>RoleBinding / ClusterRoleBinding</td>
+<td>Привязка ролей к субъектам</td>
+<td>Назначение прав пользователям/сервисам</td>
+</tr>
+<tr>
+<td>CRD (CustomResourceDefinition)</td>
+<td>Расширение API пользовательскими ресурсами</td>
+<td>Операторы, кастомные контроллеры</td>
+</tr>
+<tr>
+<td>HPA (HorizontalPodAutoscaler)</td>
+<td>Автомасштабирование Pod по метрикам</td>
+<td>Автоскейлинг по CPU/метрикам/custom</td>
+</tr>
+<tr>
+<td>VPA (VerticalPodAutoscaler)</td>
+<td>Автоматическая корректировка ресурсов контейнера</td>
+<td>Подходит для stateful/legacy приложений</td>
+</tr>
+<tr>
+<td>PodDisruptionBudget (PDB)</td>
+<td>Ограничение одновременных voluntary disruptions</td>
+<td>Поддержание доступности при обновлениях/maintenance</td>
+</tr>
+</tbody>
+</table>
+<h2 id="k8s">Механизм управления трафиком в K8s</h2>
+<table>
+<thead>
+<tr>
+<th>Задача</th>
+<th>Что делает Kubernetes</th>
+<th>Фрагмент манифеста</th>
+<th>Команды для проверки</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Балансировка трафика внутри кластера</td>
+<td>Service (ClusterIP) + kube-proxy распределяет входящие запросы на Pod</td>
+<td>Service: <code>kind: Service\nspec:\n  type: ClusterIP\n  selector: {app: myapp}\n  ports: - port: 80 targetPort: 8080</code></td>
+<td><code>kubectl get svc</code>, <code>kubectl describe svc mysvc</code>, <code>ss -tuna</code> на Node</td>
+</tr>
+<tr>
+<td>Внешний доступ / маршрутизация HTTP(S)</td>
+<td>Ingress (IngressController) роутит внешний HTTP(S) → Service; TLS termination</td>
+<td>Ingress: <code>kind: Ingress\nmetadata:\n  annotations: {nginx.ingress.kubernetes.io/rewrite-target: /}\nspec:\n  rules: - host: example.com</code></td>
+<td><code>kubectl get ingress</code>, <code>kubectl describe ingress</code>, <code>kubectl logs -n ingress-nginx pod/...</code></td>
+</tr>
+<tr>
+<td>NodePort / LoadBalancer</td>
+<td>Экспонирование сервиса наружу через порт на Node или облачный LB</td>
+<td>Service типа <code>NodePort</code> или <code>LoadBalancer</code></td>
+<td><code>kubectl get svc -o wide</code>, проверка облачного LB в провайдере</td>
+</tr>
+<tr>
+<td>Сессии / сохранение состояния (sticky)</td>
+<td>Service <code>sessionAffinity: ClientIP</code> или ingress annotations</td>
+<td><code>spec:\n  sessionAffinity: ClientIP</code></td>
+<td><code>kubectl describe svc mysvc</code></td>
+</tr>
+<tr>
+<td>Контроль готовности трафика (avoid sending to unhealthy Pods)</td>
+<td>readinessProbe предотвращает отправку трафика в неполадки</td>
+<td><code>readinessProbe:\n  httpGet: {path: /health, port: 8080}\n  initialDelaySeconds: 10</code></td>
+<td><code>kubectl get pods -o wide</code>, <code>kubectl describe pod</code> (поля Readiness)</td>
+</tr>
+<tr>
+<td>Отказоустойчивость и масштабирование</td>
+<td>Deployment + ReplicaSet + HPA масштабируют количество Pod по метрикам</td>
+<td>HPA: <code>apiVersion: autoscaling/v2\nkind: HorizontalPodAutoscaler\nspec:\n  scaleTargetRef: {kind: Deployment,name: myapp}\n  minReplicas: 2 maxReplicas: 10 metrics: ...</code></td>
+<td><code>kubectl get hpa</code>, <code>kubectl top pods</code>, <code>kubectl autoscale deployment myapp --min=2 --max=10 --cpu-percent=70</code></td>
+</tr>
+<tr>
+<td>Стабильность обновлений (rolling / canary)</td>
+<td>Deployment strategy: RollingUpdate / Canary через additional controllers</td>
+<td><code>strategy:\n  type: RollingUpdate\n  rollingUpdate: {maxUnavailable: 1, maxSurge: 1}</code></td>
+<td><code>kubectl rollout status deploy/myapp</code>, <code>kubectl rollout undo deploy/myapp</code></td>
+</tr>
+<tr>
+<td>Управление эвакуацией нод и drain</td>
+<td><code>kubectl cordon</code> / <code>kubectl drain</code> перемещают Pod для обслуживания Node</td>
+<td>N/A (команды)</td>
+<td><code>kubectl cordon nodename</code>, <code>kubectl drain nodename --ignore-daemonsets --delete-local-data</code></td>
+</tr>
+<tr>
+<td>Контроль допустимого прерывания Pod</td>
+<td>PodDisruptionBudget ограничивает количество одновременных voluntary disruptions</td>
+<td><code>apiVersion: policy/v1\nkind: PodDisruptionBudget\nspec:\n  minAvailable: 50%\n  selector: {matchLabels:{app: myapp}}</code></td>
+<td><code>kubectl get pdb</code>, <code>kubectl describe pdb</code></td>
+</tr>
+<tr>
+<td>Распределение по топологии / отказоустойчивость</td>
+<td>PodTopologySpread / affinity/anti-affinity распределяют Pod по зонам/нодам</td>
+<td><code>topologySpreadConstraints</code> или <code>affinity: podAntiAffinity</code></td>
+<td><code>kubectl describe deployment</code>, <code>kubectl get pods -o wide</code></td>
+</tr>
+<tr>
+<td>Управление ресурсами и QoS</td>
+<td>requests/limits + QoS классы дают планирование и поведение при давлении</td>
+<td><code>resources:\n  requests: {cpu: 100m, memory: 128Mi}\n  limits: {cpu: 500m, memory: 512Mi}</code></td>
+<td><code>kubectl top pod</code>, <code>kubectl describe node</code> (pressure events)</td>
+</tr>
+<tr>
+<td>Предотвращение и управление OOM/evictions</td>
+<td>requests/limits + Node resource management + eviction thresholds</td>
+<td>настройки kubelet/eviction в Node config</td>
+<td><code>kubectl get events --field-selector reason=Evicted</code>, <code>dmesg</code> на Node</td>
+</tr>
+<tr>
+<td>Маршрутизация исходящего трафика (egress)</td>
+<td>SNAT на Node или egress‑gateway (service mesh) для контроля исхода</td>
+<td>Egress через NAT или Istio egress gateway</td>
+<td><code>kubectl get svc -n istio-system</code>, проверка внешнего IP через <code>curl ifconfig.me</code> из Pod</td>
+</tr>
+<tr>
+<td>Сетевая сегментация и политика доступа</td>
+<td>NetworkPolicy управляет ingress/egress между Pod</td>
+<td><code>kind: NetworkPolicy\nspec:\n  podSelector: {matchLabels:{app: frontend}}\n  ingress: - from: - podSelector:{matchLabels:{role: api}}</code></td>
+<td><code>kubectl get networkpolicy</code>, <code>kubectl describe networkpolicy</code></td>
+</tr>
+<tr>
+<td>Высокая производительность сервисов</td>
+<td>kube-proxy mode ipvs, CNI tuning (MTU), service endpoints balancing</td>
+<td>Включить ipvs: kube-proxy config, настроить CNI MTU</td>
+<td><code>kubectl get configmap kube-proxy -n kube-system -o yaml</code>, <code>ss -tn</code> / <code>ip route</code></td>
+</tr>
+<tr>
+<td>Грейсфул‑шутдаун и рестарт</td>
+<td>graceful termination via preStop, terminationGracePeriodSeconds</td>
+<td><code>lifecycle:\n  preStop: {exec: {command: [\"/bin/sh\",\"-c\",\"sleep 10\"]}}\nterminationGracePeriodSeconds: 30</code></td>
+<td><code>kubectl delete pod mypod --grace-period=30</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Примечание: многие настройки влияют совместно (например, readinessProbe + Service + NetworkPolicy). Для диагностики часто используются: <code>kubectl describe</code>, <code>kubectl logs</code>, <code>kubectl get events</code>, <code>kubectl top</code>, <code>kubectl get endpoints</code> и сетевые трассировки (<code>tcpdump</code>/<code>curl</code>/<code>dig</code>) внутри/снаружи Pod.</p>
+</div>
+<details class="info" open="open">
+<summary>Алгоритм поиска и устранения проблем при развертывании Kubernetes</summary>
+<p>&lt;object 
+ data="https://mamontosik.github.io/IgorMamontov_Summary/learn_k8s.pdf"
+ type="application/pdf"
+ width="100%"
+ height="800"</p>
+<blockquote>
+<p>Ваш браузер не поддерживает просмотр PDF. 
+ <a href="https://mamontosik.github.io/IgorMamontov_Summary/learn_k8s.pdf">
+    Скачать PDF
+ </a>
+</object></p>
+</blockquote>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["toc.integrate", "toc.follow", "navigation.tracking"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1459 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://Mamontosik.github.io/IgorMamontov_Summary/admin/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../admin_sec/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Linux команды - Summary Igor Mamontov ver.1</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Summary Igor Mamontov ver.1" class="md-header__button md-logo" aria-label="Summary Igor Mamontov ver.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Summary Igor Mamontov ver.1
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Linux команды
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Summary Igor Mamontov ver.1" class="md-nav__button md-logo" aria-label="Summary Igor Mamontov ver.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Summary Igor Mamontov ver.1
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обо мне
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Руководство DevOps инженера
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Руководство DevOps инженера
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux команды
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux команды
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Выявление и анализ проблем на серверах
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Команда для работы с файлами в командной строке
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Коды ошибок и список популярных портов
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Команды для работы с сетью и проведению анализа работы
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_sec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Про DevSecOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Полезные метрики
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Про Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_kafka/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Блокер сообщений Kafka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git команды
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Подготовка к assesment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Подготовка к assesment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ответы для assesment (unsorted)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_handbook_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Названия, краткий справочник
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_port_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список используемых портов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Все о мониторинге
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_kafka_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с kafka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_linux_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_kubernetes_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с k8s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_docker_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_ansible_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a href="/IgorMamontov_Summary/">Обо мне</a> / Руководство DevOps инженера</p>
+<h1 id="linux">Полезные команды для работы с Linux серверами</h1>
+<h2 id="_1">Выявление и анализ проблем на серверах</h2>
+<div class="admonition note">
+<p class="admonition-title">Проверка места на жестких дисках</p>
+<p><strong>Команда df -h</strong>
+<br>
+Утилита df выводит на экран информацию в байтах, а -h указывает команде выводить размеры в килобайтах, мегабайтах, гигабайтах и других кратных величинах удобных для чтения</p>
+<p><strong>Команда du -sh /</strong>
+<br>
+Позволяет отобразить размер конкретной директории. Для этого нужно запустить команду вида: du -sh directory_name/.
+Опция -s (от английского summarize) отображает только общее значение для каждого аргумента.
+<br> 
+Опция -h (от английского human readable) отображает значения в человекочитаемом формате, например, 70G, 215M</p>
+<p><strong>Команда df -i</strong><br />
+Позволяет получить информацию о размерах инодов файловых систем, покажет количество использованных и свободных инодов в каждой файловой системе на компьютере.
+<br>
+Инод (от англ. index node) — это особая структура данных в файловой системе, которая содержит информацию о файле или каталоге, но не самих данных файла. Простым языком инод можно описать как паспорт файла, где хранятся его метаданные.</p>
+<p><strong>Команда smartctl -a</strong><br />
+Выводит всю доступную SMART-информацию для указанного устройства, использующего стандартные (HDD) жесткие диски. Чтобы посмотреть данные для диска /dev/sda, нужно выполнить команду sudo smartctl -a /dev/sda</p>
+<p><strong>Команда cat /proc/mdstat</strong><br />
+Позволяет посмотреть инициализацию RAID-массива и его текущее состояние.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Проверка процессора, памяти и дисков</p>
+<p><strong>Команда iostat</strong><br />
+Используется для мониторинга и составления отчётов об активности ЦП, дискового ввода/вывода и блочных устройств.</p>
+<p><strong>Команда iotop</strong><br />
+Позволяет отслеживать и анализировать активность дискового ввода-вывода в режиме реального времени. С помощью этого инструмента можно определить, какие процессы генерируют наибольшее количество дисковых операций ввода-вывода, отследить скорость чтения и записи</p>
+<p><strong>Команда top</strong><br />
+Выводит список работающих в системе процессов и информацию о них. По умолчанию она в реальном времени сортирует их по нагрузке на процессор.<br />
+В верхней части выводится информация о системе, ниже — список процессов.<br />
+<br>
+Пробел — обновить вывод; <br>
+M — сортировка по используемой памяти; <br>
+P — сортировка по нагрузке на процессор (используется по умолчанию); <br>
+T — сортировка по времени работы процесса; <br>
+A — сортировка по максимальному потреблению различных ресурсов; <br>
+u — сортировка по имени пользователя (потребуется ввести имя пользователя); <br>
+k — завершить процесс (потребуется указать его идентификатор, PID); <br>
+n — изменить количество процессов в выводе (потребуется указать нужное количество); <br>
+c — вывести полный путь запущенного процесса (столбец COMMAND); <br>
+h — вывод справки; <br>
+q — выход из программы.</p>
+</div>
+<h2 id="_2">Команда для работы с файлами в командной строке</h2>
+<div class="admonition note">
+<p class="admonition-title">Управление файлами через командную строку</p>
+<p><strong>Команда ls</strong>
+<br>
+Вывод содержимого каталога</p>
+<p><strong>Команда ls -la</strong>
+<br>
+Вывод содержимого каталога в форматированном виде (в т.ч. скрытые файлы)</p>
+<p><strong>Команда cd dir</strong>
+<br>
+Перейти в каталог dir</p>
+<p><strong>Команда cd</strong>
+<br>
+Перейти в домашний каталог</p>
+<p><strong>Команда pwd</strong>
+<br>
+Показать текущий каталог</p>
+<p><strong>Команда mkdir dir</strong>
+<br>
+Создать каталог dir</p>
+<p><strong>Команда rm file</strong>
+<br>
+Удалить файл</p>
+<p><strong>Команда rm -r dir</strong>
+<br>
+Удалить каталог dir</p>
+<p><strong>Команда rm -f file</strong>
+<br>
+Принудительно удалить файл</p>
+<p><strong>Команда rm -rf dir</strong>
+<br>
+Принудительно удалить каталог dir</p>
+<p><strong>Команда cp file1 file2</strong>
+<br>
+Скопировать file1 в file2</p>
+<p><strong>Команда cp -r dir1 dir2</strong>
+<br>
+Скопировать каталог dir1 в каталог dir2 (если каталога dir2 нет, он будет создан)</p>
+<p><strong>Команда mv file1 file2</strong>
+<br>
+Переместить (или переименовать, если file1 и file2 находятся в одном каталоге) file1 в file2</p>
+<p><strong>Команда ln -s file link</strong>
+<br>
+Создать симлинк link на файл file</p>
+<p><strong>Команда touch file</strong>
+<br>
+Создать файл</p>
+<p><strong>Команда cat &gt; file</strong>
+<br>
+Направить стандартный ввод в file</p>
+<p><strong>Команда more file</strong>
+<br>
+Вывод содержимого file</p>
+<p><strong>Команда head file</strong>
+<br>
+Вывод содержимого первых 10 строк file</p>
+<p><strong>Команда tail file</strong>
+<br>
+Вывод содержимого последних 10 строк file</p>
+<p><strong>Команда tail -f file</strong>
+<br>
+Вывод содержимого file по мере появления, начиная с последних 10 строк файла.</p>
+<p><strong>Команда mount</strong>
+<br>
+Монтирование файловой системы</p>
+<p><strong>Команда fdisk</strong>
+<br>
+Работа с таблицами разделов диска (создание, удаление, изменение разделов)</p>
+<p><strong>Команда nano</strong>
+<br>
+Редактор с подсказками по управлению в нижней части окна</p>
+</div>
+<h2 id="_3">Коды ошибок и список популярных портов</h2>
+<div class="admonition note">
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th></th>
+<th>PORT</th>
+<th>USED</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1xx</code></td>
+<td>Информационные коды</td>
+<td></td>
+<td>20</td>
+<td>FTP-данные</td>
+</tr>
+<tr>
+<td><code>2xx</code></td>
+<td>Успешная обработка запроса</td>
+<td></td>
+<td>21</td>
+<td>FTP-сервер</td>
+</tr>
+<tr>
+<td><code>3xx</code></td>
+<td>Коды редиректов</td>
+<td></td>
+<td>22</td>
+<td>SSH</td>
+</tr>
+<tr>
+<td><code>4xx</code></td>
+<td>Ошибка клиента</td>
+<td></td>
+<td>23</td>
+<td>Telnet</td>
+</tr>
+<tr>
+<td><code>5xx</code></td>
+<td>Ошибка сервера</td>
+<td></td>
+<td>25 <mark class="critic">TCP</mark></td>
+<td>SMTP</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>53 <mark class="critic">UDP</mark></td>
+<td>DNS-сервер</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>67:68 <mark class="critic">UDP</mark></td>
+<td>UDP</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>80 <mark class="critic">TCP</mark></td>
+<td>HTTP</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>110</td>
+<td>POP3</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>143</td>
+<td>IMAP</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>443 <mark class="critic">TCP</mark></td>
+<td>HTTPS</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>3306</td>
+<td>MySQL</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>123</td>
+<td>NTP</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>5432</td>
+<td>PostgreSQL</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Причины возникновения кодов:</strong></p>
+<ul>
+<li>Error 405 - Метод не разрешен </li>
+<li>Error 408 - Время ожидания истекло</li>
+<li>Error 404 - Страница не найдена</li>
+<li>Error 403 - Доступ запрещен</li>
+<li>Error 401 - Неавторизованный доступ</li>
+<li>Error 400 - Неверный запрос</li>
+<li>Error 502 - Ошибка шлюза</li>
+<li>Error 500 - Внутренняя ошибка сервера</li>
+<li>Error 504 - Шлюз не отвечает</li>
+<li>Error 503 - Сервис недоступен</li>
+</ul>
+<p><strong>Описание популярных протоколов:</strong></p>
+<p><strong>TCP (Transmission Control Protocol)</strong> 
+<br>
+Использует порт 80 для HTTP, порт 443 для HTTPS, порт 25 для SMTP. TCP обеспечивает надежную передачу данных, управление потоком и установление соединения между узлами.</p>
+<p><strong>UDP (User Datagram Protocol)</strong>
+<br>
+Использует порт 53 для DNS, порт 67 и 68 для DHCP. UDP обеспечивает более быструю передачу данных без гарантии доставки и управления потоком.</p>
+<p><strong>Broadcast</strong>
+<br>
+Использует широковещательный адрес для отправки сообщений всем узлам в сети. Это позволяет обеспечить доставку информации всем устройствам в сегменте сети.</p>
+<p><strong>ICMP (Internet Control Message Protocol)</strong>
+<br>
+Используется для передачи контрольных сообщений и обнаружения ошибок в сети. ICMP может использоваться для отправки команды Ping и Traceroute.</p>
+<p><strong>Ping</strong>
+<br>
+Использует ICMP для проверки доступности узла в сети путем отправки эхо-запроса и получения эхо-ответа.</p>
+<p><strong>Traceroute</strong>
+<br>
+Использует ICMP для определения маршрута пакетов от отправителя к получателю. Traceroute показывает промежуточные узлы и время, необходимое для доставки пакета до каждого узла.</p>
+<p><strong>TTL (Time to Live)</strong>
+<br>
+Используется в заголовке IP-пакета для ограничения времени жизни пакета. Каждый маршрутизатор уменьшает значение TTL на единицу, и если TTL достигает нуля, пакет уничтожается.</p>
+<p><strong>DHCP (Dynamic Host Configuration Protocol)</strong>
+<br>
+Используется для автоматической настройки сетевых параметров устройствам в сети, таких как IP-адрес, шлюз по умолчанию и DNS-серверы.</p>
+<p><strong>ARP (Address Resolution Protocol)</strong>
+<br>
+Используется для преобразования IP-адресов в MAC-адреса устройств в локальной сети. ARP позволяет устройствам определять MAC-адреса других устройств на сетевом уровне.</p>
+</div>
+<h2 id="_4">Команды для работы с сетью и проведению анализа работы</h2>
+<details class="info" open="open">
+<summary>Вызов справочника help для команд</summary>
+<p><div class="highlight"><pre><span></span><code>Linux/Unix:<span class="w"> </span>
+man<span class="w"> </span>ping
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Windows:
+ping<span class="w"> </span>/?
+</code></pre></div></p>
+</details>
+<div class="admonition note">
+<p class="admonition-title">Trubbleshooting на стороне сети</p>
+<p><strong>ping:</strong> используется для проверки доступности узла в сети и измерения времени отклика (с помощью icmp протокола)
+<br>
+<div class="highlight"><pre><span></span><code>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">5</span><span class="w"> </span>google.com<span class="w"> </span><span class="o">[</span>Указывает<span class="w"> </span>количество<span class="w"> </span>отправляемых<span class="w"> </span>пакетов<span class="o">]</span>
+ping<span class="w"> </span>-i<span class="w"> </span><span class="m">2</span><span class="w"> </span>google.com<span class="w"> </span><span class="o">[</span>Устанавливает<span class="w"> </span>интервал<span class="w"> </span>между<span class="w"> </span>отправкой<span class="w"> </span>пакетов<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>tracert (#Traceroute):</strong> позволяет отследить маршрут следования пакетов к конечному узлу.
+<br>
+<div class="highlight"><pre><span></span><code>tracert<span class="w"> </span>-d<span class="w"> </span>google.com<span class="w"> </span><span class="o">[</span>Не<span class="w"> </span>разрешает<span class="w"> </span>имена<span class="w"> </span>хостов<span class="o">]</span>
+tracert<span class="w"> </span>-w<span class="w"> </span><span class="m">500</span><span class="w"> </span>google.com<span class="w"> </span><span class="o">[</span>Устанавливает<span class="w"> </span>время<span class="w"> </span>ожидания<span class="w"> </span>ответа<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>nslookup:</strong> позволяет получить информацию о доменном имени или IP-адресе
+<br>
+<div class="highlight"><pre><span></span><code>nslookup<span class="w"> </span>-type<span class="o">=</span>MX<span class="w"> </span>google.com<span class="w"> </span><span class="o">[</span>Указывает<span class="w"> </span>тип<span class="w"> </span>запрашиваемой<span class="w"> </span>информации<span class="w"> </span><span class="o">(</span>например,<span class="w"> </span>A,<span class="w"> </span>MX,<span class="w"> </span>CNAME<span class="o">)]</span>
+nslookup<span class="w"> </span>-query<span class="o">=</span>MX<span class="w"> </span>google.com<span class="w"> </span><span class="o">[</span>Аналогичен<span class="w"> </span>параметру<span class="w"> </span>-type<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>route -n:</strong> выводит информацию о таблице маршрутизации.
+<br>
+<div class="highlight"><pre><span></span><code>route<span class="w"> </span>-n<span class="w"> </span>-e<span class="w"> </span><span class="o">[</span>Показывает<span class="w"> </span>расширенную<span class="w"> </span>информацию<span class="o">]</span>
+route<span class="w"> </span>-n<span class="w"> </span>-F<span class="w"> </span><span class="o">[</span>Показывает<span class="w"> </span>только<span class="w"> </span>маршруты<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>#telnet:</strong> позволяет установить соединение с удаленным узлом по протоколу Telnet.
+<br>
+<div class="highlight"><pre><span></span><code>telnet<span class="w"> </span>-E<span class="w"> </span>google.com<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="o">[</span>Включает<span class="w"> </span>эхо<span class="o">]</span>
+telnet<span class="w"> </span>-a<span class="w"> </span>google.com<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="o">[</span>Автоматически<span class="w"> </span>пытается<span class="w"> </span>войти<span class="w"> </span>в<span class="w"> </span>систему<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>netstat:</strong> выводит информацию о сетевых соединениях, сетевых интерфейсах и статистике сети.(наличие доступа к порту 80 с помощью команды netstat -tuln | grep :80)
+<br>
+<div class="highlight"><pre><span></span><code>netstat<span class="w"> </span>-t<span class="w"> </span><span class="o">[</span>Показывает<span class="w"> </span>только<span class="w"> </span>TCP-соединения<span class="o">]</span>
+netstat<span class="w"> </span>-u<span class="w"> </span><span class="o">[</span>Показывает<span class="w"> </span>только<span class="w"> </span>UDP-соединения<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>ipconfig (#ifconfig):</strong>, для отображения сетевой информации (#ifconfig -a, отображение всех значений, даже выключенных)
+<br>
+<div class="highlight"><pre><span></span><code>ifconfig<span class="w"> </span>-a<span class="w"> </span><span class="o">[</span>Показывает<span class="w"> </span>все<span class="w"> </span>интерфейсы,<span class="w"> </span>включая<span class="w"> </span>неактивные<span class="o">]</span>
+ifconfig<span class="w"> </span>-s<span class="w"> </span><span class="o">[</span>Показывает<span class="w"> </span>краткую<span class="w"> </span>информацию<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>arp:</strong> для просмотра и изменения кэша ARP.
+<br>
+<div class="highlight"><pre><span></span><code>arp<span class="w"> </span>-a<span class="w"> </span><span class="o">[</span>Показывает<span class="w"> </span>все<span class="w"> </span>записи<span class="w"> </span>в<span class="w"> </span>кэше<span class="w"> </span>ARP<span class="o">]</span>
+arp<span class="w"> </span>-d<span class="w"> </span>&lt;IP-адрес&gt;<span class="w"> </span><span class="o">[</span>Удаляет<span class="w"> </span>запись<span class="w"> </span>из<span class="w"> </span>кэша<span class="w"> </span>ARP<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>nmap:</strong> сканирование сети, позволяет обнаружить открытые порты
+<br>
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sS<span class="w"> </span>google.com<span class="w"> </span><span class="o">[</span>Выполняет<span class="w"> </span>SYN-сканирование<span class="o">]</span>
+nmap<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>,443<span class="w"> </span>google.com<span class="w"> </span><span class="o">[</span>Указывает<span class="w"> </span>порты<span class="w"> </span>для<span class="w"> </span>сканирования<span class="o">]</span>
+</code></pre></div></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Описание основ OSI</p>
+<p><strong>Что такое OSI</strong>
+<br>
+Это модель взаимодействия открытых систем, которая описывает, как данные передаются между устройствами в сети. Модель OSI состоит из семи уровней, каждый из которых выполняет определенные функции в процессе передачи данных.
+<br></p>
+<table>
+<thead>
+<tr>
+<th>OSI LV</th>
+<th>Protocol</th>
+<th>Uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LV.7</code><br>Прикладной</td>
+<td>HTTP, HTTPS, DNS, FTP, SMTP</td>
+<td>Взаимодействие приложений; формирование запросов и данных пользователя. Определяет смысл и содержимое сообщений (например, содержание веб-страницы).</td>
+</tr>
+<tr>
+<td><code>LV.6</code><br>Представления</td>
+<td>TLS (шифрование данных), SSL, JPEG, JSON (форматы), ASCII/UTF-8 (кодировки)</td>
+<td>Преобразование данных к нужному виду: шифрование и дешифрование, сжатие, преобразование кодировок и форматов. Обеспечивает совместимость различных систем по способу представления данных.</td>
+</tr>
+<tr>
+<td><code>LV.5</code><br>Сеансовый</td>
+<td>TLS (установление сессии), RPC, NetBIOS Sessions</td>
+<td>Управление диалогом между приложениями: установка, поддержание и завершение сеанса связи. В вебе – TLS-сессия для HTTPS, поддержание сессий (например, cookie + логика приложения).</td>
+</tr>
+<tr>
+<td><code>LV.4</code><br>Транспортный</td>
+<td>TCP, UDP, (QUIC), SCTP</td>
+<td>Доставка данных между хостами с нужной надежностью. Мультиплексирование портов. TCP – надёжный поток: сегментация, сборка, контроль порядка, перегрузки, ретрансмиссия. UDP – ненадёжные сообщения.</td>
+</tr>
+<tr>
+<td><code>LV.3</code><br>Сетевой</td>
+<td>IP (IPv4/IPv6), ICMP, IPsec, RIP/OSPF/BGP (маршрутные протоколы)</td>
+<td>Логическая адресация узлов и маршрутизация пакетов через сети. IP-пакеты передаются от источника к назначению через маршрутизаторы. Реализует без соединения, best-effort доставку.</td>
+</tr>
+<tr>
+<td><code>LV.2</code><br>Канальный</td>
+<td>Ethernet (MAC), Wi-Fi (802.11 MAC), ARP, PPP, Frame Relay</td>
+<td>Передача кадров между узлами одной сети (или соседними по каналу). Физическая адресация (MAC). Обнаружение ошибок (FCS) и, иногда, их коррекция или повтор. Управление доступом к среде (CSMA/CD, CA).</td>
+</tr>
+<tr>
+<td><code>LV.1</code><br>Физический</td>
+<td>Ethernet PHY, Wi-Fi радиоволны, Optical fiber, DSL, Coax</td>
+<td>Передача битов как электрических/оптических сигналов. Определяет уровни напряжения, частоты, модуляцию, разъёмы, тайминги. Обеспечивает связь на самом базовом уровне – сигнал по кабелю или эфиру.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Другие популярные сетевые команды</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Команда</th>
+<th>Для чего испольуется</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>route</td>
+<td>Просмотр и изменение таблиц маршрутизации IP</td>
+</tr>
+<tr>
+<td>ping</td>
+<td>Отправка пакетов на сервер и получение их обратно в случае хорошего сетевого соединения</td>
+</tr>
+<tr>
+<td>traceroute</td>
+<td>Отслеживание пути, пройденного трафиком</td>
+</tr>
+<tr>
+<td>nslookup</td>
+<td>Запросы к системе доменных имен (DNS) для получения отображения доменных имен или IP-адресов, а также других DNS-записей</td>
+</tr>
+<tr>
+<td>ifconfig</td>
+<td>Просмотр и изменение конфигурации сетевых интерфейсов системы</td>
+</tr>
+<tr>
+<td>tracepath</td>
+<td>Отслеживание пути до конечной точки с обнаружением MTU на этом пути</td>
+</tr>
+<tr>
+<td>ssh</td>
+<td>Сетевой протокол прикладного уровня, позволяющий производить удалённое управление операционной системой и туннелирование TCP-соединений</td>
+</tr>
+<tr>
+<td>curl</td>
+<td>Передача данных на сервер или с сервера с использованием любого из поддерживаемых протоколов</td>
+</tr>
+<tr>
+<td>scp</td>
+<td>Безопасное копирование файлов (и директорий с флагом -r) между локальной и удалённой системой по SSH</td>
+</tr>
+<tr>
+<td>w</td>
+<td>Краткое описание каждого пользователя, вошедшего в систему</td>
+</tr>
+<tr>
+<td>netcat</td>
+<td>Выполнение различных операций с TCP, UDP или UNIX-доменными сокетами в Linux</td>
+</tr>
+<tr>
+<td>nmap</td>
+<td>Исследование сети и аудит безопасности</td>
+</tr>
+<tr>
+<td>ip</td>
+<td>Назначение адреса сетевому интерфейсу и/или настройки параметров сетевого интерфейса в операционных системах Linux</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Команды для управления пользователями</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Команда</th>
+<th>Для чего используется</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>adduser</td>
+<td>Создание нового пользователя в Linux</td>
+</tr>
+<tr>
+<td>useradd</td>
+<td>Низкоуровневая команда для создания пользователей</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>Установка или изменение пароля пользователя</td>
+</tr>
+<tr>
+<td>deluser</td>
+<td>Удаление пользователя из системы</td>
+</tr>
+<tr>
+<td>userdel</td>
+<td>Другая команда для удаления пользователя, но по умолчанию не удаляет домашний каталог</td>
+</tr>
+<tr>
+<td>usermod</td>
+<td>Изменение свойств учётной записи пользователя, таких как имя пользователя, домашний каталог или группы</td>
+</tr>
+<tr>
+<td>id</td>
+<td>Отображение информации об идентификаторе пользователя (UID) и группы (GID)</td>
+</tr>
+<tr>
+<td>whoami</td>
+<td>Показывает текущего вошедшего пользователя</td>
+</tr>
+<tr>
+<td>who</td>
+<td>Показывает всех пользователей, которые в данный момент вошли в систему</td>
+</tr>
+<tr>
+<td>w</td>
+<td>Отображение информации о вошедших пользователях и их активности</td>
+</tr>
+<tr>
+<td>last</td>
+<td>Отображение истории входов пользователей</td>
+</tr>
+<tr>
+<td>groups</td>
+<td>Отображение групп, в которые входит пользователь</td>
+</tr>
+<tr>
+<td>groupadd</td>
+<td>Создание новой группы пользователей</td>
+</tr>
+<tr>
+<td>groupdel</td>
+<td>Удаление группы</td>
+</tr>
+<tr>
+<td>usermod -aG</td>
+<td>Добавление пользователя в группу</td>
+</tr>
+<tr>
+<td>chage</td>
+<td>Установка или проверка сроков действия пароля для пользователя</td>
+</tr>
+<tr>
+<td>getent passwd</td>
+<td>Список всех пользователей в системе</td>
+</tr>
+<tr>
+<td>awk -F: 'print $1' /etc/passwd</td>
+<td>Покажет список имён всех пользователей</td>
+</tr>
+<tr>
+<td>sudo visudo</td>
+<td>Редактирование привилегий sudo для пользователей</td>
+</tr>
+<tr>
+<td>who</td>
+<td>wc -l</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["toc.integrate", "toc.follow", "navigation.tracking"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
