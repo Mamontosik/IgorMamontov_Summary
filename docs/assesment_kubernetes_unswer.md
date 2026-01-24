@@ -127,16 +127,100 @@
 !!! note
     Примечание: многие настройки влияют совместно (например, readinessProbe + Service + NetworkPolicy). Для диагностики часто используются: `kubectl describe`, `kubectl logs`, `kubectl get events`, `kubectl top`, `kubectl get endpoints` и сетевые трассировки (`tcpdump`/`curl`/`dig`) внутри/снаружи Pod.
 
-???+ info "Алгоритм поиска и устранения проблем при развертывании Kubernetes"
+!!! note Алгоритм поиска и устранения проблем при развертывании Kubernetes
 
-    <object 
-     data="https://mamontosik.github.io/IgorMamontov_Summary/learn_k8s.pdf"
+    <object data="https://mamontosik.github.io/IgorMamontov_Summary/learn_k8s.pdf"
      type="application/pdf"
      width="100%"
-     height="800"
-     >
+     height="800">
+
      Ваш браузер не поддерживает просмотр PDF. 
      <a href="https://mamontosik.github.io/IgorMamontov_Summary/learn_k8s.pdf">
         Скачать PDF
      </a>
     </object>
+
+!!! note Определение необходимого ресурса для одной Node
+
+    ### Как определить ресурс, который необходим одной Node?
+
+    Чтобы определить нагрузку на Node и правильно выделить ресурсы, нужно:
+
+    - Проверить текущее потребление ресурсов (CPU, RAM, диски).
+    - Оценить нагрузку от подов (`requests` и `limits`).
+    - Использовать мониторинг (Prometheus, Grafana, `kubectl top`).
+
+    #### Проверить нагрузку на Node (`kubectl top node`)
+
+    ```bash
+    kubectl top nodes
+    ```
+
+    **Пример вывода:**
+
+    | NAME    | CPU(cores) | CPU% | MEMORY(bytes) | MEMORY% |
+    |---------|------------|------|---------------|---------|
+    | node-1  | 500m       | 25%  | 2Gi           | 50%     |
+    | node-2  | 1000m      | 50%  | 4Gi           | 80%     |
+
+    #### Проверить потребление ресурсов подами (`kubectl top pods`)
+
+    ```bash
+    kubectl top pods --all-namespaces
+    ```
+
+    **Пример вывода:**
+
+    | NAMESPACE | POD          | CPU(cores) | MEMORY(bytes) |
+    |-----------|--------------|------------|---------------|
+    | default   | web-app-1    | 250m       | 256Mi         |
+    | default   | web-app-2    | 300m       | 512Mi         |
+    | monitoring| prometheus-1 | 600m       | 1Gi           |
+
+    #### Анализ `requests` и `limits` подов
+
+    ```bash
+    kubectl describe node node-1
+    ```
+
+    **Пример секции `Allocatable`:**
+
+    ```
+    Allocatable:
+    cpu:                4
+    memory:             8Gi
+    pods:               110
+    ```
+
+    #### Проверить `requests` и `limits` у подов
+
+    ```bash
+    kubectl describe pod my-pod
+    ```
+
+    **Пример вывода:**
+
+    ```
+    Requests:
+    cpu:     500m
+    memory:  1Gi
+    Limits:
+    cpu:     1
+    memory:  2Gi
+    ```
+
+    #### Использование Prometheus и Grafana для анализа нагрузки
+
+    ##### Прометей-запросы для анализа Node
+
+    - **Средняя загрузка CPU за 5 минут:**
+
+    ```promql
+    avg(rate(node_cpu_seconds_total[5m])) * 100
+    ```
+
+    - **Среднее использование памяти:**
+
+    ```promql
+    avg(node_memory_Active_bytes) / avg(node_memory_MemTotal_bytes) * 100
+    ```
