@@ -3,7 +3,7 @@
 ### Критичные каталоги
 
 | Путь | Назначение | Примечание |
-|---|---|---|
+| --- | --- | --- |
 | / | Корень файловой системы | Точка монтирования всего дерева |
 | /boot | Файлы загрузчика/ядра (vmlinuz, initramfs, grub) | Должна быть доступна загрузчику |
 | /etc | Конфигурация системы | Бэкапируйте конфиги перед изменениями |
@@ -12,7 +12,7 @@
 ### Приложения и пользовательские каталоги
 
 | Путь | Назначение |
-|---|---|
+| --- | --- |
 | /usr, /usr/bin, /usr/lib | Приложения и библиотеки пользователей |
 | /usr/local | Локально установленное ПО |
 | /home | Домашние директории пользователей |
@@ -20,7 +20,7 @@
 ### Runtime и виртуальные FS
 
 | Путь | Назначение |
-|---|---|
+| --- | --- |
 | /var, /var/log | Изменяемые данные и логи |
 | /run | Runtime данные (PID, locks, sockets) — tmpfs |
 | /tmp | Временные файлы (часто очищается при reboot) |
@@ -54,7 +54,7 @@ cat /proc/meminfo
 ### Этапы загрузки Linux — краткая схема
 
 | Этап | Что происходит | Диагностика |
-|---|---|---|
+| --- | --- | --- |
 | 1. Power on / POST | Инициализация BIOS/UEFI | Проверить настройки прошивки, secure boot |
 | 2. Boot device selection | Выбор загрузочного устройства (MBR/GPT) | `efibootmgr -v` (UEFI) |
 | 3. Bootloader (GRUB) | Работа GRUB, выбор ядра | Проверить `/boot/grub/grub.cfg` |
@@ -100,7 +100,7 @@ mount
 ## Список команды для работы в UNIX Terminal
 
 | Команда | Описание | Параметры | Пример |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `ls` | Список файлов/папок | `-l` (long — подробный список); `-a` (all — показать скрытые); `-h` (human — размеры в удобном виде) | `ls -la -h /var/www` |
 | `cd` | Перемещение по каталогам | (без параметров) — путь или `-` (предыдущая директория) | `cd /etc/nginx` / `cd -` |
 | `cp` | Копирование файлов/каталогов | `-r` (recursive — рекурсивно для директорий); `-p` (preserve — сохранить права/время) | `cp -r -p src/ dest/` |
@@ -110,8 +110,8 @@ mount
 | `grep` | Поиск по тексту | `-R` (recursive); `-n` (show line numbers); `-E` (extended regex) | `grep -R -n "ERROR" /var/log` |
 | `awk` | Текстовая обработка колонок | (скрипт/выражение) — `{print $N}` | `awk '{print $5}' file` |
 | `sed` | Потоковая замена/редактирование | `-i` (in-place — заменить в файле); `-E` (extended regex) | `sed -i 's/old/new/g' file` |
-| `ps` / `top` / `htop` | Процессы/ресурсы | `ps aux` (все процессы, подробный вывод); `ps -ef` (альтернативный формат) | `ps aux | grep nginx` / `top` / `htop` |
-| `systemctl` | Управление systemd сервисами | `status|start|stop|restart|enable|disable` | `systemctl restart nginx` |
+| `ps` / `top` / `htop` | Процессы/ресурсы | `ps aux` (все процессы, подробный вывод); `ps -ef` (альтернативный формат) | `ps aux / grep nginx` / `top` / `htop` |
+| `systemctl` | Управление systemd сервисами | `status/start/stop/restart/enable/disable` | `systemctl restart nginx` |
 | `journalctl` | Просмотр системного журнала | `-u <service>` (фильтр по юниту); `-b` (текущий boot); `-f` (follow) | `journalctl -u nginx -f` |
 | `ssh` | Подключение к удалённым хостам | `-i <key>` (ключ); `-p <port>` (порт); `-o` (опции) | `ssh -i ~/.ssh/id_rsa -p 2222 user@host` |
 | `scp` / `rsync` | Копирование файлов между хостами | `scp -i <key>`; `rsync -avz` (`-a` archive, `-v` verbose, `-z` compress); `--delete` (удалять лишние файлы на приёмнике) | `rsync -avz --delete ./dist user@host:/srv/` |
@@ -119,7 +119,7 @@ mount
 | `tar` | Архивация/распаковка | `-c` (create); `-x` (extract); `-z` (gzip); `-f` (file) | `tar czf backup.tgz /etc` / `tar xzf file.tgz` |
 | `chmod` / `chown` | Права и владелец | `chmod u/g/o` или `chmod -R` (рекурсивно); `chown user:group -R` | `chown -R www:www /var/www` / `chmod 644 file` |
 | `df` / `du` | Диск/занятость | `df -h` (human); `du -sh` (суммарный размер) | `df -h` / `du -sh /var/log` |
-| `ip` / `ss` | Сеть: адреса, сокеты, маршруты | `ip addr` (показ адресов); `ip route` (маршруты); `ss -tuna` (`-t` TCP, `-u` UDP, `-n` numeric, `-a` all) | `ip addr show` / `ss -tuna | grep LISTEN` |
+| `ip` / `ss` | Сеть: адреса, сокеты, маршруты | `ip addr` (показ адресов); `ip route` (маршруты); `ss -tuna` (`-t` TCP, `-u` UDP, `-n` numeric, `-a` all) | `ip addr show` / `ss -tuna  / grep LISTEN` |
 
 ### Команды [grep] для поиска и фильтрации текста
 
@@ -149,7 +149,7 @@ mount
 ### Таблица самых популярных регулярных выражений для `grep`
 
 | Выражение | Описание | Пример команды | Что найдёт |
-|----------|---------|--------------|-----------|
+| ---------- | --------- | -------------- | ----------- |
 | `.` | Любой символ (кроме перевода строки) | `grep 'c.t' file.txt` | `cat`, `cut`, `cot` и т. п. |
 | `*` | Ноль или более повторений предыдущего символа | `grep 'ab*c' file.txt` | `ac`, `abc`, `abbc` |
 | `^` | Начало строки | `grep '^Error' log.txt` | Строки, начинающиеся с `Error` |
@@ -167,6 +167,7 @@ mount
 ### Ключевые пояснения
 
 1. **Практические примеры**:
+
    ```bash
    # Найти строки с «error» или «warning»
    grep -E 'error|warning' log.txt

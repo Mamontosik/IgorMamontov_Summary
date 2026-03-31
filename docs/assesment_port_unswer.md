@@ -3,21 +3,22 @@
 Кратко: таблица для быстрого поиска; раскрываемые секции — для деталей и проверок.
 
 ## Список популярных портов
+
 | Порт | Протокол | Сервис | Применение | Быстрая проверка |
-|---:|:---:|---|---|---|
+| ---: | :---: | --- | --- | --- |
 | 80 | TCP | HTTP | Веб (dev/test) | `ss -ltn sport = :80` |
 | 443 | TCP | HTTPS | Веб (prod/TLS) | `ss -ltn sport = :443` |
 | 22 | TCP | SSH | Админ/ssh/git | `ss -ltn sport = :22` |
 | 53 | UDP/TCP | DNS | Резолвинг / zone transfer | `dig @<dns> example.com` |
 | 67/68 | UDP | DHCP | Авто IP (DORA) | `tcpdump -n udp port 67 or 68 -c 5` |
-| 3306 | TCP | MySQL | БД | `ss -ltn | grep 3306` |
-| 5432 | TCP | PostgreSQL | БД | `ss -ltn | grep 5432` |
+| 3306 | TCP | MySQL | БД | `ss -ltn / grep 3306` |
+| 5432 | TCP | PostgreSQL | БД | `ss -ltn / grep 5432` |
 | 6443 | TCP | K8s API | Kubernetes API | `kubectl get nodes --server=https://host:6443` |
-| 2379/2380 | TCP | etcd | KV store (k8s) | `ss -ltn | grep 2379` |
-| 9090 | TCP | Prometheus | Monitoring | `ss -ltn | grep 9090` |
+| 2379/2380 | TCP | etcd | KV store (k8s) | `ss -ltn / grep 2379` |
+| 9090 | TCP | Prometheus | Monitoring | `ss -ltn / grep 9090` |
 | 3000 | TCP | Grafana | Dashboards | `curl -I http://host:3000` |
-| 5672 | TCP | RabbitMQ | Messaging | `ss -ltn | grep 5672` |
-| 27017 | TCP | MongoDB | NoSQL | `ss -ltn | grep 27017` |
+| 5672 | TCP | RabbitMQ | Messaging | `ss -ltn / grep 5672` |
+| 27017 | TCP | MongoDB | NoSQL | `ss -ltn / grep 27017` |
 | 6379 | TCP | Redis | In‑memory | `redis-cli -h host ping` |
 | 445 | TCP | SMB | Windows shares | `smbclient -L //host` |
 
@@ -81,6 +82,8 @@
 ---
 
 ## Рекомендации по использованию
+
 - Для быстрого локального аудита: `ss -ltn` + `ss -lun`.  
 - Для сетевого трафика/пакетов: `tcpdump -n -i <iface> port <num> -c 100`.  
 - Используйте `nmap` аккуратно (может считаться сканированием).
+  

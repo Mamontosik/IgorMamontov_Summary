@@ -3,7 +3,7 @@
 ## Команды для работы с Ansible
 
 | Команда | Описание | Краткие параметры | Пример |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `ansible` | Одноразовые ad‑hoc команды | `-i inventory`, `-m <module>`, `-a <args>` | `ansible web -i hosts -m ping` |
 | `ansible-playbook` | Запуск playbook (yaml) | `-i`, `--limit`, `--check`, `--diff` | `ansible-playbook -i hosts site.yml` |
 | `ansible-galaxy` | Работа с ролями/коллекциями | `install`, `init` | `ansible-galaxy install geerlingguy.nginx` |
@@ -13,7 +13,7 @@
 ## Структура каталога Ansible
 
 | Корневой уровень | Назначение | Вложенный уровень |
-|---|---|---|
+| --- | --- | --- |
 | `inventories/` | Файлы инвентаря / групповые переменные | `hosts`, `group_vars/`, `host_vars/` |
 | `playbooks/` | Основные playbook'и | `site.yml`, `deploy.yml` |
 | `roles/<role>/` | Роли (tasks/handlers/files/templates) | Стандартизированная структура: `tasks/`, `handlers/`, `defaults/` |
@@ -25,7 +25,7 @@
 ### Примеры использования Ansible
 
 | Сценарий | Что делает | Быстрая команда/фрагмент |
-|---|---|---|
+| --- | --- | --- |
 | Деплой приложения | Копирует артефакт, обновляет systemd, перезапускает сервис | `ansible-playbook -i hosts deploy.yml` |
 | Установка пакета | Модуль `apt`/`yum` управляет пакетами | `- name: install nginx\n  apt: name=nginx state=present` |
 | Управление конфигом | Шаблон Jinja2 → `/etc/app/config` | `template: src=config.j2 dest=/etc/app/config` |
@@ -55,7 +55,7 @@
       service:
         name: nginx
         state: started
-        enabled: yes
+        enabled: yes     
 ```
 </details>
 

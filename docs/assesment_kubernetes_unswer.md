@@ -3,23 +3,23 @@
 ### Основные компоненты Kubernetes
 
 | Группа | Компонент | Описание | Полезные советы |
-|-------|---------|---------|---------|
+| ------- | --------- | --------- | --------- |
 | **Control Plane (мастер‑ноды)** | kube‑apiserver | Входная точка API кластера — обеспечивает взаимодействие пользователей и компонентов с кластером | Разместить за балансировщиком нагрузки (LB); включить аутентификацию и авторизацию; настроить логирование |
-|  | etcd | Распределённое хранилище метаданных кластера (key‑value) | Выделить отдельные диски/узлы; регулярно делать бэкапы; мониторить I/O‑нагрузку |
-|  | kube‑scheduler | Назначает Pod на Node: фильтрует узлы, оценивает их пригодность, выбирает лучший узел для пода | Использовать affinity/taints/tolerations; тестировать политики планирования |
-|  | kube‑controller‑manager | Запускает контроллеры, поддерживающие желаемое состояние кластера (ReplicaSet, Deployment, Node и др.) | Мониторить failed controllers; выделить достаточные ресурсы; следить за здоровьем контроллеров |
-|  | cloud‑controller‑manager | Интегрирует кластер с облачными провайдерами (Node Controller, Route Controller, Service Controller) | Ограничивать права; использовать минимальные IAM‑роли; обновлять до актуальных версий |
+| | etcd | Распределённое хранилище метаданных кластера (key‑value) | Выделить отдельные диски/узлы; регулярно делать бэкапы; мониторить I/O‑нагрузку |
+| | kube‑scheduler | Назначает Pod на Node: фильтрует узлы, оценивает их пригодность, выбирает лучший узел для пода | Использовать affinity/taints/tolerations; тестировать политики планирования |
+| | kube‑controller‑manager | Запускает контроллеры, поддерживающие желаемое состояние кластера (ReplicaSet, Deployment, Node и др.) | Мониторить failed controllers; выделить достаточные ресурсы; следить за здоровьем контроллеров |
+| | cloud‑controller‑manager | Интегрирует кластер с облачными провайдерами (Node Controller, Route Controller, Service Controller) | Ограничивать права; использовать минимальные IAM‑роли; обновлять до актуальных версий |
 | **Worker Node (рабочие ноды)** | kubelet | Агент на Node: регистрирует ноду в кластере, запускает и контролирует контейнеры, работает с Container Runtime | Минимизировать привилегии; следить за потреблением ресурсов ноды; настраивать параметры безопасности |
-|  | kube‑proxy | Реализует сервисы Kubernetes через iptables или IPVS; управляет сетевыми правилами для доступа к подам | Предпочесть IPVS при высокой нагрузке; настраивать healthchecks; мониторить правила NAT/маршрутизации |
-|  | Container Runtime (containerd/CRI‑O/Docker) | Среда исполнения контейнеров: загружает образы, запускает и останавливает контейнеры | Использовать поддерживаемую версию; применять безопасные конфиги; обновлять вовремя |
-|  | CNI (Calico/Flannel/Weave/etc.) | Сетевая подсистема: назначает IP‑адреса подам, настраивает маршрутизацию и сетевые политики | Выбрать CNI по требованиям (policy, MTU, производительность); тестировать обновления; документировать настройки |
+| | kube‑proxy | Реализует сервисы Kubernetes через iptables или IPVS; управляет сетевыми правилами для доступа к подам | Предпочесть IPVS при высокой нагрузке; настраивать healthchecks; мониторить правила NAT/маршрутизации |
+| | Container Runtime (containerd/CRI‑O/Docker) | Среда исполнения контейнеров: загружает образы, запускает и останавливает контейнеры | Использовать поддерживаемую версию; применять безопасные конфиги; обновлять вовремя |
+| | CNI (Calico/Flannel/Weave/etc.) | Сетевая подсистема: назначает IP‑адреса подам, настраивает маршрутизацию и сетевые политики | Выбрать CNI по требованиям (policy, MTU, производительность); тестировать обновления; документировать настройки |
 | **Дополнительные/расширяющие компоненты** | Ingress Controller (NGINX/Traefik/etc.) | Обеспечивает внешний HTTP/HTTPS‑доступ к сервисам кластера; управляет TLS, маршрутизацией, лимитами | Настроить TLS на Ingress; включить healthchecks; применять rate limiting; обновлять правила маршрутизации |
-|  | scheduler extender / custom controllers | Дополнительные плагины планировщика и кастомные контроллеры (через CRD) | Выносить сложную логику в отдельные контроллеры; тестировать CRD; документировать API расширений |
+| | scheduler extender / custom controllers | Дополнительные плагины планировщика и кастомные контроллеры (через CRD) | Выносить сложную логику в отдельные контроллеры; тестировать CRD; документировать API расширений |
 
 #### Сеть: поведение Pod/Container и потоки трафика (по namespace)
 
 | Направление трафика | Как это работает (сеть) | Ключевые объекты |
-|---|---|---|
+| --- | --- | --- |
 | Pod → Pod (внутри namespace) | Прямой обмен по Pod IP внутри cluster network; пакеты идут через veth → CNI | veth pair, CNI routing/bridge/overlay; нет NAT между Pod |
 | Pod → Pod (между namespace) | Аналогично, маршрутизация по Pod IP; DNS/FQDN зависит от namespace | NetworkPolicy может блокировать/разрешать трафик по namespace/label |
 | Pod → Service (ClusterIP, внутри namespace) | Запрос на ClusterIP DNAT'ится kube-proxy в один из целевых Pod | Service (ClusterIP), kube-proxy (iptables/ipvs), DNS резолвинг |
@@ -37,16 +37,16 @@
 ### Список команды kubectl
 
 | Команда | Описание | Параметры (описание) | Пример |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `kubectl get` | Список ресурсов | `-n <ns>` — указать namespace; `-o wide` — показать дополнительные колонки (NODE, IP); `-o yaml/json` — вывести в структурированном формате | `kubectl get pods -n prod -o wide` |
-| `kubectl describe` | Детали ресурса и события | указывать тип и имя ресурса `pod|svc|node <name>`; выводит события и состояние | `kubectl describe pod myapp -n staging` |
+| `kubectl describe` | Детали ресурса и события | указывать тип и имя ресурса `pod / svc / node <name>`; выводит события и состояние | `kubectl describe pod myapp -n staging` |
 | `kubectl logs` | Логи контейнера | `-f` — follow (подписка); `-c <container>` — выбрать контейнер в Pod; `--since=<duration>` — показать логи за период | `kubectl logs -f pod/myapp -c web` |
 | `kubectl exec` | Выполнить команду в контейнере | `-it` — интерактивно + TTY; указывайте `pod -- <cmd>` | `kubectl exec -it pod/myapp -- /bin/sh` |
-| `kubectl apply` | Применить манифест (idempotent) | `-f <file|dir>` — файл или директория манифестов; `--prune` — удалять ресурсы не описанные (в сочетании с селектором) | `kubectl apply -f k8s/` |
+| `kubectl apply` | Применить манифест (idempotent) | `-f <file/dir>` — файл или директория манифестов; `--prune` — удалять ресурсы не описанные (в сочетании с селектором) | `kubectl apply -f k8s/` |
 | `kubectl delete` | Удалить ресурс | `-f` — файл/директория; `--grace-period=<s>` — время завершения; `--force` — принудительное удаление | `kubectl delete -f deploy.yaml` |
 | `kubectl rollout` | Статус/undo/restart deployment | подкоманды: `status` — проверить rollout; `undo` — откат; `restart` — перезапуск rollout | `kubectl rollout status deploy/myapp` |
 | `kubectl scale` | Масштабирование | `--replicas=<n>` — задать количество реплик | `kubectl scale deploy myapp --replicas=3` |
-| `kubectl top` | Метрики (metrics-server) | `pods|nodes` — выбрать уровень, `-n <ns>` — namespace | `kubectl top pod -n prod` |
+| `kubectl top` | Метрики (metrics-server) | `pods/nodes` — выбрать уровень, `-n <ns>` — namespace | `kubectl top pod -n prod` |
 | `kubectl port-forward` | Проброс порта локально | `local:remote` — формат проброса; можно указывать `pod/<name>` или `svc/<name>` | `kubectl port-forward svc/my-svc 8080:80` |
 | `kubectl get events` | События в namespace | `-n <ns>` — namespace; `--sort-by=.metadata.creationTimestamp` — сортировать по времени | `kubectl get events -n default` |
 | `kubectl config` | Управление kubeconfig/контекстами | `use-context <name>` — переключить контекст; `view` — показать конфигурацию; `set-context` — создать/изменить контекст | `kubectl config use-context prod` |
@@ -61,7 +61,7 @@
 ### Список ошибок и рекомендации по исправлению
 
 | Ошибки | Причины | Диагностика | Рекомендации по исправлению |
-|---|---:|---|---|
+| --- | ---: | --- | --- |
 | CrashLoopBackOff | Ошибка запуска приложения | `kubectl describe pod`, `kubectl logs -p` | Проверить логи, исправить образ/entrypoint, добавить startupProbe |
 | ImagePullBackOff / ErrImagePull | Неверный image/tag или auth | `kubectl describe pod` (events) | Исправить image, добавить imagePullSecrets, проверить registry |
 | Pending | Нет доступных Node (ресурсы/taints) | `kubectl describe pod` (events), `kubectl get nodes` | Увеличить capacity, снять taints, изменить requests |
@@ -78,7 +78,7 @@
 ### Типы ресурсов Kubernetes
 
 | Ресурс | Описание | Виды применения |
-|---|---|---|
+| --- | --- | --- |
 | Pod | Минимальная единица деплоя — один/несколько контейнеров, общий сетевой namespace и тома | Запуск приложений, sidecar, кратковременные задачи |
 | Deployment | Декларативное управление ReplicaSet, обеспечивает rollout/rollback | Бесстейтные сервисы, rolling updates, CI/CD |
 | ReplicaSet | Поддерживает заданное число реплик Pod | Обеспечение необходимого количества экземпляров |
@@ -106,7 +106,7 @@
 ## Механизм управления трафиком в K8s
 
 | Задача | Что делает Kubernetes | Фрагмент манифеста | Команды для проверки |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Балансировка трафика внутри кластера | Service (ClusterIP) + kube-proxy распределяет входящие запросы на Pod | Service: `kind: Service\nspec:\n  type: ClusterIP\n  selector: {app: myapp}\n  ports: - port: 80 targetPort: 8080` | `kubectl get svc`, `kubectl describe svc mysvc`, `ss -tuna` на Node |
 | Внешний доступ / маршрутизация HTTP(S) | Ingress (IngressController) роутит внешний HTTP(S) → Service; TLS termination | Ingress: `kind: Ingress\nmetadata:\n  annotations: {nginx.ingress.kubernetes.io/rewrite-target: /}\nspec:\n  rules: - host: example.com` | `kubectl get ingress`, `kubectl describe ingress`, `kubectl logs -n ingress-nginx pod/...` |
 | NodePort / LoadBalancer | Экспонирование сервиса наружу через порт на Node или облачный LB | Service типа `NodePort` или `LoadBalancer` | `kubectl get svc -o wide`, проверка облачного LB в провайдере |
@@ -128,18 +128,18 @@
 
 SNI позволяет клиенту указывать имя хоста (домена) в сообщении ClientHello при установке защищенного соединения.
 
-| Аспект                  | Краткое описание | Подробности |
+| Аспект | Краткое описание | Подробности |
 | ----------------------- | ---------------- | ----------- |
-| Определение             | Расширение TLS: клиент отправляет имя хоста в ClientHello для выбора сертификата на общем IP wikipedia+1 | Один IP обслуживает множество HTTPS-сайтов с разными сертификатами |
-| Принцип работы          | ClientHello содержит домен → сервер подбирает cert → TLS handshake                                 | Аналог HTTP Host на уровне TLS (до HTTP)                           |
-| Преимущества            | Экономия IP-адресов для виртуального хостинга SSL                                            | Поддержка Nginx, Apache, HAProxy, CDN                              |
-| Ограничения             | Нет поддержки в IE/XP, Android<2.3; SNI stripping атаки                                   | Требует домена, не работает с IP                                   |
-| Вопрос 1 | Зачем нужен SNI?                                                                                         | Выбор cert на общем IP вместо отдельных IP на сайт wikipedia       |
-| Вопрос 2 | Что в ClientHello с SNI?                                                                                 | Расширение с hostname для выбора cert emaro-ssl                    |
-| Вопрос 3 | SNI vs SAN/UCC?                                                                                          | SNI — разные certы на IP; SAN — один cert на домены proverkassl    |
-| Вопрос 4 | Настройка Nginx?                                                                                         | server_name + ssl_certificate в server-блоке ssl                   |
-| Вопрос 5 | Legacy-клиенты?                                                                                          | Fallback: отдельный IP или общий cert proverkassl                  |
-| Пример                  | 100 сайтов = 1 IP с SNI вместо 100 IP wikipedia                                                          | Автоматизация Let's Encrypt + SNI в CI/CD         |
+| Определение | Расширение TLS: клиент отправляет имя хоста в ClientHello для выбора сертификата на общем IP wikipedia+1 | Один IP обслуживает множество HTTPS-сайтов с разными сертификатами |
+| Принцип работы | ClientHello содержит домен → сервер подбирает cert → TLS handshake | Аналог HTTP Host на уровне TLS (до HTTP) |
+| Преимущества | Экономия IP-адресов для виртуального хостинга SSL | Поддержка Nginx, Apache, HAProxy, CDN |
+| Ограничения | Нет поддержки в IE/XP, Android<2.3; SNI stripping атаки | Требует домена, не работает с IP |
+| Вопрос 1 | Зачем нужен SNI? | Выбор cert на общем IP вместо отдельных IP на сайт wikipedia |
+| Вопрос 2 | Что в ClientHello с SNI? | Расширение с hostname для выбора cert emaro-ssl |
+| Вопрос 3 | SNI vs SAN/UCC? | SNI — разные certы на IP; SAN — один cert на домены proverkassl |
+| Вопрос 4 | Настройка Nginx? | server_name + ssl_certificate в server-блоке ssl |
+| Вопрос 5 | Legacy-клиенты? | Fallback: отдельный IP или общий cert proverkassl |
+| Пример | 100 сайтов = 1 IP с SNI вместо 100 IP wikipedia | Автоматизация Let's Encrypt + SNI в CI/CD |
 
 !!! note
     Примечание: многие настройки влияют совместно (например, readinessProbe + Service + NetworkPolicy). Для диагностики часто используются: `kubectl describe`, `kubectl logs`, `kubectl get events`, `kubectl top`, `kubectl get endpoints` и сетевые трассировки (`tcpdump`/`curl`/`dig`) внутри/снаружи Pod.
@@ -241,3 +241,4 @@ SNI позволяет клиенту указывать имя хоста (до
     ```promql
     avg(node_memory_Active_bytes) / avg(node_memory_MemTotal_bytes) * 100
     ```
+    

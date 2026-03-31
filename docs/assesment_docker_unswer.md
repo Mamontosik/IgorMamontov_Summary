@@ -3,7 +3,7 @@
 ### Список команд для работы с docker
 
 | Команда | Описание | Дополнительные параметры (с пояснением) | Пример команды |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `docker run` | Создать и запустить контейнер из образа | `-d` (detached), `--name <name>`, `-p host:container` (порт-маппинг), `-v host:container` (том), `--rm` (удалить после выхода), `-e KEY=VAL` (env) | `docker run -d --name web -p 8080:80 nginx` |
 | `docker build` | Построить образ из Dockerfile | `-t name:tag` (имя/тег), `-f <Dockerfile>` (файл), `--build-arg KEY=VAL` | `docker build -t myapp:1.0 .` |
 | `docker pull` | Скачать образ из реестра | `<image>:<tag>` (по умолчанию `latest`) | `docker pull redis:6.2` |
@@ -27,7 +27,7 @@
 ### Практики по работе с Docker образами
 
 | Решение | Описание | Преимущества | Команда |
-|---|---|---:|---|
+| --- | --- | ---: | --- |
 | Multi-stage build | Сборка артефакта в одном этапе, копирование только runtime-артефактов в финальный образ | Существенно меньше размер, нет инструментов сборки в финале | `# builder\nFROM golang:1.20 AS builder\nWORKDIR /app\n... \n# final\nFROM gcr.io/distroless/static\nCOPY --from=builder /app/bin/myapp /myapp` |
 | Минимальные базовые образы (Alpine/Distroless/Scratch) | Использовать лёгкие или пустые образы вместо полноценных дистрибутивов | Меньше слоёв, меньший размер, меньше атакуемой поверхности | `FROM python:3.11-slim` или `FROM gcr.io/distroless/base` |
 | Удаление build-зависимостей и кешей | После установки пакетов удалять списки apt/pip кеши и dev-пакеты | Уменьшение размера слоя после установки | `RUN apt-get install -y build-essential && make && apt-get purge -y build-essential && rm -rf /var/lib/apt/lists/*` |
