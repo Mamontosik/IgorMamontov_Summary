@@ -124,6 +124,23 @@
 | Высокая производительность сервисов | kube-proxy mode ipvs, CNI tuning (MTU), service endpoints balancing | Включить ipvs: kube-proxy config, настроить CNI MTU | `kubectl get configmap kube-proxy -n kube-system -o yaml`, `ss -tn` / `ip route` |
 | Грейсфул‑шутдаун и рестарт | graceful termination via preStop, terminationGracePeriodSeconds | `lifecycle:\n  preStop: {exec: {command: [\"/bin/sh\",\"-c\",\"sleep 10\"]}}\nterminationGracePeriodSeconds: 30` | `kubectl delete pod mypod --grace-period=30` |
 
+## SNI (Server Name Indication) — это расширение протокола TLS
+
+SNI позволяет клиенту указывать имя хоста (домена) в сообщении ClientHello при установке защищенного соединения.
+
+| Аспект                  | Краткое описание | Подробности |
+| ----------------------- | ---------------- | ----------- |
+| Определение             | Расширение TLS: клиент отправляет имя хоста в ClientHello для выбора сертификата на общем IP wikipedia+1 | Один IP обслуживает множество HTTPS-сайтов с разными сертификатами |
+| Принцип работы          | ClientHello содержит домен → сервер подбирает cert → TLS handshake                                 | Аналог HTTP Host на уровне TLS (до HTTP)                           |
+| Преимущества            | Экономия IP-адресов для виртуального хостинга SSL                                            | Поддержка Nginx, Apache, HAProxy, CDN                              |
+| Ограничения             | Нет поддержки в IE/XP, Android<2.3; SNI stripping атаки                                   | Требует домена, не работает с IP                                   |
+| Вопрос 1 | Зачем нужен SNI?                                                                                         | Выбор cert на общем IP вместо отдельных IP на сайт wikipedia       |
+| Вопрос 2 | Что в ClientHello с SNI?                                                                                 | Расширение с hostname для выбора cert emaro-ssl                    |
+| Вопрос 3 | SNI vs SAN/UCC?                                                                                          | SNI — разные certы на IP; SAN — один cert на домены proverkassl    |
+| Вопрос 4 | Настройка Nginx?                                                                                         | server_name + ssl_certificate в server-блоке ssl                   |
+| Вопрос 5 | Legacy-клиенты?                                                                                          | Fallback: отдельный IP или общий cert proverkassl                  |
+| Пример                  | 100 сайтов = 1 IP с SNI вместо 100 IP wikipedia                                                          | Автоматизация Let's Encrypt + SNI в CI/CD         |
+
 !!! note
     Примечание: многие настройки влияют совместно (например, readinessProbe + Service + NetworkPolicy). Для диагностики часто используются: `kubectl describe`, `kubectl logs`, `kubectl get events`, `kubectl top`, `kubectl get endpoints` и сетевые трассировки (`tcpdump`/`curl`/`dig`) внутри/снаружи Pod.
 
