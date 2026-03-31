@@ -141,6 +141,8 @@ SNI позволяет клиенту указывать имя хоста (до
 | Вопрос 5 | Legacy-клиенты? | Fallback: отдельный IP или общий cert proverkassl |
 | Пример | 100 сайтов = 1 IP с SNI вместо 100 IP wikipedia | Автоматизация Let's Encrypt + SNI в CI/CD |
 
+## Способы диагности k8s
+
 !!! note
     Примечание: многие настройки влияют совместно (например, readinessProbe + Service + NetworkPolicy). Для диагностики часто используются: `kubectl describe`, `kubectl logs`, `kubectl get events`, `kubectl top`, `kubectl get endpoints` и сетевые трассировки (`tcpdump`/`curl`/`dig`) внутри/снаружи Pod.
 
