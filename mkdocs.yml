@@ -9,6 +9,7 @@ nav:
     - Про Kubernetes: admin_kubernetes.md
     - Блокер сообщений Kafka: admin_kafka.md
     - Git команды: admin_git.md
+    - Погружение в LLM: admin_llm_faq.md
 
   - Подготовка к assesment:
     - Ответы для assesment (unsorted): assesment_unswer.md
