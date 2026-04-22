@@ -15,6 +15,7 @@
 **Для чего используется?** Развертывание production API для LLM-приложений: чат-боты, RAG-системы, агенты, поисковые системы с ИИ.
 
 **Ключевые особенности:**
+
 - PagedAttention - эффективное управление KV-кешем
 - Continuous Batching - динамическая обработка запросов
 - OpenAI-совместимый API (/v1/chat/completions, /v1/completions)
@@ -27,6 +28,7 @@ docker run -it --gpus all -p 8000:8000 vllm/vllm-openai --model meta-llama/Llama
 ```
 
 **Ключевые параметры:**
+
 - `tensor-parallelism` - количество GPU для одной модели
 - `max_num_seqs` - максимальное количество параллельных запросов
 - `max_model_len` - максимальная длина контекста
@@ -46,6 +48,7 @@ response = client.chat.completions.create(model="Llama-3-8b", messages=[...])
 **Для чего используется?** Ускорение повторных запросов, RAG-систем с длинными контекстами, многоходовых чат-сессий.
 
 **Ключевые особенности:**
+
 - Кэширование на DRAM или диске
 - Поддержка различных бэкендов (Redis, диск)
 - Политика вытеснения (LRU, LFU и др.)
@@ -55,6 +58,7 @@ response = client.chat.completions.create(model="Llama-3-8b", messages=[...])
 **Интеграция:** Redis или диск backend
 
 **Ключевые параметры:**
+
 - `cache_size` - размер кэша
 - `eviction_policy` - политика вытеснения (LRU, LFU)
 - `ttl` - время жизни записей
@@ -74,6 +78,7 @@ redis-server --port 6379
 **Для чего используется?** Управление несколькими GPU, развертывание в Kubernetes-кластерах, масштабирование инференса.
 
 **Ключевые особенности:**
+
 - Поддержка NVIDIA и AMD GPU
 - Интеграция с Kubernetes
 - Автоматическое распределение нагрузки
@@ -83,6 +88,7 @@ redis-server --port 6379
 **Команда:** Kubernetes с GPU-node
 
 **Ключевые параметры:**
+
 - `GPU node config` - конфигурация GPU-узлов
 - ` replicas` - количество реплик
 - `resources.nvidia.com/gpu` - запрос GPU-ресурсов
@@ -104,6 +110,7 @@ redis-server --port 6379
 **Для чего используется?** Локальный запуск LLM, R&D прототипирование, тестирование моделей без облачных сервисов.
 
 **Ключевые особенности:**
+
 - Простой CLI-интерфейс
 - Встроенный HTTP-сервер
 - Поддержка GPU (NVIDIA, AMD, Apple Silicon)
@@ -111,17 +118,20 @@ redis-server --port 6379
 - Множество готовых моделей
 
 **Команда установки:**
+
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
 **Команда запуска:**
+
 ```bash
 ollama run llama3
 ollama serve
 ```
 
 **Полезные команды:**
+
 ```bash
 ollama list           # Список установленных моделей
 ollama pull <model>  # Скачать модель
@@ -129,6 +139,7 @@ ollama rm <model>    # Удалить модель
 ```
 
 **Конфигурация (Modelfile):**
+
 - `temperature` - креативность модели (0-2)
 - `num_ctx` - размер контекста
 - `num_gpu` - количество GPU для инференса
@@ -151,6 +162,7 @@ SYSTEM You are a helpful AI assistant.
 **Для чего используется?** Локальный запуск LLM на CPU/GPU, разработка и тестирование, прототипирование RAG-систем.
 
 **Ключевые особенности:**
+
 - Удобный GUI-интерфейс
 - Поддержка GGUF-формата
 - Выбор GPU-бэкенда (Metal, CUDA, ROCm)
@@ -160,6 +172,7 @@ SYSTEM You are a helpful AI assistant.
 **Установка:** .exe (Windows), .dmg (macOS), .AppImage (Linux)
 
 **Конфигурация:**
+
 - `GPU-backend` - тип GPU (Metal/CUDA/ROCm)
 - `offloading` - выгрузка слоев на GPU
 - `context size` - размер контекста
@@ -178,6 +191,7 @@ localhost:1234/v1/completions
 **Для чего используется?** Production LLM с A/B-тестированием, роутинг запросов между моделями, автоматическая оптимизация промптов.
 
 **Ключевые особенности:**
+
 - A/B-тестирование моделей
 - Умный роутинг между LLM
 - Autopilot (автооптимизация промптов)
@@ -190,6 +204,7 @@ localhost:1234/v1/completions
 **Команда:** Конфигурация gateway.yaml
 
 **Конфигурация:**
+
 - `Router` - правила роутинга
 - `Autopilot` - политики автооптимизации
 - `datasets` - наборы данных для тестирования
