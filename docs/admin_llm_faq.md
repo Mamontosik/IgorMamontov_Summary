@@ -23,7 +23,8 @@
 - Поддержка множества моделей: Llama, Mistral, Qwen и др.
 
 **Команда запуска:**
-```
+
+```bash
 docker run -it --gpus all -p 8000:8000 vllm/vllm-openai --model meta-llama/Llama-3-8b-instruct
 ```
 
@@ -35,6 +36,7 @@ docker run -it --gpus all -p 8000:8000 vllm/vllm-openai --model meta-llama/Llama
 - `max_num_batched_tokens` - максимальное количество токенов в батче
 
 **Интеграция с OpenAI SDK:**
+
 ```python
 from openai import OpenAI
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="EMPTY")
@@ -65,6 +67,7 @@ response = client.chat.completions.create(model="Llama-3-8b", messages=[...])
 - `backend` - тип хранилища (redis, disk)
 
 **Пример использования с Redis:**
+
 ```bash
 # Запуск с Redis
 redis-server --port 6379
@@ -90,7 +93,7 @@ redis-server --port 6379
 **Ключевые параметры:**
 
 - `GPU node config` - конфигурация GPU-узлов
-- ` replicas` - количество реплик
+- `replicas` - количество реплик
 - `resources.nvidia.com/gpu` - запрос GPU-ресурсов
 
 ---
@@ -147,8 +150,9 @@ ollama rm <model>    # Удалить модель
 - `top_k` - top-k sampling
 - `repeat_penalty` - штраф за повторы
 
-**Прим��р Modelfile:**
-```
+**Пример Modelfile:**
+
+```bash
 FROM llama3
 PARAMETER temperature 0.7
 PARAMETER num_ctx 4096
@@ -179,7 +183,8 @@ SYSTEM You are a helpful AI assistant.
 - `GPU layers` - количество слоев на GPU
 
 **API-доступ:**
-```
+
+```text
 localhost:1234/v1/chat/completions
 localhost:1234/v1/completions
 ```
@@ -211,6 +216,7 @@ localhost:1234/v1/completions
 - `alerts` - оповещения
 
 **Пример gateway.yaml:**
+
 ```yaml
 gateway:
   type: openai
@@ -224,7 +230,7 @@ routing:
     - name: latency-optimized
       type: minimum_latency
     - name: quality-optimized
-      type: highest_score
+type: highest_score
 ```
 
 ---
