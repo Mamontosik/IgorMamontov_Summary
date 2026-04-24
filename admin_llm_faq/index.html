@@ -1,0 +1,2610 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://Mamontosik.github.io/IgorMamontov_Summary/admin_llm_faq/">
+      
+      
+        <link rel="prev" href="../admin_git/">
+      
+      
+        <link rel="next" href="../assesment_unswer/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Погружение в LLM - Summary Igor Mamontov ver.1</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#llm-faq" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Summary Igor Mamontov ver.1" class="md-header__button md-logo" aria-label="Summary Igor Mamontov ver.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Summary Igor Mamontov ver.1
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Погружение в LLM
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Summary Igor Mamontov ver.1" class="md-nav__button md-logo" aria-label="Summary Igor Mamontov ver.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Summary Igor Mamontov ver.1
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обо мне
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Руководство DevOps инженера
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Руководство DevOps инженера
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux команды
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_sec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Про DevSecOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Полезные метрики
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Про Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_kafka/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Блокер сообщений Kafka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git команды
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Погружение в LLM
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Погружение в LLM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Модели LLM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Модели LLM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ollama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ollama
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lm-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LM Studio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorzero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TensorZero
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RAG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Концепция
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Архитектура RAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chunking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector DB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedding модели
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Поиск
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Инъекция контекста
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Фреймворки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag-vs-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG vs Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Метрики RAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обслуживание LLM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Обслуживание LLM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vllm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vLLM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lmcache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LMCache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpustack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPUStack
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fine-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fine-tuning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fine-tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Когда применять
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fine-tuning_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Типы Fine-tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Инструменты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axolotl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Пример: Axolotl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsloth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Пример: Unsloth
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Управление контекстом
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Управление контекстом">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Стратегии управления
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Оптимальный размер chunk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Оценка и выбор стека
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Оценка и выбор стека">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm-as-judge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM-as-Judge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Метрики
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Выбор стека
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opencode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenCode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обзор
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SKILL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AGENT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP Servers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool Access Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Подготовка к assesment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Подготовка к assesment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ответы для assesment (unsorted)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_unsorted_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список примеров assesment сотрудников
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Популярные команды на собеседовании
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_handbook_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Названия, краткий справочник
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_port_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список используемых портов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Все о мониторинге
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_kafka_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с kafka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_linux_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_kubernetes_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с k8s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_docker_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_ansible_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a href="/IgorMamontov_Summary/">Обо мне</a> / Руководство DevOps инженера</p>
+<h1 id="llm-faq">LLM FAQ</h1>
+<h2 id="llm">Модели LLM</h2>
+<table>
+<thead>
+<tr>
+<th>Название</th>
+<th>Описание</th>
+<th>Примеры применения</th>
+<th>Связанные инструменты</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ollama</strong></td>
+<td>CLI/сервер для локальных LLM (Llama, Mistral, Gemma и др.)</td>
+<td>Локальный запуск, R&amp;D прототипирование</td>
+<td>llama.cpp, LM Studio</td>
+</tr>
+<tr>
+<td><strong>LM Studio</strong></td>
+<td>GUI для локальных LLM (GGUF + llama.cpp)</td>
+<td>Локальный запуск на CPU/GPU, разработка</td>
+<td>Ollama, RAG</td>
+</tr>
+<tr>
+<td><strong>TensorZero</strong></td>
+<td>LLMOps платформа (A/B тесты, роутинг, Autopilot)</td>
+<td>Продакшн LLM с A/B тестированием</td>
+<td>vLLM, Ollama, OpenAI</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ollama">Ollama</h3>
+<p><strong>Что это?</strong> CLI-инструмент и сервер для запуска локальных больших языковых моделей. Использует llama.cpp для эффективного инференса и поддерживает множество моделей (Llama, Mistral, Gemma, Qwen и др.). Прост в установке и использовании.</p>
+<p><strong>Для чего используется?</strong> Локальный запуск LLM, R&amp;D прототипирование, тестирование моделей без облачных сервисов.</p>
+<p><strong>Ключевые особенности:</strong></p>
+<ul>
+<li>Простой CLI-интерфейс</li>
+<li>Встроенный HTTP-сервер</li>
+<li>Поддержка GPU (NVIDIA, AMD, Apple Silicon)</li>
+<li>Модель Modelfile для настройки</li>
+<li>Множество готовых моделей</li>
+</ul>
+<p><strong>Команда установки:</strong></p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://ollama.com/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+<p><strong>Команда запуска:</strong></p>
+<div class="highlight"><pre><span></span><code>ollama<span class="w"> </span>run<span class="w"> </span>llama3
+ollama<span class="w"> </span>serve
+</code></pre></div>
+<p><strong>Полезные команды:</strong></p>
+<div class="highlight"><pre><span></span><code>ollama<span class="w"> </span>list<span class="w">           </span><span class="c1"># Список установленных моделей</span>
+ollama<span class="w"> </span>pull<span class="w"> </span>&lt;model&gt;<span class="w">  </span><span class="c1"># Скачать модель</span>
+ollama<span class="w"> </span>rm<span class="w"> </span>&lt;model&gt;<span class="w">    </span><span class="c1"># Удалить модель</span>
+</code></pre></div>
+<p><strong>Конфигурация (Modelfile):</strong></p>
+<ul>
+<li><code>temperature</code> - креативность модели (0-2)</li>
+<li><code>num_ctx</code> - размер контекста</li>
+<li><code>num_gpu</code> - количество GPU для инференса</li>
+<li><code>top_p</code> - nucleus sampling</li>
+<li><code>top_k</code> - top-k sampling</li>
+<li><code>repeat_penalty</code> - штраф за повторы</li>
+</ul>
+<p><strong>Пример Modelfile:</strong></p>
+<div class="highlight"><pre><span></span><code>FROM<span class="w"> </span>llama3
+PARAMETER<span class="w"> </span>temperature<span class="w"> </span><span class="m">0</span>.7
+PARAMETER<span class="w"> </span>num_ctx<span class="w"> </span><span class="m">4096</span>
+SYSTEM<span class="w"> </span>You<span class="w"> </span>are<span class="w"> </span>a<span class="w"> </span>helpful<span class="w"> </span>AI<span class="w"> </span>assistant.
+</code></pre></div>
+<h3 id="lm-studio">LM Studio</h3>
+<p><strong>Что это?</strong> Графический интерфейс (GUI) для запуска локальных LLM с использованием формата GGUF и llama.cpp. Отлично подходит для разработки и тестирования моделей без командной строки.</p>
+<p><strong>Для чего используется?</strong> Локальный запуск LLM на CPU/GPU, разработка и тестирование, прототипирование RAG-систем.</p>
+<p><strong>Ключевые особенности:</strong></p>
+<ul>
+<li>Удобный GUI-интерфейс</li>
+<li>Поддержка GGUF-формата</li>
+<li>Выбор GPU-бэкенда (Metal, CUDA, ROCm)</li>
+<li>Встроенный чат-интерфейс</li>
+<li>Локальный OpenAI-совместимый API</li>
+</ul>
+<p><strong>Установка:</strong> .exe (Windows), .dmg (macOS), .AppImage (Linux)</p>
+<p><strong>Конфигурация:</strong></p>
+<ul>
+<li><code>GPU-backend</code> - тип GPU (Metal/CUDA/ROCm)</li>
+<li><code>offloading</code> - выгрузка слоев на GPU</li>
+<li><code>context size</code> - размер контекста</li>
+<li><code>GPU layers</code> - количество слоев на GPU</li>
+</ul>
+<p><strong>API-доступ:</strong></p>
+<div class="highlight"><pre><span></span><code>localhost:1234/v1/chat/completions
+localhost:1234/v1/completions
+</code></pre></div>
+<h3 id="tensorzero">TensorZero</h3>
+<p><strong>Что это?</strong> Open-source LLMOps-платформа для production LLM. Включает A/B-тестирование, умный роутинг между моделями и Autopilot для автоматической оптимизации промптов и выбора модели.</p>
+<p><strong>Для чего используется?</strong> Production LLM с A/B-тестированием, роутинг запросов между моделями, автоматическая оптимизация промптов.</p>
+<p><strong>Ключевые особенности:</strong></p>
+<ul>
+<li>A/B-тестирование моделей</li>
+<li>Умный роутинг между LLM</li>
+<li>Autopilot (автооптимизация промптов)</li>
+<li>Сбор и анализ метрик</li>
+<li>Поддержка множества бэкендов</li>
+<li>OpenAI-совместимый API</li>
+</ul>
+<p><strong>Поддерживаемые бэкенды:</strong> Ollama, vLLM, OpenAI, Anthropic и др.</p>
+<p><strong>Команда:</strong> Конфигурация gateway.yaml</p>
+<p><strong>Конфигурация:</strong></p>
+<ul>
+<li><code>Router</code> - правила роутинга</li>
+<li><code>Autopilot</code> - политики автооптимизации</li>
+<li><code>datasets</code> - наборы данных для тестирования</li>
+<li><code>alerts</code> - оповещения</li>
+</ul>
+<p><strong>Пример gateway.yaml:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">gateway</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:8000/v1</span>
+<span class="w">  </span><span class="nt">models</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">claude-3</span>
+
+<span class="nt">routing</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">policies</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">latency-optimized</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minimum_latency</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">quality-optimized</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">highest_score</span>
+</code></pre></div>
+<hr />
+<h2 id="rag">RAG</h2>
+<h3 id="_1">Концепция</h3>
+<p><strong>Что это?</strong> Retrieval-Augmented Generation (RAG) — подход к работе с LLM, при котором модель дополняет свои знания внешней информацией из базы знаний в реальном времени. Вместо переобучения модели под каждую задачу, RAG позволяет "подключить" нужные данные в момент запроса.</p>
+<p><strong>Когда использовать RAG:</strong></p>
+<ul>
+<li>Базы знаний, документация, FAQ</li>
+<li>Корпоративные данные</li>
+<li>Информация, которая часто обновляется</li>
+<li>Нужно ссылаться на конкретные источники</li>
+</ul>
+<p><strong>RAG vs Fine-tuning vs Промпты:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Подход</th>
+<th>Когда использовать</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Промпты</strong></td>
+<td>Простые задачи, модель уже знает нужную информацию</td>
+</tr>
+<tr>
+<td><strong>RAG</strong></td>
+<td>Нужны актуальные данные или специфическая база знаний</td>
+</tr>
+<tr>
+<td><strong>Fine-tuning</strong></td>
+<td>Нужно изменить поведение/стиль модели, особые форматы вывода</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rag_1">Архитектура RAG</h3>
+<div class="highlight"><pre><span></span><code>┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│ Документы   │ →  │  Chunking   │ →  │ Embedding   │ →  │ Vector DB   │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+                                                               ↓
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│   Ответ     │ ←  │  Генерация  │ ←  │  Поиск      │ ←  │  Запрос     │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+</code></pre></div>
+<h3 id="chunking">Chunking</h3>
+<p><strong>Что это?</strong> Разбиение документов на меньшие фрагменты (chunks) для индексации. Каждый чанк должен содержать законченную смысловую единицу.</p>
+<p><strong>Стратегии:</strong></p>
+<ul>
+<li><strong>По тексту</strong> — абзацы, параграфы</li>
+<li><strong>По токенам</strong> — фиксированное количество токенов (256-1024)</li>
+<li><strong>Рекурсивное</strong> — иерархическое разбиение (по заголовкам, предложениям)</li>
+</ul>
+<p><strong>Пример кода:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">separators</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;. &quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">long_document</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="vector-db">Vector DB</h3>
+<table>
+<thead>
+<tr>
+<th>Название</th>
+<th>Описание</th>
+<th>Когда использовать</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chroma</strong></td>
+<td>Встроенная Vector DB для Python/LangChain</td>
+<td>Прототипирование, малые объёмы</td>
+</tr>
+<tr>
+<td><strong>FAISS</strong></td>
+<td>Библиотека от Meta для поиска ближайших соседей</td>
+<td>Локальный поиск, большие объёмы</td>
+</tr>
+<tr>
+<td><strong>Qdrant</strong></td>
+<td>Production Vector DB с API</td>
+<td>Production, высокая нагрузка</td>
+</tr>
+<tr>
+<td><strong>Pinecone</strong></td>
+<td>Managed Vector DB</td>
+<td>Облако, масштабирование</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Пример Chroma:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chromadb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">chromadb.utils.embedding_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">SentenceTransformerEmbeddingFunction</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+<span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;documents&quot;</span><span class="p">,</span>
+    <span class="n">embedding_function</span><span class="o">=</span><span class="n">SentenceTransformerEmbeddingFunction</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;текст документа&quot;</span><span class="p">],</span>
+    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;doc1&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Пример Qdrant:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qdrant_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">QdrantClient</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qdrant_client.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Distance</span><span class="p">,</span> <span class="n">VectorParams</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">QdrantClient</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6333</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">recreate_collection</span><span class="p">(</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;documents&quot;</span><span class="p">,</span>
+    <span class="n">vectors_config</span><span class="o">=</span><span class="n">VectorParams</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">384</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="n">Distance</span><span class="o">.</span><span class="n">COSINE</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="embedding">Embedding модели</h3>
+<table>
+<thead>
+<tr>
+<th>Модель</th>
+<th>Размерность</th>
+<th>Особенности</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>sentence-transformers/all-MiniLM-L6-v2</strong></td>
+<td>384</td>
+<td>Быстрая, хорошее качество</td>
+</tr>
+<tr>
+<td><strong>BAAI/bge-small-en-v1.5</strong></td>
+<td>1024</td>
+<td>Высокое качество, RAG</td>
+</tr>
+<tr>
+<td><strong>intfloat/e5-small-v2</strong></td>
+<td>384</td>
+<td>Multilingual</td>
+</tr>
+<tr>
+<td><strong>text-embedding-3-small</strong></td>
+<td>1536</td>
+<td>OpenAI API</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">Поиск</h3>
+<p><strong>Semantic Search</strong> — поиск по смыслу, а не по ключевым словам.</p>
+<div class="highlight"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;запрос пользователя&quot;</span><span class="p">],</span>
+    <span class="n">n_results</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Hybrid Search</strong> — комбинация семантического и текстового поиска.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rankify</span><span class="w"> </span><span class="kn">import</span> <span class="n">HybridRetriever</span>
+
+<span class="n">retriever</span> <span class="o">=</span> <span class="n">HybridRetriever</span><span class="p">(</span>
+    <span class="n">semantic_model</span><span class="o">=</span><span class="n">embedding_model</span><span class="p">,</span>
+    <span class="n">keyword_index</span><span class="o">=</span><span class="n">keyword_index</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">&quot;запрос&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Re-ranking</strong> — переранжировка результатов для повышения точности.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">cohere</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">reranker</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;cohere-key&quot;</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">reranker</span><span class="o">.</span><span class="n">rerank</span><span class="p">(</span>
+    <span class="n">query</span><span class="o">=</span><span class="s2">&quot;запрос&quot;</span><span class="p">,</span>
+    <span class="n">documents</span><span class="o">=</span><span class="n">initial_results</span><span class="p">,</span>
+    <span class="n">top_n</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="_3">Инъекция контекста</h3>
+<p><strong>Пример LangChain:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chains</span><span class="w"> </span><span class="kn">import</span> <span class="n">RetrievalQA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.llms</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">qa</span> <span class="o">=</span> <span class="n">RetrievalQA</span><span class="o">.</span><span class="n">from_chain_type</span><span class="p">(</span>
+    <span class="n">llm</span><span class="o">=</span><span class="n">OpenAI</span><span class="p">(),</span>
+    <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;stuff&quot;</span><span class="p">,</span>
+    <span class="n">retriever</span><span class="o">=</span><span class="n">vectorstore</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">qa</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;вопрос&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Пример LlamaIndex:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">llama_index</span><span class="w"> </span><span class="kn">import</span> <span class="n">VectorStoreIndex</span><span class="p">,</span> <span class="n">StorageContext</span>
+
+<span class="n">index</span> <span class="o">=</span> <span class="n">VectorStoreIndex</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+<span class="n">query_engine</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">as_query_engine</span><span class="p">()</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">query_engine</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;вопрос&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Prompt с контекстом:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Используй следующий контекст для ответа:</span>
+<span class="si">{</span><span class="n">context</span><span class="si">}</span>
+
+<span class="s2">Вопрос: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span>
+<span class="s2">Ответ:</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</code></pre></div>
+<h3 id="_4">Фреймворки</h3>
+<p><strong>LangChain</strong> — универсальный фреймворк для работы с LLM.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.schema</span><span class="w"> </span><span class="kn">import</span> <span class="n">Document</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.vectorstores</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chroma</span>
+
+<span class="n">docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="n">chunk</span><span class="p">)</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">]</span>
+<span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">embedding</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>LlamaIndex</strong> — специализированный фреймворк для RAG.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">llama_index</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleDirectoryReader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index</span><span class="w"> </span><span class="kn">import</span> <span class="n">VectorStoreIndex</span>
+
+<span class="n">reader</span> <span class="o">=</span> <span class="n">SimpleDirectoryReader</span><span class="p">(</span><span class="n">input_files</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;doc.txt&quot;</span><span class="p">])</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">VectorStoreIndex</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="rag-vs-memory">RAG vs Memory</h3>
+<table>
+<thead>
+<tr>
+<th>Характеристика</th>
+<th>RAG</th>
+<th>Memory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Данные</strong></td>
+<td>База знаний</td>
+<td>История чата</td>
+</tr>
+<tr>
+<td><strong>Назначение</strong></td>
+<td>Факты, документы</td>
+<td>Контекст диалога</td>
+</tr>
+<tr>
+<td><strong>Обновление</strong></td>
+<td>Периодическое</td>
+<td>После каждого сообщения</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rag_2">Метрики RAG</h3>
+<p><strong>RAGAS (Retrieval-Augmented Generation Assessment):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Faithfulness</strong></td>
+<td>Насколько ответ соответствует контексту</td>
+</tr>
+<tr>
+<td><strong>Answer Relevance</strong></td>
+<td>Насколько ответ релевантен запросу</td>
+</tr>
+<tr>
+<td><strong>Context Precision</strong></td>
+<td>Точность извлечённого контекста</td>
+</tr>
+<tr>
+<td><strong>Context Recall</strong></td>
+<td>Полнота извлечённого контекста</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Базовые метрики:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">calculate_precision</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span> <span class="n">relevant</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">retrieved</span> <span class="o">&amp;</span> <span class="n">relevant</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">retrieved</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_recall</span><span class="p">(</span><span class="n">retrieved</span><span class="p">,</span> <span class="n">relevant</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">retrieved</span> <span class="o">&amp;</span> <span class="n">relevant</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">relevant</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="llm_1">Обслуживание LLM</h2>
+<table>
+<thead>
+<tr>
+<th>Название</th>
+<th>Описание</th>
+<th>Примеры применения</th>
+<th>Связанные инструменты</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>vLLM</strong></td>
+<td>Высокопроизводительный движок инференса LLM с PagedAttention, Continuous Batching и OpenAI-совместимым API</td>
+<td>Production API для LLM (чат-боты, RAG, агенты, поисковые системы)</td>
+<td>LMCache, TensorZero, GPUStack</td>
+</tr>
+<tr>
+<td><strong>LMCache</strong></td>
+<td>Кэширование KV-кеша LLM на DRAM/диск</td>
+<td>Повторные запросы, RAG, чат-сессии</td>
+<td>vLLM, RAG-системы</td>
+</tr>
+<tr>
+<td><strong>GPUStack</strong></td>
+<td>Оркестратор GPU (open-source)</td>
+<td>Управление несколькими GPU, Kubernetes</td>
+<td>vLLM, Kubernetes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vllm">vLLM</h3>
+<p><strong>Что это?</strong> Высокопроизводительный движок инференса LLM с открытым исходным кодом, разработанный для production-нагрузок. Использует технологию PagedAttention для эффективного управления памятью и поддерживает Continuous Batching для обработки множества параллельных запросов.</p>
+<p><strong>Для чего используется?</strong> Развертывание production API для LLM-приложений: чат-боты, RAG-системы, агенты, поисковые системы с ИИ.</p>
+<p><strong>Ключевые особенности:</strong></p>
+<ul>
+<li>PagedAttention - эффективное управление KV-кешем</li>
+<li>Continuous Batching - динамическая обработка запросов</li>
+<li>OpenAI-совместимый API (/v1/chat/completions, /v1/completions)</li>
+<li>Tensor Parallelism - распределение модели на несколько GPU</li>
+<li>Поддержка множества моделей: Llama, Mistral, Qwen и др.</li>
+</ul>
+<p><strong>Команда запуска:</strong></p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>vllm/vllm-openai<span class="w"> </span>--model<span class="w"> </span>meta-llama/Llama-3-8b-instruct
+</code></pre></div>
+<p><strong>Ключевые параметры:</strong></p>
+<ul>
+<li><code>tensor-parallelism</code> - количество GPU для одной модели</li>
+<li><code>max_num_seqs</code> - максимальное количество параллельных запросов</li>
+<li><code>max_model_len</code> - максимальная длина контекста</li>
+<li><code>max_num_batched_tokens</code> - максимальное количество токенов в батче</li>
+</ul>
+<p><strong>Интеграция с OpenAI SDK:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8000/v1&quot;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;EMPTY&quot;</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;Llama-3-8b&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">])</span>
+</code></pre></div>
+<h3 id="lmcache">LMCache</h3>
+<p><strong>Что это?</strong> Система кэширования KV-кеша для LLM. Позволяет сохранять и повторно использовать вычисленные ключи и значения внимания между запросами, что значительно ускоряет обработку повторяющихся или похожих запросов.</p>
+<p><strong>Для чего используется?</strong> Ускорение повторных запросов, RAG-систем с длинными контекстами, многоходовых чат-сессий.</p>
+<p><strong>Ключевые особенности:</strong></p>
+<ul>
+<li>Кэширование на DRAM или диске</li>
+<li>Поддержка различных бэкендов (Redis, диск)</li>
+<li>Политика вытеснения (LRU, LFU и др.)</li>
+<li>Интеграция с vLLM, Ollama</li>
+<li>Совместное использоваие кэша между запросами</li>
+</ul>
+<p><strong>Интеграция:</strong> Redis или диск backend</p>
+<p><strong>Ключевые параметры:</strong></p>
+<ul>
+<li><code>cache_size</code> - размер кэша</li>
+<li><code>eviction_policy</code> - политика вытеснения (LRU, LFU)</li>
+<li><code>ttl</code> - время жизни записей</li>
+<li><code>backend</code> - тип хранилища (redis, disk)</li>
+</ul>
+<p><strong>Пример использования с Redis:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Запуск с Redis</span>
+redis-server<span class="w"> </span>--port<span class="w"> </span><span class="m">6379</span>
+<span class="c1"># Подключение к LMCache</span>
+</code></pre></div>
+<h3 id="gpustack">GPUStack</h3>
+<p><strong>Что это?</strong> Open-source оркестратор GPU с поддержкой нескольких видеокарт и интеграцией с Kubernetes. Позволяет управлять GPU-ресурсами в кластере и распределять нагрузку между несколькими узлами.</p>
+<p><strong>Для чего используется?</strong> Управление несколькими GPU, развертывание в Kubernetes-кластерах, масштабирование инференса.</p>
+<p><strong>Ключевые особенности:</strong></p>
+<ul>
+<li>Поддержка NVIDIA и AMD GPU</li>
+<li>Интеграция с Kubernetes</li>
+<li>Автоматическое распределение нагрузки</li>
+<li>Мониторинг GPU-ресурсов</li>
+<li>Open-source решение</li>
+</ul>
+<p><strong>Команда:</strong> Kubernetes с GPU-node</p>
+<p><strong>Ключевые параметры:</strong></p>
+<ul>
+<li><code>GPU node config</code> - конфигурация GPU-узлов</li>
+<li><code>replicas</code> - количество реплик</li>
+<li><code>resources.nvidia.com/gpu</code> - запрос GPU-ресурсов</li>
+</ul>
+<hr />
+<h2 id="fine-tuning">Fine-tuning</h2>
+<h3 id="_5">Когда применять</h3>
+<table>
+<thead>
+<tr>
+<th>Подход</th>
+<th>Когда использовать</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Промпты</strong></td>
+<td>Базовая функциональность, модель уже знает</td>
+</tr>
+<tr>
+<td><strong>RAG</strong></td>
+<td>Нужны внешние данные, актуальная информация</td>
+</tr>
+<tr>
+<td><strong>Fine-tuning</strong></td>
+<td>Особый стиль, формат, поведение модели</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Когда точно нуженFine-tuning:</strong></p>
+<ul>
+<li>Специфический формат вывода (JSON, XML)</li>
+<li>Особый стиль общения</li>
+<li>narrow domain expertise</li>
+<li>Сложные задачи</li>
+</ul>
+<h3 id="fine-tuning_1">Типы Fine-tuning</h3>
+<p><strong>SFT (Supervised Fine-Training):</strong> Классическое дообучение на парах (input, output).</p>
+<p><strong>DPO (Direct Preference Optimization):</strong> Оптимизация на основе предпочтений (какой ответ лучше).</p>
+<p><strong>RLHF (Reinforcement Learning from Human Feedback):</strong> Обучение с подкреплением от человека.</p>
+<h3 id="_6">Инструменты</h3>
+<table>
+<thead>
+<tr>
+<th>Инструмент</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Axolotl</strong></td>
+<td>Универсальный инструмент для fine-tuning</td>
+</tr>
+<tr>
+<td><strong>Unsloth</strong></td>
+<td>Быстрый fine-tuning (до 2x быстрее, меньше памяти)</td>
+</tr>
+<tr>
+<td><strong>OpenAI API</strong></td>
+<td>Fine-tuning через OpenAI API</td>
+</tr>
+<tr>
+<td><strong>DeepSpeed</strong></td>
+<td>Distributed training от Microsoft</td>
+</tr>
+</tbody>
+</table>
+<h3 id="axolotl">Пример: Axolotl</h3>
+<p><strong>Конфигурация:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">meta-llama/Llama-3-8b</span>
+<span class="nt">base_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">meta-llama/Llama-3-8b</span>
+
+<span class="nt">load_in_4bit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">strict</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">datasets</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dataset.jsonl</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chat_template</span>
+
+<span class="nt">sequence_len</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2048</span>
+<span class="nt">max_steps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+<span class="nt">learning_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2e-4</span>
+</code></pre></div>
+<p><strong>Запуск:</strong></p>
+<div class="highlight"><pre><span></span><code>accelerate<span class="w"> </span>config<span class="w"> </span>default
+accelerate<span class="w"> </span>launch<span class="w"> </span>axolotl/train.py<span class="w"> </span>config.yaml
+</code></pre></div>
+<h3 id="unsloth">Пример: Unsloth</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">unsloth</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastLanguageModel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">FastLanguageModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;meta-llama/Llama-3.1-8B-Instruct&quot;</span><span class="p">,</span>
+    <span class="n">max_seq_length</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span>
+    <span class="n">load_in_4bit</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">FastLanguageModel</span><span class="o">.</span><span class="n">get_peft_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">target_modules</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;q_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;k_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;v_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;o_proj&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Обучение с SFTTrainer</span>
+</code></pre></div>
+<hr />
+<h2 id="_7">Управление контекстом</h2>
+<h3 id="context-window">Context Window</h3>
+<p><strong>Лимиты популярных моделей:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Модель</th>
+<th>Context Window</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-4</td>
+<td>128k токенов</td>
+</tr>
+<tr>
+<td>Claude 3.5</td>
+<td>200k токенов</td>
+</tr>
+<tr>
+<td>Gemini 1.5</td>
+<td>2M токенов</td>
+</tr>
+<tr>
+<td>Llama 3.1</td>
+<td>128k токенов</td>
+</tr>
+<tr>
+<td>Mistral Large</td>
+<td>32k токенов</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">Стратегии управления</h3>
+<p><strong>Truncation</strong> — обрезать контекст до лимита:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">truncate_context</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">max_tokens</span><span class="p">):</span>
+    <span class="n">total_tokens</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]))</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">total_tokens</span> <span class="o">&gt;</span> <span class="n">max_tokens</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Удаляем старые сообщения</span>
+        <span class="n">total_tokens</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]))</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">messages</span>
+</code></pre></div>
+<p><strong>Rolling Window</strong> — оставляем последние N сообщений:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">rolling_window</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">keep_last</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">system</span> <span class="o">=</span> <span class="n">messages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">messages</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;role&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;system&quot;</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">conversation</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">messages</span> <span class="k">if</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;role&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;system&quot;</span><span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">conversation</span><span class="p">[</span><span class="o">-</span><span class="n">keep_last</span><span class="p">:]</span>
+    <span class="k">if</span> <span class="n">system</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">system</span><span class="p">]</span> <span class="o">+</span> <span class="n">result</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+<p><strong>Summarize</strong> — сжатие длинного контекста:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">summarize_old_messages</span><span class="p">(</span><span class="n">messages</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">messages</span>
+
+    <span class="n">summary_prompt</span> <span class="o">=</span> <span class="s2">&quot;Создай краткое резюме следующего диалога:&quot;</span>
+    <span class="n">summary_response</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">summary_prompt</span><span class="p">,</span> <span class="n">messages</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">messages</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>  <span class="c1"># system</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Резюме: </span><span class="si">{</span><span class="n">summary_response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
+        <span class="n">messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># последний запрос</span>
+    <span class="p">]</span>
+</code></pre></div>
+<h3 id="chunk">Оптимальный размер chunk</h3>
+<table>
+<thead>
+<tr>
+<th>Тип данных</th>
+<th>Размер чанка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Код</td>
+<td>128-256 токенов</td>
+</tr>
+<tr>
+<td>Документация</td>
+<td>256-512 токенов</td>
+</tr>
+<tr>
+<td>Разговоры</td>
+<td>512-1024 токенов</td>
+</tr>
+<tr>
+<td>Длинные статьи</td>
+<td>512-1024 токенов</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cost-optimization">Cost Optimization</h3>
+<p><strong>Советы:</strong></p>
+<ul>
+<li>Используйте <code>max_tokens</code> для ограничения вывода</li>
+<li>Выбирайте модель с нужным context window</li>
+<li>Кэшируйте повторяющиеся промпты</li>
+<li>Используйте более дешёвые модели для простых задач</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Пример: разные модели для разных задач</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">route_by_complexity</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;gpt-4o&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;gpt-4o-turbo&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="_9">Оценка и выбор стека</h2>
+<h3 id="llm-as-judge">LLM-as-Judge</h3>
+<p>Использование LLM для оценки качества ответов других LLM.</p>
+<p><strong>Пример:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">judge_response</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Оцени ответ по шкале 1-10:</span>
+<span class="s2">    Вопрос: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span>
+<span class="s2">    Ответ: </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span>
+
+<span class="s2">    Критерии:</span>
+<span class="s2">    - Правильность</span>
+<span class="s2">    - Полнота</span>
+<span class="s2">    - Ясность</span>
+
+<span class="s2">    Оцени и дай краткий комментарий.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+</code></pre></div>
+<h3 id="_10">Метрики</h3>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Faithfulness</strong></td>
+<td>Соответствие фактам</td>
+</tr>
+<tr>
+<td><strong>Hallucination rate</strong></td>
+<td>% выдуманной информаци</td>
+</tr>
+<tr>
+<td><strong>Latency</strong></td>
+<td>Время отклика</td>
+</tr>
+<tr>
+<td><strong>Cost per 1k tokens</strong></td>
+<td>Стоимость</td>
+</tr>
+<tr>
+<td><strong>Pass rate</strong></td>
+<td>Проход тестов</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">Выбор стека</h3>
+<table>
+<thead>
+<tr>
+<th>Задача</th>
+<th>Инструменты</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Локальный запуск / R&amp;D</strong></td>
+<td>Ollama, LM Studio</td>
+</tr>
+<tr>
+<td><strong>RAG</strong></td>
+<td>LangChain, LlamaIndex, Qdrant</td>
+</tr>
+<tr>
+<td><strong>Production API</strong></td>
+<td>vLLM + Kubernetes/GPUStack</td>
+</tr>
+<tr>
+<td><strong>Кэширование</strong></td>
+<td>LMCache</td>
+</tr>
+<tr>
+<td><strong>A/B тестирование / роутинг</strong></td>
+<td>TensorZero</td>
+</tr>
+<tr>
+<td><strong>Fine-tuning</strong></td>
+<td>Axolotl, Unsloth</td>
+</tr>
+<tr>
+<td><strong>Оценка</strong></td>
+<td>LLM-as-Judge, RAGAS</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="opencode">OpenCode</h2>
+<h3 id="_12">Обзор</h3>
+<p><strong>Что это?</strong> Open-source AI coding agent с 140K+ GitHub stars. Доступен как CLI, desktop app и IDE extension.</p>
+<p><strong>Для чего используется?</strong> Программирование с помощью AI в терминале, IDE или десктопном приложении.</p>
+<p><strong>Ключевые особенности:</strong></p>
+<ul>
+<li>75+ LLM провайдеров через Models.dev</li>
+<li>LSP enabled — автоматически загружает нужные LSP для LLM</li>
+<li>Multi-session — несколько агентов параллельно на одном проекте</li>
+<li>Share links — расшарить сессию для референса или дебага</li>
+<li>Privacy-first — не хранит код и контекст</li>
+</ul>
+<p><strong>Установка:</strong></p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://opencode.ai/install<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+<h3 id="skill">SKILL</h3>
+<p><strong>Что это?</strong> Переиспользуемые инструкции для AI агента. Позволяют определить специализированные инструкции для командных конвенций, процессов деплоя, документации.</p>
+<p><strong>Для чего используется:</strong></p>
+<ul>
+<li>Следование командным конвенциям</li>
+<li>Автоматизация процессов (release, review, deployment)</li>
+<li>Стиль документации</li>
+<li>Проектные workflow</li>
+</ul>
+<p><strong>Формат SKILL.md:</strong></p>
+<div class="highlight"><pre><span></span><code>---
+name: git-release
+description: Create consistent releases and changelogs
+license: MIT
+compatibility: opencode
+metadata:
+  audience: maintainers
+<span class="gu">  workflow: github</span>
+<span class="gu">---</span>
+
+<span class="gu">## What I do</span>
+
+<span class="k">-</span><span class="w"> </span>Draft release notes from merged PRs
+<span class="k">-</span><span class="w"> </span>Propose a version bump
+<span class="k">-</span><span class="w"> </span>Provide a copy-pasteable <span class="sb">`gh release create`</span> command
+
+<span class="gu">## When to use me</span>
+
+Use this when you are preparing a tagged release.
+</code></pre></div>
+<p><strong>Обязательные поля frontmatter:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>✅</td>
+<td>Lowercase, 1-64 chars, hyphen separators</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>✅</td>
+<td>1-1024 chars, для выбора скилла агентом</td>
+</tr>
+<tr>
+<td><code>license</code></td>
+<td>❌</td>
+<td>Напр. MIT</td>
+</tr>
+<tr>
+<td><code>compatibility</code></td>
+<td>❌</td>
+<td>напр. <code>opencode</code></td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>❌</td>
+<td>Key-value map</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Расположение (по приоритету):</strong></p>
+<ul>
+<li>Project: <code>.opencode/skills/&lt;skill-name&gt;/SKILL.md</code></li>
+<li>Global: <code>~/.config/opencode/skills/&lt;skill-name&gt;/SKILL.md</code></li>
+<li>Claude-compatible: <code>.claude/skills/&lt;skill-name&gt;/SKILL.md</code></li>
+</ul>
+<p><strong>Permissions (в opencode.json):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;permission&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;skill&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;*&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;pr-review&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;internal-*&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deny&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;experimental-*&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ask&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="agent">AGENT</h3>
+<p><strong>Что это?</strong> Специализированный AI агент, определённый через Markdown файл с frontmatter. Использует SKILLs для расширения функциональности.</p>
+<p><strong>Для чего используется:</strong></p>
+<ul>
+<li>Выделенные агенты для разных задач (coding, review, planning)</li>
+<li>Кастомные workflow</li>
+<li>Контекстно-зависимое поведение</li>
+</ul>
+<p><strong>Формат AGENT.md:</strong></p>
+<div class="highlight"><pre><span></span><code>---
+name: code-reviewer
+description: Expert at reviewing code changes
+permission:
+  skill:
+    &quot;pr-review&quot;: &quot;allow&quot;
+    &quot;security-*&quot;: &quot;allow&quot;
+tools:
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>read
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>grep
+<span class="gu">  - bash</span>
+<span class="gu">---</span>
+
+<span class="gu">## How I work</span>
+
+<span class="k">1.</span> Ищу изменения в diff
+<span class="k">2.</span> Проверяю common issues
+<span class="k">3.</span> Предлагаю улучшения
+
+<span class="gu">## Когда использовать</span>
+
+Use this for PR reviews, code walkthroughs.
+</code></pre></div>
+<p><strong>Расположение:</strong></p>
+<ul>
+<li><code>.opencode/agents/&lt;agent-name&gt;.md</code></li>
+<li><code>~/.config/opencode/agents/&lt;agent-name&gt;.md</code></li>
+</ul>
+<h3 id="mcp-servers">MCP Servers</h3>
+<p><strong>Что это?</strong> Model Context Protocol — открытый стандарт для подключения внешних инструментов к AI агентам (1200+ серверов в экосистеме).</p>
+<p><strong>Для чего используется:</strong></p>
+<ul>
+<li>Интеграция с GitHub (issues, PRs, repos)</li>
+<li>Работа с базами данных (PostgreSQL, SQLite)</li>
+<li>Filesystem доступ</li>
+<li>Browser automation (Playwright)</li>
+<li>Sentry, Slack, Notion и др.</li>
+</ul>
+<p><strong>Типы MCP серверов:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Server</th>
+<th>Tools</th>
+<th>Context Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub</td>
+<td>Search code, issues, PRs</td>
+<td>~5K tokens</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>Query, describe schemas</td>
+<td>~2K tokens</td>
+</tr>
+<tr>
+<td>Filesystem</td>
+<td>Read/write files</td>
+<td>~500 tokens</td>
+</tr>
+<tr>
+<td>Playwright</td>
+<td>Browser automation</td>
+<td>~3K tokens</td>
+</tr>
+<tr>
+<td>Sentry</td>
+<td>Query errors</td>
+<td>~2K tokens</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Конфигурация local MCP:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mcp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;github&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;local&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;npx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-y&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;@modelcontextprotocol/server-github&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;GITHUB_PERSONAL_ACCESS_TOKEN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ghp_xxx&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Конфигурация remote MCP:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mcp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sentry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://your-sentry-mcp.com&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;headers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Authorization&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bearer YOUR_API_KEY&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>OAuth авторизация:</strong></p>
+<div class="highlight"><pre><span></span><code>opencode<span class="w"> </span>mcp<span class="w"> </span>auth<span class="w"> </span>&lt;server-name&gt;
+</code></pre></div>
+<h3 id="commands">Commands</h3>
+<p><strong>Что это?</strong> Slash commands для структурированных workflow. Определяются через Markdown файлы.</p>
+<p><strong>Расположение:</strong></p>
+<ul>
+<li><code>.opencode/commands/&lt;command-name&gt;.md</code></li>
+<li><code>~/.config/opencode/commands/&lt;command-name&gt;.md</code></li>
+</ul>
+<p><strong>Пример command:</strong></p>
+<div class="highlight"><pre><span></span><code>---
+name: /review
+<span class="gu">description: Run code review on current changes</span>
+<span class="gu">---</span>
+
+<span class="gu">## Steps</span>
+
+<span class="k">1.</span> Get git diff
+<span class="k">2.</span> Run pr-review skill
+<span class="k">3.</span> Run security-audit skill
+<span class="k">4.</span> Format summary
+
+<span class="gu">## Output</span>
+
+Markdown report с findings.
+</code></pre></div>
+<h3 id="plugins">Plugins</h3>
+<p><strong>Что это?</strong> Расширения функциональности на TypeScript или npm пакетах.</p>
+<p><strong>Расположение:</strong></p>
+<ul>
+<li><code>.opencode/plugins/&lt;plugin-name&gt;.ts</code></li>
+<li><code>~/.config/opencode/plugins/</code></li>
+</ul>
+<p><strong>Конфигурация (opencode.json):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;plugins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;my-plugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="configuration">Configuration</h3>
+<p><strong>opencode.json основные секции:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://opencode.ai/config.json&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;claude-3-5-sonnet&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;instructions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;CONTRIBUTING.md&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.cursor/rules/*.md&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;mcp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;agents&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;permission&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;*&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;allow&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;skill&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;*&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;allow&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;keybinds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;theme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dark&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Директории конфигурации:</strong></p>
+<div class="highlight"><pre><span></span><code>~/.config/opencode/           # Global
+├── opencode.json
+├── AGENTS.md
+├── agents/
+├── commands/
+├── plugins/
+├── skills/
+├── tools/
+└── themes/
+
+.opencode/                    # Project (traverses to git root)
+├── agents/
+├── commands/
+├── plugins/
+├── skills/
+└── themes/
+</code></pre></div>
+<h3 id="tool-access-control">Tool Access Control</h3>
+<p><strong>Permissions в opencode.json:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;permission&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;*&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;bash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ask&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;write&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deny&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;skill&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;*&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;internal-*&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deny&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Уровни доступа:</strong></p>
+<ul>
+<li><code>allow</code> — разрешено</li>
+<li><code>ask</code> — запросить подтверждение</li>
+<li><code>deny</code> — запрещено</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["toc.integrate", "toc.follow", "navigation.tracking"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
