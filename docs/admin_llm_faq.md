@@ -700,3 +700,312 @@ def judge_response(question, answer):
 | **A/B тестирование / роутинг** | TensorZero |
 | **Fine-tuning** | Axolotl, Unsloth |
 | **Оценка** | LLM-as-Judge, RAGAS |
+
+---
+
+## OpenCode
+
+### Обзор
+
+**Что это?** Open-source AI coding agent с 140K+ GitHub stars. Доступен как CLI, desktop app и IDE extension.
+
+**Для чего используется?** Программирование с помощью AI в терминале, IDE или десктопном приложении.
+
+**Ключевые особенности:**
+
+- 75+ LLM провайдеров через Models.dev
+- LSP enabled — автоматически загружает нужные LSP для LLM
+- Multi-session — несколько агентов параллельно на одном проекте
+- Share links — расшарить сессию для референса или дебага
+- Privacy-first — не хранит код и контекст
+
+**Установка:**
+
+```bash
+curl -fsSL https://opencode.ai/install | sh
+```
+
+### SKILL
+
+**Что это?** Переиспользуемые инструкции для AI агента. Позволяют определить специализированные инструкции для командных конвенций, процессов деплоя, документации.
+
+**Для чего используется:**
+
+- Следование командным конвенциям
+- Автоматизация процессов (release, review, deployment)
+- Стиль документации
+- Проектные workflow
+
+**Формат SKILL.md:**
+
+```markdown
+---
+name: git-release
+description: Create consistent releases and changelogs
+license: MIT
+compatibility: opencode
+metadata:
+  audience: maintainers
+  workflow: github
+---
+
+## What I do
+
+- Draft release notes from merged PRs
+- Propose a version bump
+- Provide a copy-pasteable `gh release create` command
+
+## When to use me
+
+Use this when you are preparing a tagged release.
+```
+
+**Обязательные поля frontmatter:**
+
+| Field | Required | Notes |
+| --- | --- | --- |
+| `name` | ✅ | Lowercase, 1-64 chars, hyphen separators |
+| `description` | ✅ | 1-1024 chars, для выбора скилла агентом |
+| `license` | ❌ | Напр. MIT |
+| `compatibility` | ❌ | напр. `opencode` |
+| `metadata` | ❌ | Key-value map |
+
+**Расположение (по приоритету):**
+
+- Project: `.opencode/skills/<skill-name>/SKILL.md`
+- Global: `~/.config/opencode/skills/<skill-name>/SKILL.md`
+- Claude-compatible: `.claude/skills/<skill-name>/SKILL.md`
+
+**Permissions (в opencode.json):**
+
+```json
+{
+  "permission": {
+    "skill": {
+      "*": "allow",
+      "pr-review": "allow",
+      "internal-*": "deny",
+      "experimental-*": "ask"
+    }
+  }
+}
+```
+
+### AGENT
+
+**Что это?** Специализированный AI агент, определённый через Markdown файл с frontmatter. Использует SKILLs для расширения функциональности.
+
+**Для чего используется:**
+
+- Выделенные агенты для разных задач (coding, review, planning)
+- Кастомные workflow
+- Контекстно-зависимое поведение
+
+**Формат AGENT.md:**
+
+```markdown
+---
+name: code-reviewer
+description: Expert at reviewing code changes
+permission:
+  skill:
+    "pr-review": "allow"
+    "security-*": "allow"
+tools:
+  - read
+  - grep
+  - bash
+---
+
+## How I work
+
+1. Ищу изменения в diff
+2. Проверяю common issues
+3. Предлагаю улучшения
+
+## Когда использовать
+
+Use this for PR reviews, code walkthroughs.
+```
+
+**Расположение:**
+
+- `.opencode/agents/<agent-name>.md`
+- `~/.config/opencode/agents/<agent-name>.md`
+
+### MCP Servers
+
+**Что это?** Model Context Protocol — открытый стандарт для подключения внешних инструментов к AI агентам (1200+ серверов в экосистеме).
+
+**Для чего используется:**
+
+- Интеграция с GitHub (issues, PRs, repos)
+- Работа с базами данных (PostgreSQL, SQLite)
+- Filesystem доступ
+- Browser automation (Playwright)
+- Sentry, Slack, Notion и др.
+
+**Типы MCP серверов:**
+
+| Server | Tools | Context Cost |
+| --- | --- | --- |
+| GitHub | Search code, issues, PRs | ~5K tokens |
+| PostgreSQL | Query, describe schemas | ~2K tokens |
+| Filesystem | Read/write files | ~500 tokens |
+| Playwright | Browser automation | ~3K tokens |
+| Sentry | Query errors | ~2K tokens |
+
+**Конфигурация local MCP:**
+
+```json
+{
+  "mcp": {
+    "github": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "ghp_xxx"
+      }
+    }
+  }
+}
+```
+
+**Конфигурация remote MCP:**
+
+```json
+{
+  "mcp": {
+    "sentry": {
+      "type": "remote",
+      "url": "https://your-sentry-mcp.com",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+**OAuth авторизация:**
+
+```bash
+opencode mcp auth <server-name>
+```
+
+### Commands
+
+**Что это?** Slash commands для структурированных workflow. Определяются через Markdown файлы.
+
+**Расположение:**
+
+- `.opencode/commands/<command-name>.md`
+- `~/.config/opencode/commands/<command-name>.md`
+
+**Пример command:**
+
+```markdown
+---
+name: /review
+description: Run code review on current changes
+---
+
+## Steps
+
+1. Get git diff
+2. Run pr-review skill
+3. Run security-audit skill
+4. Format summary
+
+## Output
+
+Markdown report с findings.
+```
+
+### Plugins
+
+**Что это?** Расширения функциональности на TypeScript или npm пакетах.
+
+**Расположение:**
+
+- `.opencode/plugins/<plugin-name>.ts`
+- `~/.config/opencode/plugins/`
+
+**Конфигурация (opencode.json):**
+
+```json
+{
+  "plugins": {
+    "my-plugin": {
+      "enabled": true
+    }
+  }
+}
+```
+
+### Configuration
+
+**opencode.json основные секции:**
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "claude-3-5-sonnet",
+  "instructions": ["CONTRIBUTING.md", ".cursor/rules/*.md"],
+  "mcp": { ... },
+  "agents": { ... },
+  "permission": {
+    "tool": { "*": "allow" },
+    "skill": { "*": "allow" }
+  },
+  "keybinds": { ... },
+  "theme": "dark"
+}
+```
+
+**Директории конфигурации:**
+
+```
+~/.config/opencode/           # Global
+├── opencode.json
+├── AGENTS.md
+├── agents/
+├── commands/
+├── plugins/
+├── skills/
+├── tools/
+└── themes/
+
+.opencode/                    # Project (traverses to git root)
+├── agents/
+├── commands/
+├── plugins/
+├── skills/
+└── themes/
+```
+
+### Tool Access Control
+
+**Permissions в opencode.json:**
+
+```json
+{
+  "permission": {
+    "tool": {
+      "*": "allow",
+      "bash": "ask",
+      "write": "deny"
+    },
+    "skill": {
+      "*": "allow",
+      "internal-*": "deny"
+    }
+  }
+}
+```
+
+**Уровни доступа:**
+
+- `allow` — разрешено
+- `ask` — запросить подтверждение
+- `deny` — запрещено
