@@ -4,6 +4,9 @@ nav:
   - Обо мне: index.md
   - Руководство DevOps инженера:
     - Linux команды: admin.md
+      - Файловая система и мониторинг: admin_filesystem.md
+      - Сеть и порты: admin_network.md
+      - Управление пользователями: admin_users.md
     - Про DevSecOps: admin_sec.md
     - Полезные метрики: admin_metrics.md
     - Про Kubernetes: admin_kubernetes.md
