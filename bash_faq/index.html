@@ -1,0 +1,2411 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://Mamontosik.github.io/IgorMamontov_Summary/bash_faq/">
+      
+      
+        <link rel="prev" href="../admin_git/">
+      
+      
+        <link rel="next" href="../admin_llm_faq/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Правила работы с bash - Summary Igor Mamontov ver.1</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bash" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Summary Igor Mamontov ver.1" class="md-header__button md-logo" aria-label="Summary Igor Mamontov ver.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Summary Igor Mamontov ver.1
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Правила работы с bash
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Summary Igor Mamontov ver.1" class="md-nav__button md-logo" aria-label="Summary Igor Mamontov ver.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Summary Igor Mamontov ver.1
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обо мне
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Руководство DevOps инженера
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Руководство DevOps инженера
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux команды
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux команды
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_filesystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Файловая система и мониторинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сеть и порты
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Управление пользователями
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_sec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Про DevSecOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Полезные метрики
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Про Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_kafka/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Блокер сообщений Kafka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git команды
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила работы с bash
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила работы с bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bash_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Зачем нужен bash?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Популярные команды
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bash_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Скрипты bash
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bash_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ограничения bash
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_llm_faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Погружение в LLM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Подготовка к assesment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Подготовка к assesment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ответы для assesment (unsorted)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_unsorted_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список примеров assesment сотрудников
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Популярные команды на собеседовании
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_handbook_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Названия, краткий справочник
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_port_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список используемых портов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Все о мониторинге
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_kafka_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с kafka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_linux_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_kubernetes_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с k8s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_docker_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_ansible_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a href="/IgorMamontov_Summary/">Обо мне</a> / Руководство DevOps инженера</p>
+<h1 id="bash">Правила работы с bash</h1>
+<h2 id="bash_1">Зачем нужен bash?</h2>
+<div class="admonition note">
+<p class="admonition-title">Назначение bash</p>
+<p><strong>Интерпретатор командной строки (оболочка)</strong></p>
+<p>Bash (Bourne Again Shell) — это командная оболочка Unix, которая позволяет взаимодействовать с операционной системой через текстовые команды.</p>
+<p><strong>Автоматизация рутинных задач</strong></p>
+<p>Скрипты bash позволяют автоматизировать бекапы, мониторинг, очистку логов и другие повторяющиеся операции.</p>
+<p><strong>Управление серверами без GUI</strong></p>
+<p>Через SSH и bash-скрипты можно управлять удалёнными серверами, на которых не установлен графический интерфейс.</p>
+<p><strong>CI/CD пайплайны</strong></p>
+<p>Bash используется в GitLab CI, GitHub Actions, Jenkins для написания сценариев сборки, тестирования и деплоя.</p>
+<p><strong>DevOps инструментарий</strong></p>
+<p>Работа с Docker, Kubernetes, Ansible часто требует написания bash-скриптов для оркестрации процессов.</p>
+<p><strong>Обработка логов и данных</strong></p>
+<p>Команды grep, awk, sed позволяют быстро анализировать большие объёмы текстовых данных.</p>
+<p><strong>Кроссплатформенность</strong></p>
+<p>Bash доступен на Linux, macOS, и через WSL (Windows Subsystem for Linux) на Windows.</p>
+</div>
+<h2 id="_1">Популярные команды</h2>
+<div class="admonition note">
+<p class="admonition-title">Навигация и файлы</p>
+<p><strong>cd, pwd, ls, find</strong> — перемещение по файловой системе и поиск файлов
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/dir<span class="w"> </span><span class="o">[</span>Перейти<span class="w"> </span>в<span class="w"> </span>каталог<span class="o">]</span>
+<span class="nb">pwd</span><span class="w"> </span><span class="o">[</span>Показать<span class="w"> </span>текущий<span class="w"> </span>каталог<span class="o">]</span>
+ls<span class="w"> </span>-la<span class="w"> </span><span class="o">[</span>Список<span class="w"> </span>файлов<span class="w"> </span>с<span class="w"> </span>деталями<span class="o">]</span>
+find<span class="w"> </span>/<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;file.txt&quot;</span><span class="w"> </span><span class="o">[</span>Поиск<span class="w"> </span>файла<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>cp, mv, rm, mkdir, touch</strong> — управление файлами и каталогами
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span><span class="o">[</span>Копирование<span class="o">]</span>
+mv<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span><span class="o">[</span>Перемещение<span class="w"> </span>или<span class="w"> </span>переименование<span class="o">]</span>
+rm<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Удаление<span class="w"> </span>файла<span class="o">]</span>
+mkdir<span class="w"> </span>dir<span class="w"> </span><span class="o">[</span>Создание<span class="w"> </span>каталога<span class="o">]</span>
+touch<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Создание<span class="w"> </span>пустого<span class="w"> </span>файла<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>cat, head, tail, less</strong> — просмотр содержимого файлов
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Вывод<span class="w"> </span>всего<span class="w"> </span>файла<span class="o">]</span>
+head<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Первые<span class="w"> </span><span class="m">10</span><span class="w"> </span>строк<span class="o">]</span>
+tail<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Последние<span class="w"> </span><span class="m">10</span><span class="w"> </span>строк<span class="o">]</span>
+tail<span class="w"> </span>-f<span class="w"> </span>/var/log/syslog<span class="w"> </span><span class="o">[</span>Просмотр<span class="w"> </span>лога<span class="w"> </span>в<span class="w"> </span>реальном<span class="w"> </span>времени<span class="o">]</span>
+</code></pre></div></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Текст и данные</p>
+<p><strong>grep, awk, sed</strong> — поиск и обработка текста
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w"> </span>file.log<span class="w"> </span><span class="o">[</span>Поиск<span class="w"> </span>строк<span class="w"> </span>с<span class="w"> </span>error<span class="o">]</span>
+awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Вывод<span class="w"> </span>первого<span class="w"> </span>поля<span class="o">]</span>
+sed<span class="w"> </span><span class="s1">&#39;s/old/new/g&#39;</span><span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Замена<span class="w"> </span>текста<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>sort, uniq, wc, cut</strong> — анализ данных
+<div class="highlight"><pre><span></span><code>sort<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Сортировка<span class="w"> </span>строк<span class="o">]</span>
+uniq<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Удаление<span class="w"> </span>дубликатов<span class="o">]</span>
+wc<span class="w"> </span>-l<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Подсчёт<span class="w"> </span>строк<span class="o">]</span>
+cut<span class="w"> </span>-d:<span class="w"> </span>-f1<span class="w"> </span>/etc/passwd<span class="w"> </span><span class="o">[</span>Извлечение<span class="w"> </span>первого<span class="w"> </span>поля<span class="o">]</span>
+</code></pre></div></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Права и пользователи</p>
+<p><strong>chmod, chown, chgrp</strong> — управление правами доступа
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>script.sh<span class="w"> </span><span class="o">[</span>Установка<span class="w"> </span>прав<span class="w"> </span>на<span class="w"> </span>выполнение<span class="o">]</span>
+chown<span class="w"> </span>user:group<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Смена<span class="w"> </span>владельца<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>sudo, su</strong> — переключение пользователей
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span><span class="nb">command</span><span class="w"> </span><span class="o">[</span>Выполнение<span class="w"> </span>от<span class="w"> </span>имени<span class="w"> </span>root<span class="o">]</span>
+su<span class="w"> </span>-<span class="w"> </span>username<span class="w"> </span><span class="o">[</span>Переключение<span class="w"> </span>пользователя<span class="o">]</span>
+</code></pre></div></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Сеть и соединения</p>
+<p><strong>curl, wget</strong> — HTTP-запросы
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-I<span class="w"> </span>https://example.com<span class="w"> </span><span class="o">[</span>Проверка<span class="w"> </span>заголовков<span class="o">]</span>
+wget<span class="w"> </span>https://example.com/file.zip<span class="w"> </span><span class="o">[</span>Скачивание<span class="w"> </span>файла<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>ssh, scp, rsync</strong> — удалённый доступ и передача файлов
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>user@server<span class="w"> </span><span class="o">[</span>Подключение<span class="w"> </span>по<span class="w"> </span>SSH<span class="o">]</span>
+scp<span class="w"> </span>file<span class="w"> </span>user@server:/path<span class="w"> </span><span class="o">[</span>Копирование<span class="w"> </span>файла<span class="o">]</span>
+rsync<span class="w"> </span>-avz<span class="w"> </span>/local<span class="w"> </span>user@server:/remote<span class="w"> </span><span class="o">[</span>Синхронизация<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>netstat, ss, ping, traceroute</strong> — диагностика сети
+<div class="highlight"><pre><span></span><code>ss<span class="w"> </span>-tuln<span class="w"> </span><span class="o">[</span>Список<span class="w"> </span>слушающих<span class="w"> </span>портов<span class="o">]</span>
+ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span>google.com<span class="w"> </span><span class="o">[</span>Проверка<span class="w"> </span>доступности<span class="o">]</span>
+traceroute<span class="w"> </span>google.com<span class="w"> </span><span class="o">[</span>Трассировка<span class="w"> </span>маршрута<span class="o">]</span>
+</code></pre></div></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Процессы и система</p>
+<p><strong>ps, top, htop, kill</strong> — управление процессами
+<div class="highlight"><pre><span></span><code>ps<span class="w"> </span>aux<span class="w"> </span><span class="o">[</span>Список<span class="w"> </span>всех<span class="w"> </span>процессов<span class="o">]</span>
+top<span class="w"> </span><span class="o">[</span>Мониторинг<span class="w"> </span>в<span class="w"> </span>реальном<span class="w"> </span>времени<span class="o">]</span>
+<span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span>PID<span class="w"> </span><span class="o">[</span>Принудительное<span class="w"> </span>завершение<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>df, du, free, uname</strong> — системная информация
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span><span class="o">[</span>Место<span class="w"> </span>на<span class="w"> </span>дисках<span class="o">]</span>
+du<span class="w"> </span>-sh<span class="w"> </span>/dir<span class="w"> </span><span class="o">[</span>Размер<span class="w"> </span>каталога<span class="o">]</span>
+free<span class="w"> </span>-h<span class="w"> </span><span class="o">[</span>Использование<span class="w"> </span>памяти<span class="o">]</span>
+uname<span class="w"> </span>-a<span class="w"> </span><span class="o">[</span>Информация<span class="w"> </span>о<span class="w"> </span>системе<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>tar, gzip, zip</strong> — архивация
+<div class="highlight"><pre><span></span><code>tar<span class="w"> </span>-czf<span class="w"> </span>archive.tar.gz<span class="w"> </span>/dir<span class="w"> </span><span class="o">[</span>Создание<span class="w"> </span>архива<span class="o">]</span>
+gzip<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Сжатие<span class="w"> </span>файла<span class="o">]</span>
+</code></pre></div></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Перенаправление и цепочки</p>
+<p><strong>&gt;, &gt;&gt;, 2&gt;, |</strong> — перенаправление вывода
+<div class="highlight"><pre><span></span><code><span class="nb">command</span><span class="w"> </span>&gt;<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Запись<span class="w"> </span>в<span class="w"> </span>файл<span class="w"> </span><span class="o">(</span>перезапись<span class="o">)]</span>
+<span class="nb">command</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>Запись<span class="w"> </span>в<span class="w"> </span>файл<span class="w"> </span><span class="o">(</span>добавление<span class="o">)]</span>
+<span class="nb">command</span><span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>error.log<span class="w"> </span><span class="o">[</span>Перенаправление<span class="w"> </span>ошибок<span class="o">]</span>
+command1<span class="w"> </span><span class="p">|</span><span class="w"> </span>command2<span class="w"> </span><span class="o">[</span>Передача<span class="w"> </span>вывода<span class="w"> </span>между<span class="w"> </span>командами<span class="o">]</span>
+</code></pre></div></p>
+<p><strong>&amp;&amp;, ||, ;</strong> — цепочки команд
+<div class="highlight"><pre><span></span><code>cmd1<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cmd2<span class="w"> </span><span class="o">[</span>cmd2<span class="w"> </span>выполнится,<span class="w"> </span>если<span class="w"> </span>cmd1<span class="w"> </span>успешна<span class="o">]</span>
+cmd1<span class="w"> </span><span class="o">||</span><span class="w"> </span>cmd2<span class="w"> </span><span class="o">[</span>cmd2<span class="w"> </span>выполнится,<span class="w"> </span>если<span class="w"> </span>cmd1<span class="w"> </span>завершилась<span class="w"> </span>с<span class="w"> </span>ошибкой<span class="o">]</span>
+cmd1<span class="p">;</span><span class="w"> </span>cmd2<span class="w"> </span><span class="o">[</span>Последовательное<span class="w"> </span>выполнение<span class="o">]</span>
+</code></pre></div></p>
+</div>
+<h2 id="bash_2">Скрипты bash</h2>
+<div class="admonition note">
+<p class="admonition-title">Основы написания скриптов</p>
+<table>
+<thead>
+<tr>
+<th>Элемент</th>
+<th>Синтаксис</th>
+<th>Пример</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shebang</td>
+<td><code>#!/bin/bash</code></td>
+<td>Указывает интерпретатор</td>
+</tr>
+<tr>
+<td>Переменные</td>
+<td><code>VAR=value</code></td>
+<td><code>NAME="test"</code></td>
+</tr>
+<tr>
+<td>Обращение</td>
+<td><code>$VAR</code> или <code>${VAR}</code></td>
+<td><code>echo $NAME</code></td>
+</tr>
+<tr>
+<td>Код возврата</td>
+<td><code>$?</code></td>
+<td><code>0</code> = успех, <code>≠0</code> = ошибка</td>
+</tr>
+<tr>
+<td>Условия</td>
+<td><code>if [ ]; then ... fi</code></td>
+<td><code>if [ $x -eq 0 ]</code></td>
+</tr>
+<tr>
+<td>Циклы</td>
+<td><code>for ... do ... done</code></td>
+<td><code>for i in 1 2 3</code></td>
+</tr>
+<tr>
+<td>Функции</td>
+<td><code>func() { }</code></td>
+<td><code>hello() { echo Hi; }</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Скрипт #8: Мониторинг SSL-сертификатов</p>
+<p>Проверяет срок действия SSL-сертификата и предупреждает за 30 дней до истечения.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Скрипт для мониторинга срока действия SSL-сертификата</span>
+
+<span class="c1"># Объявляем переменные</span>
+<span class="nv">DOMAIN</span><span class="o">=</span><span class="s2">&quot;example.com&quot;</span><span class="w">              </span><span class="c1"># Домен для проверки</span>
+<span class="nv">PORT</span><span class="o">=</span><span class="m">443</span><span class="w">                          </span><span class="c1"># Порт HTTPS (стандартный 443)</span>
+<span class="nv">DAYS_THRESHOLD</span><span class="o">=</span><span class="m">30</span><span class="w">                 </span><span class="c1"># Пороговое значение в днях для предупреждения</span>
+<span class="nv">ALERT_DAYS</span><span class="o">=</span><span class="m">7</span><span class="w">                     </span><span class="c1"># Критический порог (осталось менее 7 дней)</span>
+
+<span class="c1"># Получаем дату истечения сертификата через openssl</span>
+<span class="c1"># s_client подключается к серверу, x509 извлекает данные сертификата</span>
+<span class="c1"># enddate показывает дату истечения, cut извлекает саму дату</span>
+<span class="nv">EXPIRY_DATE</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>s_client<span class="w"> </span>-servername<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DOMAIN</span><span class="s2">&quot;</span><span class="w"> </span>-connect<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DOMAIN</span><span class="s2">:</span><span class="nv">$PORT</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-enddate<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="o">=</span><span class="w"> </span>-f2<span class="k">)</span>
+
+<span class="c1"># Проверяем, удалось ли получить дату сертификата</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EXPIRY_DATE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ОШИБКА: Не удалось получить данные сертификата для </span><span class="nv">$DOMAIN</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="c1"># Преобразуем дату истечения в формат секунд с начала эпохи (Unix timestamp)</span>
+<span class="nv">EXPIRY_EPOCH</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EXPIRY_DATE</span><span class="s2">&quot;</span><span class="w"> </span>+%s<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span>date<span class="w"> </span>-j<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;%b %d %H:%M:%S %Y %Z&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EXPIRY_DATE</span><span class="s2">&quot;</span><span class="w"> </span>+%s<span class="k">)</span>
+<span class="nv">CURRENT_EPOCH</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%s<span class="k">)</span><span class="w">         </span><span class="c1"># Текущее время в секундах</span>
+<span class="nv">SECONDS_IN_DAY</span><span class="o">=</span><span class="m">86400</span><span class="w">              </span><span class="c1"># Количество секунд в сутках</span>
+
+<span class="c1"># Вычисляем количество дней до истечения сертификата</span>
+<span class="nv">DAYS_LEFT</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span><span class="o">(</span><span class="nv">$EXPIRY_EPOCH</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">$CURRENT_EPOCH</span><span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nv">$SECONDS_IN_DAY</span><span class="w"> </span><span class="k">))</span>
+
+<span class="c1"># Логируем информацию о сертификате</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Мониторинг SSL-сертификата для </span><span class="nv">$DOMAIN</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Дата истечения: </span><span class="nv">$EXPIRY_DATE</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Осталось дней: </span><span class="nv">$DAYS_LEFT</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+
+<span class="c1"># Проверяем условия и выводим соответствующие сообщения</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DAYS_LEFT</span><span class="s2">&quot;</span><span class="w"> </span>-le<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="c1"># Сертификат уже истёк</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;КРИТИЧЕСКАЯ ОШИБКА: Сертификат для </span><span class="nv">$DOMAIN</span><span class="s2"> УЖЕ ИСТЁК!&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Необходимо СРОЧНО обновить сертификат!&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">2</span>
+<span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DAYS_LEFT</span><span class="s2">&quot;</span><span class="w"> </span>-le<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ALERT_DAYS</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="c1"># Осталось менее 7 дней</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ВНИМАНИЕ: Сертификат истекает через </span><span class="nv">$DAYS_LEFT</span><span class="s2"> дней!&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Рекомендуется срочно продлить сертификат.&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DAYS_LEFT</span><span class="s2">&quot;</span><span class="w"> </span>-le<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DAYS_THRESHOLD</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="c1"># Осталось менее 30 дней</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ПРЕДУПРЕЖДЕНИЕ: Сертификат истекает через </span><span class="nv">$DAYS_LEFT</span><span class="s2"> дней.&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Не забудьте продлить сертификат.&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="c1"># Сертификат в порядке</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;OK: Сертификат действителен ещё </span><span class="nv">$DAYS_LEFT</span><span class="s2"> дней.&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+<span class="k">fi</span>
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Скрипт #9: Проверка доступности API</p>
+<p>Проверяет доступность API эндпоинта и логирует результат.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Скрипт для проверки доступности API и логирования результатов</span>
+<span class="c1"># Использует curl для HTTP-запросов и проверяет коды ответов</span>
+
+<span class="c1"># Настройки API</span>
+<span class="nv">API_URL</span><span class="o">=</span><span class="s2">&quot;https://api.example.com/health&quot;</span><span class="w">  </span><span class="c1"># URL для проверки</span>
+<span class="nv">METHOD</span><span class="o">=</span><span class="s2">&quot;GET&quot;</span><span class="w">                              </span><span class="c1"># HTTP-метод (GET, POST, PUT, DELETE)</span>
+<span class="nv">TIMEOUT</span><span class="o">=</span><span class="m">10</span><span class="w">                                </span><span class="c1"># Таймаут запроса в секундах</span>
+<span class="nv">RETRY_COUNT</span><span class="o">=</span><span class="m">3</span><span class="w">                             </span><span class="c1"># Количество попыток при неудаче</span>
+<span class="nv">RETRY_DELAY</span><span class="o">=</span><span class="m">5</span><span class="w">                             </span><span class="c1"># Задержка между попытками (секунды)</span>
+
+<span class="c1"># Настройки уведомлений</span>
+<span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">&quot;/var/log/api_monitor.log&quot;</span><span class="w">        </span><span class="c1"># Файл для логирования</span>
+<span class="nv">SLACK_WEBHOOK</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w">                           </span><span class="c1"># Webhook для Slack (опционально)</span>
+<span class="nv">EMAIL_ALERT</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w">                             </span><span class="c1"># Email для уведомлений (опционально)</span>
+
+<span class="c1"># Функция для логирования с временной меткой</span>
+log_message<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">LEVEL</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w">                       </span><span class="c1"># Уровень: INFO, WARNING, ERROR</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">MESSAGE</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w">                     </span><span class="c1"># Текст сообщения</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">TIMESTAMP</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="nv">$TIMESTAMP</span><span class="s2">] [</span><span class="nv">$LEVEL</span><span class="s2">] </span><span class="nv">$MESSAGE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция для отправки уведомления в Slack</span>
+send_slack_alert<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">MESSAGE</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SLACK_WEBHOOK</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--data<span class="w"> </span><span class="s2">&quot;{\&quot;text\&quot;:\&quot;API Alert: </span><span class="nv">$MESSAGE</span><span class="s2">\&quot;}&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span><span class="s2">&quot;</span><span class="nv">$SLACK_WEBHOOK</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция проверки API с повторными попытками</span>
+check_api_with_retry<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">ATTEMPT</span><span class="o">=</span><span class="m">1</span><span class="w">                        </span><span class="c1"># Счётчик попыток</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">SUCCESS</span><span class="o">=</span><span class="m">0</span><span class="w">                        </span><span class="c1"># Флаг успешного выполнения</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ATTEMPT</span><span class="s2">&quot;</span><span class="w"> </span>-le<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RETRY_COUNT</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span>log_message<span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="w"> </span><span class="s2">&quot;Попытка </span><span class="nv">$ATTEMPT</span><span class="s2">/</span><span class="nv">$RETRY_COUNT</span><span class="s2">: Проверка </span><span class="nv">$API_URL</span><span class="s2">&quot;</span>
+
+<span class="w">        </span><span class="c1"># Выполняем HTTP-запрос с помощью curl</span>
+<span class="w">        </span><span class="c1"># -s: тихий режим (не показывать прогресс)</span>
+<span class="w">        </span><span class="c1"># -o: сохранить ответ в файл (или /dev/null)</span>
+<span class="w">        </span><span class="c1"># -w: формат вывода (HTTP-код)</span>
+<span class="w">        </span><span class="c1"># -X: HTTP-метод</span>
+<span class="w">        </span><span class="c1"># --connect-timeout: таймаут соединения</span>
+<span class="w">        </span><span class="nv">HTTP_CODE</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;%{http_code}&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>-X<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$METHOD</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--connect-timeout<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$TIMEOUT</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span><span class="s2">&quot;</span><span class="nv">$API_URL</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
+
+<span class="w">        </span><span class="c1"># Проверяем код ответа</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HTTP_CODE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;200&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HTTP_CODE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;201&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HTTP_CODE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;204&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>log_message<span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="w"> </span><span class="s2">&quot;API доступен. HTTP-код: </span><span class="nv">$HTTP_CODE</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nv">SUCCESS</span><span class="o">=</span><span class="m">1</span>
+<span class="w">            </span><span class="k">break</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span>log_message<span class="w"> </span><span class="s2">&quot;WARNING&quot;</span><span class="w"> </span><span class="s2">&quot;Попытка </span><span class="nv">$ATTEMPT</span><span class="s2"> не удалась. HTTP-код: </span><span class="nv">$HTTP_CODE</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ATTEMPT</span><span class="s2">&quot;</span><span class="w"> </span>-lt<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RETRY_COUNT</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">                </span>log_message<span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="w"> </span><span class="s2">&quot;Ожидание </span><span class="nv">$RETRY_DELAY</span><span class="s2"> секунд перед следующей попыткой...&quot;</span>
+<span class="w">                </span>sleep<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RETRY_DELAY</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="k">fi</span>
+<span class="w">        </span><span class="k">fi</span>
+
+<span class="w">        </span><span class="nv">ATTEMPT</span><span class="o">=</span><span class="k">$((</span><span class="nv">ATTEMPT</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="k">))</span>
+<span class="w">    </span><span class="k">done</span>
+
+<span class="w">    </span><span class="c1"># Если все попытки не удались</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SUCCESS</span><span class="s2">&quot;</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log_message<span class="w"> </span><span class="s2">&quot;ERROR&quot;</span><span class="w"> </span><span class="s2">&quot;API недоступен после </span><span class="nv">$RETRY_COUNT</span><span class="s2"> попыток!&quot;</span>
+<span class="w">        </span>send_slack_alert<span class="w"> </span><span class="s2">&quot;API </span><span class="nv">$API_URL</span><span class="s2"> недоступен! HTTP-код: </span><span class="nv">$HTTP_CODE</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="o">}</span>
+
+<span class="c1"># Основная логика скрипта</span>
+log_message<span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+log_message<span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="w"> </span><span class="s2">&quot;Запуск мониторинга API: </span><span class="nv">$API_URL</span><span class="s2">&quot;</span>
+log_message<span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+
+<span class="c1"># Проверяем доступность API</span>
+<span class="k">if</span><span class="w"> </span>check_api_with_retry<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>log_message<span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="w"> </span><span class="s2">&quot;Проверка завершена успешно.&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+<span class="k">else</span>
+<span class="w">    </span>log_message<span class="w"> </span><span class="s2">&quot;ERROR&quot;</span><span class="w"> </span><span class="s2">&quot;Проверка завершена с ошибкой.&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Скрипт #11: Аудит открытых портов</p>
+<p>Сканирует открытые порты и сравнивает с эталонным списком.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Скрипт для аудита открытых портов на сервере</span>
+<span class="c1"># Сравнивает текущие открытые порты с эталонным списком</span>
+
+<span class="c1"># Настройки</span>
+<span class="nv">REPORT_FILE</span><span class="o">=</span><span class="s2">&quot;/var/log/port_audit_</span><span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M%S<span class="k">)</span><span class="s2">.log&quot;</span><span class="w">  </span><span class="c1"># Файл отчёта</span>
+<span class="nv">ETHALON_FILE</span><span class="o">=</span><span class="s2">&quot;/etc/security/etalon_ports.txt&quot;</span><span class="w">                  </span><span class="c1"># Эталонный список портов</span>
+<span class="nv">ALLOWED_SERVICES</span><span class="o">=</span><span class="s2">&quot;22:SSH,80:HTTP,443:HTTPS,3306:MySQL&quot;</span><span class="w">        </span><span class="c1"># Разрешённые сервисы (port:name)</span>
+
+<span class="c1"># Функция логирования</span>
+log<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span><span class="s2">] </span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REPORT_FILE</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция получения списка открытых портов</span>
+get_open_ports<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># Используем ss (более современная замена netstat)</span>
+<span class="w">    </span><span class="c1"># -tuln: TCP, UDP, Listening, Numeric</span>
+<span class="w">    </span><span class="c1"># awk извлекает номера портов</span>
+<span class="w">    </span>ss<span class="w"> </span>-tuln<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/LISTEN/ {print $5}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/.*://&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+<span class="o">}</span>
+
+<span class="c1"># Функция проверки, разрешён ли порт</span>
+is_port_allowed<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">PORT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="c1"># Проверяем, есть ли порт в списке разрешённых сервисов</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ALLOWED_SERVICES</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PORT</span><span class="s2">:&quot;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">$?</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция получения имени сервиса по порту</span>
+get_service_name<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">PORT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ALLOWED_SERVICES</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PORT</span><span class="s2">:&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f2
+<span class="o">}</span>
+
+<span class="c1"># Начало аудита</span>
+log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+log<span class="w"> </span><span class="s2">&quot;АУДИТ ОТКРЫТЫХ ПОРТОВ&quot;</span>
+log<span class="w"> </span><span class="s2">&quot;Хост: </span><span class="k">$(</span>hostname<span class="k">)</span><span class="s2">&quot;</span>
+log<span class="w"> </span><span class="s2">&quot;Дата: </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+
+<span class="c1"># Получаем список текущих открытых портов</span>
+log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+log<span class="w"> </span><span class="s2">&quot;Текущие открытые порты:&quot;</span>
+<span class="nv">OPEN_PORTS</span><span class="o">=</span><span class="k">$(</span>get_open_ports<span class="k">)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OPEN_PORTS</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>PORT<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PORT</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nv">SERVICE</span><span class="o">=</span><span class="k">$(</span>get_service_name<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PORT</span><span class="s2">&quot;</span><span class="k">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;  Порт </span><span class="nv">$PORT</span><span class="s2"> (</span><span class="nv">$SERVICE</span><span class="s2">) — РАЗРЕШЁН&quot;</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;  Порт </span><span class="nv">$PORT</span><span class="s2"> — НЕИЗВЕСТНЫЙ СЕРВИС (возможно, требует проверки)&quot;</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="k">done</span>
+
+<span class="c1"># Сравнение с эталонным файлом, если он существует</span>
+log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+log<span class="w"> </span><span class="s2">&quot;Проверка по эталонному списку:&quot;</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ETHALON_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;  Эталонный файл: </span><span class="nv">$ETHALON_FILE</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="c1"># Читаем эталонный список и проверяем каждый порт</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nv">IFS</span><span class="o">=</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>ETALON_PORT<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ETALON_PORT</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>!<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OPEN_PORTS</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s2">&quot;^</span><span class="nv">$ETALON_PORT</span>$<span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;  ВНИМАНИЕ: Порт </span><span class="nv">$ETALON_PORT</span><span class="s2"> из эталона НЕ открыт!&quot;</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">done</span><span class="w"> </span>&lt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ETHALON_FILE</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;  Проверка по эталону завершена.&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;  Эталонный файл не найден: </span><span class="nv">$ETHALON_FILE</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;  Создайте файл со списком портов (по одному на строку).&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># Проверка на неожиданно открытые порты</span>
+log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+log<span class="w"> </span><span class="s2">&quot;Поиск неожиданно открытых портов:&quot;</span>
+<span class="nv">UNEXPECTED</span><span class="o">=</span><span class="m">0</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OPEN_PORTS</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>PORT<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PORT</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>!<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ALLOWED_SERVICES</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PORT</span><span class="s2">:&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;  ОБНАРУЖЕНО: Порт </span><span class="nv">$PORT</span><span class="s2"> открыт, но не в списке разрешённых!&quot;</span>
+<span class="w">        </span><span class="nv">UNEXPECTED</span><span class="o">=</span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="k">done</span>
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$UNEXPECTED</span><span class="s2">&quot;</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;  Неожиданных портов не обнаружено.&quot;</span>
+<span class="k">fi</span>
+
+log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+log<span class="w"> </span><span class="s2">&quot;Аудит завершён. Отчёт: </span><span class="nv">$REPORT_FILE</span><span class="s2">&quot;</span>
+log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+
+<span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Скрипт #15: Очистка старых Docker образов</p>
+<p>Удаляет неиспользуемые Docker образы, контейнеры и volumes.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Скрипт для очистки неиспользуемых Docker ресурсов</span>
+<span class="c1"># Удаляет: остановленные контейнеры, неиспользуемые образы, volumes, networks</span>
+
+<span class="c1"># Настройки</span>
+<span class="nv">DRY_RUN</span><span class="o">=</span><span class="nb">false</span><span class="w">                           </span><span class="c1"># true = только показать, что будет удалено</span>
+<span class="nv">KEEP_LATEST</span><span class="o">=</span><span class="m">3</span><span class="w">                           </span><span class="c1"># Сколько последних образов каждого репозитория оставить</span>
+<span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">&quot;/var/log/docker_cleanup.log&quot;</span><span class="w">   </span><span class="c1"># Файл лога</span>
+<span class="nv">ALERT_DISK_USAGE</span><span class="o">=</span><span class="m">80</span><span class="w">                     </span><span class="c1"># Порог использования диска (%) для принудительной очистки</span>
+
+<span class="c1"># Функция логирования</span>
+log<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span><span class="s2">] </span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+<span class="c1"># Проверка, установлен ли Docker</span>
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>docker<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;ОШИБКА: Docker не установлен или недоступен!&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="c1"># Проверка прав доступа к Docker</span>
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span>docker<span class="w"> </span>info<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;ОШИБКА: Нет прав доступа к Docker daemon (нужен sudo?)&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="c1"># Функция проверки использования диска</span>
+check_disk_usage<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># Получаем использование диска для корневого раздела</span>
+<span class="w">    </span><span class="nv">DISK_USAGE</span><span class="o">=</span><span class="k">$(</span>df<span class="w"> </span>/<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;NR==2 {print $5}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/%//&#39;</span><span class="k">)</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Текущее использование диска: </span><span class="si">${</span><span class="nv">DISK_USAGE</span><span class="si">}</span><span class="s2">%&quot;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DISK_USAGE</span><span class="s2">&quot;</span><span class="w"> </span>-ge<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ALERT_DISK_USAGE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;ВНИМАНИЕ: Диск заполнен более чем на </span><span class="si">${</span><span class="nv">ALERT_DISK_USAGE</span><span class="si">}</span><span class="s2">%!&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">0</span><span class="w">  </span><span class="c1"># Требуется очистка</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция удаления остановленных контейнеров</span>
+cleanup_containers<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;--- Очистка остановленных контейнеров ---&quot;</span>
+
+<span class="w">    </span><span class="c1"># Получаем список остановленных контейнеров</span>
+<span class="w">    </span><span class="nv">STOPPED</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-aq<span class="w"> </span>-f<span class="w"> </span><span class="nv">status</span><span class="o">=</span>exited<span class="w"> </span>-f<span class="w"> </span><span class="nv">status</span><span class="o">=</span>created<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$STOPPED</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Остановленных контейнеров не найдено.&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Найдено остановленных контейнеров: </span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$STOPPED</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">&quot;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DRY_RUN</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;[DRY RUN] Будут удалены контейнеры:&quot;</span>
+<span class="w">        </span>docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </span>-f<span class="w"> </span><span class="nv">status</span><span class="o">=</span>exited<span class="w"> </span>-f<span class="w"> </span><span class="nv">status</span><span class="o">=</span>created<span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}&quot;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Удаление остановленных контейнеров...&quot;</span>
+<span class="w">        </span>docker<span class="w"> </span>rm<span class="w"> </span><span class="nv">$STOPPED</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>log<span class="w"> </span><span class="s2">&quot;Контейнеры удалены.&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>log<span class="w"> </span><span class="s2">&quot;Ошибка при удалении контейнеров.&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция очистки неиспользуемых образов</span>
+cleanup_images<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;--- Очистка неиспользуемых образов ---&quot;</span>
+
+<span class="w">    </span><span class="c1"># Получаем список образов без тегов (dangling)</span>
+<span class="w">    </span><span class="nv">DANGLING</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>images<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;dangling=true&quot;</span><span class="w"> </span>-q<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DANGLING</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Найдено неиспользуемых (dangling) образов: </span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DANGLING</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DRY_RUN</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;[DRY RUN] Будут удалены dangling образы&quot;</span>
+<span class="w">            </span>docker<span class="w"> </span>images<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;dangling=true&quot;</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span>docker<span class="w"> </span>rmi<span class="w"> </span><span class="nv">$DANGLING</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>log<span class="w"> </span><span class="s2">&quot;Dangling образы удалены.&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>log<span class="w"> </span><span class="s2">&quot;Ошибка при удалении dangling образов.&quot;</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Dangling образы не найдены.&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="c1"># Удаление старых образов (оставляем только KEEP_LATEST последних версий каждого репозитория)</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Проверка образов для очистки (оставляем </span><span class="nv">$KEEP_LATEST</span><span class="s2"> последних)...&quot;</span>
+
+<span class="w">    </span><span class="c1"># Получаем список уникальных репозиториев</span>
+<span class="w">    </span><span class="nv">REPOS</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>images<span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;{{.Repository}}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^</span>$<span class="s2">&quot;</span><span class="k">)</span>
+
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REPOS</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>REPO<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REPO</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;Обработка репозитория: </span><span class="nv">$REPO</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="c1"># Получаем образы этого репозитория, отсортированные по дате создания (новые сверху)</span>
+<span class="w">            </span><span class="nv">IMAGES</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>images<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REPO</span><span class="s2">&quot;</span><span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;{{.ID}}&quot;</span><span class="w"> </span>--sort<span class="o">=</span>created<span class="k">)</span>
+
+<span class="w">            </span><span class="c1"># Пропускаем первые KEEP_LATEST образов</span>
+<span class="w">            </span><span class="nv">COUNTER</span><span class="o">=</span><span class="m">0</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$IMAGES</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>IMAGE_ID<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">                </span><span class="nv">COUNTER</span><span class="o">=</span><span class="k">$((</span><span class="nv">COUNTER</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="k">))</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$COUNTER</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$KEEP_LATEST</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">                    </span><span class="c1"># Проверяем, используется ли образ каким-либо контейнером</span>
+<span class="w">                    </span><span class="nv">IN_USE</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </span>--filter<span class="w"> </span><span class="s2">&quot;ancestor=</span><span class="nv">$IMAGE_ID</span><span class="s2">&quot;</span><span class="w"> </span>-q<span class="k">)</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$IN_USE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">                        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DRY_RUN</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">                            </span>log<span class="w"> </span><span class="s2">&quot;[DRY RUN] Будет удалён образ: </span><span class="nv">$IMAGE_ID</span><span class="s2">&quot;</span>
+<span class="w">                        </span><span class="k">else</span>
+<span class="w">                            </span>docker<span class="w"> </span>rmi<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$IMAGE_ID</span><span class="s2">&quot;</span><span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>log<span class="w"> </span><span class="s2">&quot;Удалён образ: </span><span class="nv">$IMAGE_ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">                        </span><span class="k">fi</span>
+<span class="w">                    </span><span class="k">fi</span>
+<span class="w">                </span><span class="k">fi</span>
+<span class="w">            </span><span class="k">done</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция очистки volumes</span>
+cleanup_volumes<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;--- Очистка неиспользуемых volumes ---&quot;</span>
+
+<span class="w">    </span><span class="c1"># Получаем список volumes, не используемых ни одним контейнером</span>
+<span class="w">    </span><span class="nv">UNUSED_VOLUMES</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>volume<span class="w"> </span>ls<span class="w"> </span>-q<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;dangling=true&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$UNUSED_VOLUMES</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Неиспользуемых volumes не найдено.&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Найдено неиспользуемых volumes: </span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$UNUSED_VOLUMES</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">&quot;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DRY_RUN</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;[DRY RUN] Будут удалены volumes:&quot;</span>
+<span class="w">        </span>docker<span class="w"> </span>volume<span class="w"> </span>ls<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;dangling=true&quot;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span><span class="nv">$UNUSED_VOLUMES</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>log<span class="w"> </span><span class="s2">&quot;Volumes удалены.&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>log<span class="w"> </span><span class="s2">&quot;Ошибка при удалении volumes.&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция очистки networks</span>
+cleanup_networks<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;--- Очистка неиспользуемых networks ---&quot;</span>
+
+<span class="w">    </span><span class="c1"># Удаляем неиспользуемые networks (кроме стандартных)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DRY_RUN</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;[DRY RUN] Будет выполнено: docker network prune -f&quot;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>docker<span class="w"> </span>network<span class="w"> </span>prune<span class="w"> </span>-f<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>log<span class="w"> </span><span class="s2">&quot;Неиспользуемые networks удалены.&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>log<span class="w"> </span><span class="s2">&quot;Ошибка при очистке networks.&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция вывода статистики Docker</span>
+show_docker_stats<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;--- Статистика Docker до очистки ---&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Образов: </span><span class="k">$(</span>docker<span class="w"> </span>images<span class="w"> </span>-q<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Контейнеров (всего): </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-aq<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Контейнеров (запущено): </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-q<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Volumes: </span><span class="k">$(</span>docker<span class="w"> </span>volume<span class="w"> </span>ls<span class="w"> </span>-q<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Networks: </span><span class="k">$(</span>docker<span class="w"> </span>network<span class="w"> </span>ls<span class="w"> </span>-q<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">&quot;</span>
+
+<span class="w">    </span><span class="c1"># Использование диска Docker</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Использование диска Docker:&quot;</span>
+<span class="w">    </span>docker<span class="w"> </span>system<span class="w"> </span>df<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>LINE<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;  </span><span class="nv">$LINE</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="o">}</span>
+
+<span class="c1"># Главная функция</span>
+main<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;ЗАПУСК ОЧИСТКИ DOCKER&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Хост: </span><span class="k">$(</span>hostname<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Дата: </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DRY_RUN</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Режим: DRY RUN (изменения не будут применены)&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+
+<span class="w">    </span><span class="c1"># Показываем статистику до очистки</span>
+<span class="w">    </span>show_docker_stats
+
+<span class="w">    </span><span class="c1"># Проверяем, нужна ли очистка</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>check_disk_usage<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DRY_RUN</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="c1"># Выполняем очистку</span>
+<span class="w">        </span>cleanup_containers
+<span class="w">        </span>cleanup_images
+<span class="w">        </span>cleanup_volumes
+<span class="w">        </span>cleanup_networks
+
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;--- Статистика после очистки ---&quot;</span>
+<span class="w">        </span>show_docker_stats
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Очистка не требуется (диск заполнен менее чем на </span><span class="si">${</span><span class="nv">ALERT_DISK_USAGE</span><span class="si">}</span><span class="s2">%).&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;ОЧИСТКА ЗАВЕРШЕНА&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+<span class="o">}</span>
+
+<span class="c1"># Обработка аргументов командной строки</span>
+<span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="k">in</span>
+<span class="w">        </span>--dry-run<span class="o">)</span>
+<span class="w">            </span><span class="nv">DRY_RUN</span><span class="o">=</span><span class="nb">true</span>
+<span class="w">            </span><span class="nb">shift</span>
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">        </span>--keep-latest<span class="o">=</span>*<span class="o">)</span>
+<span class="w">            </span><span class="nv">KEEP_LATEST</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nb">shift</span>
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">        </span>--help<span class="p">|</span>-h<span class="o">)</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Использование: </span><span class="nv">$0</span><span class="s2"> [--dry-run] [--keep-latest=N]&quot;</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --dry-run          Показать, что будет удалено, без фактического удаления&quot;</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --keep-latest=N    Оставить N последних образов каждого репозитория (по умолчанию: 3)&quot;</span>
+<span class="w">            </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">        </span>*<span class="o">)</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;Неизвестный аргумент: </span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">    </span><span class="k">esac</span>
+<span class="k">done</span>
+
+<span class="c1"># Запуск</span>
+main
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Скрипт #19: Мониторинг задержек сети</p>
+<p>Измеряет задержки до указанных хостов и логирует результаты.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Скрипт для мониторинга задержек сети (latency) до указанных хостов</span>
+<span class="c1"># Использует ping для измерения времени отклика</span>
+
+<span class="c1"># Настройки</span>
+<span class="nv">HOSTS</span><span class="o">=(</span><span class="s2">&quot;8.8.8.8&quot;</span><span class="w"> </span><span class="s2">&quot;1.1.1.1&quot;</span><span class="w"> </span><span class="s2">&quot;google.com&quot;</span><span class="w"> </span><span class="s2">&quot;youtube.com&quot;</span><span class="o">)</span><span class="w">  </span><span class="c1"># Хосты для проверки</span>
+<span class="nv">PING_COUNT</span><span class="o">=</span><span class="m">5</span><span class="w">                                             </span><span class="c1"># Количество ping-запросов на хост</span>
+<span class="nv">TIMEOUT</span><span class="o">=</span><span class="m">5</span><span class="w">                                                </span><span class="c1"># Таймаут на каждый ping (секунды)</span>
+<span class="nv">LATENCY_THRESHOLD</span><span class="o">=</span><span class="m">100</span><span class="w">                                     </span><span class="c1"># Порог задержки в мс (предупреждение)</span>
+<span class="nv">CRITICAL_LATENCY</span><span class="o">=</span><span class="m">200</span><span class="w">                                      </span><span class="c1"># Критическая задержка в мс</span>
+<span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">&quot;/var/log/network_latency.log&quot;</span><span class="w">                   </span><span class="c1"># Файл лога</span>
+<span class="nv">REPORT_INTERVAL</span><span class="o">=</span><span class="m">60</span><span class="w">                                        </span><span class="c1"># Интервал между проверками (секунды)</span>
+
+<span class="c1"># Функция логирования</span>
+log<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span><span class="s2">] </span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция проверки задержки до одного хоста</span>
+check_latency<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">HOST</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">RESULT</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+
+<span class="w">    </span><span class="c1"># Выполняем ping и извлекаем статистику</span>
+<span class="w">    </span><span class="c1"># -c: количество пакетов</span>
+<span class="w">    </span><span class="c1"># -W: таймаут ожидания ответа</span>
+<span class="w">    </span><span class="c1"># Вывод grep ищет строку с rtt (round-trip time)</span>
+<span class="w">    </span><span class="nv">PING_OUTPUT</span><span class="o">=</span><span class="k">$(</span>ping<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PING_COUNT</span><span class="s2">&quot;</span><span class="w"> </span>-W<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$TIMEOUT</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOST</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
+
+<span class="w">    </span><span class="c1"># Проверяем, успешен ли ping</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR: Нет ответа от </span><span class="nv">$HOST</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="c1"># Извлекаем среднее время задержки (rtt)</span>
+<span class="w">    </span><span class="c1"># Формат вывода: rtt min/avg/max/mdev = 10.123/15.456/20.789/2.345</span>
+<span class="w">    </span><span class="nv">AVG_LATENCY</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PING_OUTPUT</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;rtt&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;/&#39;</span><span class="w"> </span><span class="s1">&#39;{print $5}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$AVG_LATENCY</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR: Не удалось получить задержку для </span><span class="nv">$HOST</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="c1"># Возвращаем задержку</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$AVG_LATENCY</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция анализа задержки и вывода статуса</span>
+analyze_latency<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">HOST</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">LATENCY</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span>
+
+<span class="w">    </span><span class="c1"># Проверяем, является ли задержка числом</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LATENCY</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>^<span class="o">[</span><span class="m">0</span>-9.<span class="o">]</span>+$<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;ERROR: Нет ответа от </span><span class="nv">$HOST</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="c1"># Сравниваем с пороговыми значениями</span>
+<span class="w">    </span><span class="c1"># Используем bc для сравнения чисел с плавающей точкой</span>
+<span class="w">    </span><span class="nv">IS_CRITICAL</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LATENCY</span><span class="s2"> &gt; </span><span class="nv">$CRITICAL_LATENCY</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bc<span class="w"> </span>-l<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
+<span class="w">    </span><span class="nv">IS_HIGH</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LATENCY</span><span class="s2"> &gt; </span><span class="nv">$LATENCY_THRESHOLD</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bc<span class="w"> </span>-l<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$IS_CRITICAL</span><span class="s2">&quot;</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;КРИТИЧНО: </span><span class="nv">$HOST</span><span class="s2"> — задержка </span><span class="si">${</span><span class="nv">LATENCY</span><span class="si">}</span><span class="s2">ms (превышает </span><span class="nv">$CRITICAL_LATENCY</span><span class="s2"> ms)!&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$IS_HIGH</span><span class="s2">&quot;</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;ВНИМАНИЕ: </span><span class="nv">$HOST</span><span class="s2"> — задержка </span><span class="si">${</span><span class="nv">LATENCY</span><span class="si">}</span><span class="s2">ms (превышает </span><span class="nv">$LATENCY_THRESHOLD</span><span class="s2"> ms)&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;OK: </span><span class="nv">$HOST</span><span class="s2"> — задержка </span><span class="si">${</span><span class="nv">LATENCY</span><span class="si">}</span><span class="s2">ms&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция генерации отчёта</span>
+generate_report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;МОНИТОРИНГ СЕТЕВЫХ ЗАДЕРЖЕК&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Хост: </span><span class="k">$(</span>hostname<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Дата: </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">TOTAL_HOSTS</span><span class="o">=</span><span class="si">${#</span><span class="nv">HOSTS</span><span class="p">[@]</span><span class="si">}</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">SUCCESS_COUNT</span><span class="o">=</span><span class="m">0</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">WARNING_COUNT</span><span class="o">=</span><span class="m">0</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">ERROR_COUNT</span><span class="o">=</span><span class="m">0</span>
+
+<span class="w">    </span><span class="c1"># Проверяем каждый хост</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span>HOST<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOSTS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Проверка хоста: </span><span class="nv">$HOST</span><span class="s2">&quot;</span>
+
+<span class="w">        </span><span class="nv">LATENCY</span><span class="o">=</span><span class="k">$(</span>check_latency<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOST</span><span class="s2">&quot;</span><span class="k">)</span>
+<span class="w">        </span><span class="nv">STATUS</span><span class="o">=</span><span class="nv">$?</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$STATUS</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span><span class="c1"># Успешная проверка</span>
+<span class="w">            </span>analyze_latency<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOST</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LATENCY</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nv">STATUS</span><span class="o">=</span><span class="nv">$?</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$STATUS</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">                </span><span class="nv">SUCCESS_COUNT</span><span class="o">=</span><span class="k">$((</span><span class="nv">SUCCESS_COUNT</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="k">))</span>
+<span class="w">            </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$STATUS</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">                </span><span class="nv">WARNING_COUNT</span><span class="o">=</span><span class="k">$((</span><span class="nv">WARNING_COUNT</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="k">))</span>
+<span class="w">            </span><span class="k">fi</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span><span class="nv">ERROR_COUNT</span><span class="o">=</span><span class="k">$((</span><span class="nv">ERROR_COUNT</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="k">))</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">done</span>
+
+<span class="w">    </span><span class="c1"># Итоговая статистика</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;ИТОГИ:&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;  Всего хостов: </span><span class="nv">$TOTAL_HOSTS</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;  Успешно: </span><span class="nv">$SUCCESS_COUNT</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;  Предупреждений: </span><span class="nv">$WARNING_COUNT</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;  Ошибок: </span><span class="nv">$ERROR_COUNT</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+
+<span class="w">    </span><span class="c1"># Возвращаем код в зависимости от результатов</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ERROR_COUNT</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$WARNING_COUNT</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="o">}</span>
+
+<span class="c1"># Главная функция (с возможностью непрерывного мониторинга)</span>
+main<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">        </span>once<span class="o">)</span>
+<span class="w">            </span><span class="c1"># Однократная проверка</span>
+<span class="w">            </span>generate_report
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">        </span>watch<span class="o">)</span>
+<span class="w">            </span><span class="c1"># Непрерывный мониторинг</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;Запуск непрерывного мониторинга (интервал: </span><span class="nv">$REPORT_INTERVAL</span><span class="s2"> сек)&quot;</span>
+<span class="w">            </span><span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">                </span>generate_report
+<span class="w">                </span>sleep<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REPORT_INTERVAL</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="k">done</span>
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">        </span>*<span class="o">)</span>
+<span class="w">            </span><span class="c1"># По умолчанию — однократная проверка</span>
+<span class="w">            </span>generate_report
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">    </span><span class="k">esac</span>
+<span class="o">}</span>
+
+<span class="c1"># Запуск</span>
+main<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Скрипт #21: Деплой с откатом</p>
+<p>Скрипт деплоя приложения с возможностью автоматического отката при ошибке.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Скрипт деплоя приложения с поддержкой отката (rollback)</span>
+<span class="c1"># В случае ошибки автоматически возвращает предыдущую версию</span>
+
+<span class="c1"># Настройки приложения</span>
+<span class="nv">APP_NAME</span><span class="o">=</span><span class="s2">&quot;myapp&quot;</span><span class="w">                                     </span><span class="c1"># Имя приложения</span>
+<span class="nv">DEPLOY_DIR</span><span class="o">=</span><span class="s2">&quot;/opt/</span><span class="si">${</span><span class="nv">APP_NAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w">                        </span><span class="c1"># Директория деплоя</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/opt/</span><span class="si">${</span><span class="nv">APP_NAME</span><span class="si">}</span><span class="s2">/backups&quot;</span><span class="w">                </span><span class="c1"># Директория бэкапов</span>
+<span class="nv">CURRENT_LINK</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span><span class="s2">/current&quot;</span><span class="w">                 </span><span class="c1"># Симлинк на текущую версию</span>
+<span class="nv">NEW_VERSION</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w">                                     </span><span class="c1"># Новая версия (передаётся аргументом)</span>
+
+<span class="c1"># Настройки сервиса</span>
+<span class="nv">SERVICE_MANAGER</span><span class="o">=</span><span class="s2">&quot;systemd&quot;</span><span class="w">                            </span><span class="c1"># systemd или supervisor</span>
+<span class="nv">SERVICE_NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">APP_NAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w">                           </span><span class="c1"># Имя сервиса</span>
+
+<span class="c1"># Настройки уведомлений</span>
+<span class="nv">SLACK_WEBHOOK</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w">                                     </span><span class="c1"># Webhook для Slack (опционально)</span>
+<span class="nv">EMAIL_ALERT</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w">                                       </span><span class="c1"># Email для уведомлений</span>
+
+<span class="c1"># Настройки проверки здоровья (health check)</span>
+<span class="nv">HEALTH_CHECK_URL</span><span class="o">=</span><span class="s2">&quot;http://localhost:8080/health&quot;</span><span class="w">      </span><span class="c1"># URL для проверки</span>
+<span class="nv">HEALTH_CHECK_TIMEOUT</span><span class="o">=</span><span class="m">60</span><span class="w">                              </span><span class="c1"># Таймаут ожидания готовности (сек)</span>
+<span class="nv">HEALTH_CHECK_INTERVAL</span><span class="o">=</span><span class="m">5</span><span class="w">                              </span><span class="c1"># Интервал между проверками</span>
+
+<span class="c1"># Функция логирования</span>
+log<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span><span class="s2">] [DEPLOY] </span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция отправки уведомлений</span>
+send_notification<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">MESSAGE</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">STATUS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># SUCCESS или FAILURE</span>
+
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Уведомление: </span><span class="nv">$MESSAGE</span><span class="s2">&quot;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SLACK_WEBHOOK</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--data<span class="w"> </span><span class="s2">&quot;{\&quot;text\&quot;:\&quot;Deploy </span><span class="nv">$STATUS</span><span class="s2">: </span><span class="nv">$APP_NAME</span><span class="s2"> - </span><span class="nv">$MESSAGE</span><span class="s2">\&quot;}&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span><span class="s2">&quot;</span><span class="nv">$SLACK_WEBHOOK</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция создания бэкапа текущей версии</span>
+create_backup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-L<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CURRENT_LINK</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>readlink<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CURRENT_LINK</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nv">CURRENT_VERSION</span><span class="o">=</span><span class="k">$(</span>readlink<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CURRENT_LINK</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>basename<span class="k">)</span>
+<span class="w">        </span><span class="nv">BACKUP_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">CURRENT_VERSION</span><span class="si">}</span><span class="s2">_</span><span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M%S<span class="k">)</span><span class="s2">&quot;</span>
+
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Создание бэкапа текущей версии: </span><span class="nv">$CURRENT_VERSION</span><span class="s2">&quot;</span>
+<span class="w">        </span>cp<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>readlink<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CURRENT_LINK</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;Бэкап создан: </span><span class="nv">$BACKUP_PATH</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_PATH</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># Возвращаем путь к бэкапу</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;ОШИБКА: Не удалось создать бэкап!&quot;</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Текущая версия не найдена, бэкап не требуется.&quot;</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция деплоя новой версии</span>
+deploy_new_version<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">VERSION</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">VERSION_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;НАЧАЛО ДЕПЛОЯ: </span><span class="nv">$APP_NAME</span><span class="s2"> v.</span><span class="nv">$VERSION</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+
+<span class="w">    </span><span class="c1"># Проверяем, существует ли директория с новой версией</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VERSION_DIR</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;ОШИБКА: Директория версии не найдена: </span><span class="nv">$VERSION_DIR</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="c1"># Создаём бэкап текущей версии</span>
+<span class="w">    </span><span class="nv">BACKUP_PATH</span><span class="o">=</span><span class="k">$(</span>create_backup<span class="k">)</span>
+
+<span class="w">    </span><span class="c1"># Останавливаем сервис</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Остановка сервиса </span><span class="nv">$SERVICE_NAME</span><span class="s2">...&quot;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_MANAGER</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;systemd&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>systemctl<span class="w"> </span>stop<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>supervisorctl<span class="w"> </span>stop<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="c1"># Ждём остановки сервиса</span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="m">5</span>
+
+<span class="w">    </span><span class="c1"># Переключаем симлинк на новую версию</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Переключение на новую версию: </span><span class="nv">$VERSION</span><span class="s2">&quot;</span>
+<span class="w">    </span>ln<span class="w"> </span>-sfn<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VERSION_DIR</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CURRENT_LINK</span><span class="s2">&quot;</span>
+
+<span class="w">    </span><span class="c1"># Запускаем сервис</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Запуск сервиса </span><span class="nv">$SERVICE_NAME</span><span class="s2">...&quot;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_MANAGER</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;systemd&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>systemctl<span class="w"> </span>start<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>supervisorctl<span class="w"> </span>start<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="c1"># Проверяем статус сервиса</span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="m">3</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_MANAGER</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;systemd&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>systemctl<span class="w"> </span>is-active<span class="w"> </span>--quiet<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_NAME</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>supervisorctl<span class="w"> </span>status<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s2">&quot;RUNNING&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;ОШИБКА: Сервис не запустился!&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Сервис успешно запущен.&quot;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция проверки здоровья приложения</span>
+health_check<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Проверка доступности приложения (health check)...&quot;</span>
+
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">ELAPSED</span><span class="o">=</span><span class="m">0</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ELAPSED</span><span class="s2">&quot;</span><span class="w"> </span>-lt<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HEALTH_CHECK_TIMEOUT</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nv">HTTP_CODE</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;%{http_code}&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HEALTH_CHECK_URL</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HTTP_CODE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;200&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;Health check пройден успешно!&quot;</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="w">        </span><span class="k">fi</span>
+
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Ожидание готовности... (прошло </span><span class="si">${</span><span class="nv">ELAPSED</span><span class="si">}</span><span class="s2">s из </span><span class="si">${</span><span class="nv">HEALTH_CHECK_TIMEOUT</span><span class="si">}</span><span class="s2">s)&quot;</span>
+<span class="w">        </span>sleep<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HEALTH_CHECK_INTERVAL</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="nv">ELAPSED</span><span class="o">=</span><span class="k">$((</span><span class="nv">ELAPSED</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">HEALTH_CHECK_INTERVAL</span><span class="k">))</span>
+<span class="w">    </span><span class="k">done</span>
+
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;ОШИБКА: Health check не пройден за </span><span class="si">${</span><span class="nv">HEALTH_CHECK_TIMEOUT</span><span class="si">}</span><span class="s2"> секунд!&quot;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция отката к предыдущей версии</span>
+rollback<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">BACKUP_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;ОШИБКА: Бэкап для отката не найден!&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;ВЫПОЛНЯЕТСЯ ОТКАТ К ПРЕДЫДУЩЕЙ ВЕРСИИ&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+
+<span class="w">    </span><span class="c1"># Останавливаем сервис</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Остановка сервиса...&quot;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_MANAGER</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;systemd&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>systemctl<span class="w"> </span>stop<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>supervisorctl<span class="w"> </span>stop<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span>sleep<span class="w"> </span><span class="m">3</span>
+
+<span class="w">    </span><span class="c1"># Переключаем симлинк на бэкап</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Переключение на бэкап: </span><span class="k">$(</span>basename<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_PATH</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span>ln<span class="w"> </span>-sfn<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CURRENT_LINK</span><span class="s2">&quot;</span>
+
+<span class="w">    </span><span class="c1"># Запускаем сервис</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Запуск сервиса...&quot;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_MANAGER</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;systemd&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>systemctl<span class="w"> </span>start<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>supervisorctl<span class="w"> </span>start<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span>sleep<span class="w"> </span><span class="m">3</span>
+
+<span class="w">    </span><span class="c1"># Проверяем статус после отката</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_MANAGER</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;systemd&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>systemctl<span class="w"> </span>is-active<span class="w"> </span>--quiet<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_NAME</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>supervisorctl<span class="w"> </span>status<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s2">&quot;RUNNING&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Откат выполнен успешно!&quot;</span>
+<span class="w">        </span>send_notification<span class="w"> </span><span class="s2">&quot;Откат к предыдущей версии выполнен успешно&quot;</span><span class="w"> </span><span class="s2">&quot;ROLLBACK_SUCCESS&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;КРИТИЧЕСКАЯ ОШИБКА: Откат не удался!&quot;</span>
+<span class="w">        </span>send_notification<span class="w"> </span><span class="s2">&quot;КРИТИЧНО: Откат не удался!&quot;</span><span class="w"> </span><span class="s2">&quot;ROLLBACK_FAILURE&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c1"># Главная логика</span>
+main<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># Проверяем, передана ли версия</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NEW_VERSION</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Использование: </span><span class="nv">$0</span><span class="s2"> &lt;version&gt;&quot;</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Пример: </span><span class="nv">$0</span><span class="s2"> v1.2.3&quot;</span>
+<span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="c1"># Создаём необходимые директории</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span>
+
+<span class="w">    </span><span class="c1"># Создаём бэкап ДО деплоя</span>
+<span class="w">    </span><span class="nv">BACKUP_PATH</span><span class="o">=</span><span class="k">$(</span>create_backup<span class="k">)</span>
+
+<span class="w">    </span><span class="c1"># Выполняем деплой</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>deploy_new_version<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NEW_VERSION</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="c1"># Деплой успешен, проверяем здоровье</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>health_check<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;ДЕПЛОЙ УСПЕШНО ЗАВЕРШЁН: </span><span class="nv">$APP_NAME</span><span class="s2"> v.</span><span class="nv">$NEW_VERSION</span><span class="s2">&quot;</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+<span class="w">            </span>send_notification<span class="w"> </span><span class="s2">&quot;Деплой v.</span><span class="nv">$NEW_VERSION</span><span class="s2"> успешно завершён&quot;</span><span class="w"> </span><span class="s2">&quot;SUCCESS&quot;</span>
+<span class="w">            </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;Health check не пройден, выполняется откат...&quot;</span>
+<span class="w">            </span>rollback<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_PATH</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Ошибка при деплое, выполняется откат...&quot;</span>
+<span class="w">        </span>rollback<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_PATH</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c1"># Запуск</span>
+main
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Скрипт #23: Ребут при нехватке памяти</p>
+<p>Перезагружает сервер при критической нехватке оперативной памяти.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Скрипт мониторинга оперативной памяти</span>
+<span class="c1"># При критической нехватке памяти выполняет graceful reboot сервера</span>
+
+<span class="c1"># Настройки пороговых значений</span>
+<span class="nv">MEMORY_THRESHOLD</span><span class="o">=</span><span class="m">95</span><span class="w">                 </span><span class="c1"># Порог использования памяти (%) для предупреждения</span>
+<span class="nv">CRITICAL_THRESHOLD</span><span class="o">=</span><span class="m">98</span><span class="w">               </span><span class="c1"># Критический порог (%) для перезагрузки</span>
+<span class="nv">CHECK_INTERVAL</span><span class="o">=</span><span class="m">60</span><span class="w">                   </span><span class="c1"># Интервал проверки (секунды)</span>
+<span class="nv">REBOOT_DELAY</span><span class="o">=</span><span class="m">30</span><span class="w">                     </span><span class="c1"># Задержка перед перезагрузкой (секунды)</span>
+
+<span class="c1"># Настройки логирования</span>
+<span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">&quot;/var/log/memory_monitor.log&quot;</span>
+<span class="nv">MAX_LOG_SIZE</span><span class="o">=</span><span class="m">10485760</span><span class="w">               </span><span class="c1"># Максимальный размер лога (10MB)</span>
+
+<span class="c1"># Настройки уведомлений</span>
+<span class="nv">SLACK_WEBHOOK</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w">                    </span><span class="c1"># Webhook для Slack</span>
+<span class="nv">EMAIL_ALERT</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w">                      </span><span class="c1"># Email для алертов</span>
+
+<span class="c1"># Функция логирования с ротацией лога</span>
+log<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># Проверяем размер лога и выполняем ротацию при необходимости</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nv">LOG_SIZE</span><span class="o">=</span><span class="k">$(</span>stat<span class="w"> </span>-f%z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span>stat<span class="w"> </span>-c%s<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_SIZE</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MAX_LOG_SIZE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>mv<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LOG_FILE</span><span class="si">}</span><span class="s2">.old&quot;</span>
+<span class="w">            </span>touch<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span><span class="s2">] </span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция отправки уведомлений</span>
+send_alert<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">MESSAGE</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">SEVERITY</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># INFO, WARNING, CRITICAL</span>
+
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;[ALERT] [</span><span class="nv">$SEVERITY</span><span class="s2">] </span><span class="nv">$MESSAGE</span><span class="s2">&quot;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SLACK_WEBHOOK</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--data<span class="w"> </span><span class="s2">&quot;{\&quot;text\&quot;:\&quot;Memory Alert [</span><span class="nv">$SEVERITY</span><span class="s2">]: </span><span class="nv">$MESSAGE</span><span class="s2">\&quot;}&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span><span class="s2">&quot;</span><span class="nv">$SLACK_WEBHOOK</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция получения использования памяти в процентах</span>
+get_memory_usage<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># Читаем данные из /proc/meminfo</span>
+<span class="w">    </span><span class="c1"># MemTotal: общая память</span>
+<span class="w">    </span><span class="c1"># MemAvailable: доступная память (с учётом кэшей, которые можно освободить)</span>
+<span class="w">    </span><span class="nv">MEM_TOTAL</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span>MemTotal<span class="w"> </span>/proc/meminfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span><span class="w">      </span><span class="c1"># В килобайтах</span>
+<span class="w">    </span><span class="nv">MEM_AVAILABLE</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span>MemAvailable<span class="w"> </span>/proc/meminfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span><span class="w"> </span><span class="c1"># В килобайтах</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MEM_TOTAL</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MEM_AVAILABLE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MEM_TOTAL</span><span class="s2">&quot;</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="c1"># Вычисляем использованную память</span>
+<span class="w">    </span><span class="nv">MEM_USED</span><span class="o">=</span><span class="k">$((</span><span class="nv">MEM_TOTAL</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">MEM_AVAILABLE</span><span class="k">))</span>
+<span class="w">    </span><span class="c1"># Вычисляем процент использования</span>
+<span class="w">    </span><span class="nv">USAGE_PERCENT</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span><span class="o">(</span><span class="nv">MEM_USED</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nv">MEM_TOTAL</span><span class="w"> </span><span class="k">))</span>
+
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$USAGE_PERCENT</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="o">}</span>
+
+<span class="c1"># Функция получения детальной информации о памяти</span>
+get_memory_info<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;--- Информация о памяти ---&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Общая память: </span><span class="k">$(</span>grep<span class="w"> </span>MemTotal<span class="w"> </span>/proc/meminfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2/1024 &quot; MB&quot;}&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Доступная: </span><span class="k">$(</span>grep<span class="w"> </span>MemAvailable<span class="w"> </span>/proc/meminfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2/1024 &quot; MB&quot;}&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Использовано: </span><span class="k">$(</span>get_memory_usage<span class="k">)</span><span class="s2">%&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Топ-5 процессов по использованию памяти:&quot;</span>
+<span class="w">    </span>ps<span class="w"> </span>aux<span class="w"> </span>--sort<span class="o">=</span>-%mem<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-6<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-5
+<span class="o">}</span>
+
+<span class="c1"># Функция graceful reboot</span>
+perform_reboot<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>send_alert<span class="w"> </span><span class="s2">&quot;КРИТИЧЕСКАЯ НЕХВАТКА ПАМЯТИ! Сервер будет перезагружен через </span><span class="nv">$REBOOT_DELAY</span><span class="s2"> секунд!&quot;</span><span class="w"> </span><span class="s2">&quot;CRITICAL&quot;</span>
+
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;ВЫПОЛНЯЕТСЯ ПЕРЕЗАГРУЗКА СЕРВЕРА&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Причина: Использование памяти превысило </span><span class="si">${</span><span class="nv">CRITICAL_THRESHOLD</span><span class="si">}</span><span class="s2">%&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+
+<span class="w">    </span><span class="c1"># Логируем информацию о памяти перед перезагрузкой</span>
+<span class="w">    </span>get_memory_info<span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+
+<span class="w">    </span><span class="c1"># Уведомляем о перезагрузке</span>
+<span class="w">    </span>wall<span class="w"> </span><span class="s2">&quot;ВНИМАНИЕ: Сервер будет перезагружен через </span><span class="nv">$REBOOT_DELAY</span><span class="s2"> секунд из-за нехватки памяти!&quot;</span>
+
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Ожидание </span><span class="nv">$REBOOT_DELAY</span><span class="s2"> секунд перед перезагрузкой...&quot;</span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REBOOT_DELAY</span><span class="s2">&quot;</span>
+
+<span class="w">    </span><span class="c1"># Выполняем reboot</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Перезагрузка...&quot;</span>
+<span class="w">    </span>/sbin/reboot
+<span class="o">}</span>
+
+<span class="c1"># Функция очистки кэша памяти (попытка избежать перезагрузки)</span>
+cleanup_memory<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Попытка очистки кэша памяти...&quot;</span>
+
+<span class="w">    </span><span class="c1"># Синхронизируем данные на диск</span>
+<span class="w">    </span>sync
+
+<span class="w">    </span><span class="c1"># Очищаем page cache, dentries и inodes (требует прав root)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-w<span class="w"> </span>/proc/sys/vm/drop_caches<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="m">3</span><span class="w"> </span>&gt;<span class="w"> </span>/proc/sys/vm/drop_caches
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Кэш памяти очищен.&quot;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Нет прав для очистки кэша (нужен root).&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="c1"># Убиваем процессы с наибольшим потреблением памяти (опционально)</span>
+<span class="w">    </span><span class="c1"># ВНИМАНИЕ: Это может прервать работу критических сервисов!</span>
+<span class="w">    </span><span class="c1"># Раскомментируйте только если понимаете последствия:</span>
+<span class="w">    </span><span class="c1"># ps aux --sort=-%mem | awk &#39;NR&gt;1 &amp;&amp; $4 &gt; 10.0 {print $2}&#39; | head -3 | xargs kill -15</span>
+<span class="o">}</span>
+
+<span class="c1"># Главная функция мониторинга</span>
+main<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;ЗАПУСК МОНИТОРИНГА ПАМЯТИ&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Хост: </span><span class="k">$(</span>hostname<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Порог предупреждения: </span><span class="si">${</span><span class="nv">MEMORY_THRESHOLD</span><span class="si">}</span><span class="s2">%&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;Критический порог: </span><span class="si">${</span><span class="nv">CRITICAL_THRESHOLD</span><span class="si">}</span><span class="s2">%&quot;</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;==========================================&quot;</span>
+
+<span class="w">    </span><span class="c1"># Проверяем, запущен ли уже мониторинг</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;/var/run/memory_monitor.pid&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nv">OLD_PID</span><span class="o">=</span><span class="k">$(</span>cat<span class="w"> </span>/var/run/memory_monitor.pid<span class="k">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>ps<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OLD_PID</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;Мониторинг уже запущен (PID: </span><span class="nv">$OLD_PID</span><span class="s2">). Выход.&quot;</span>
+<span class="w">            </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="c1"># Записываем свой PID</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$$</span><span class="w"> </span>&gt;<span class="w"> </span>/var/run/memory_monitor.pid
+
+<span class="w">    </span><span class="c1"># Основной цикл мониторинга</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nv">MEMORY_USAGE</span><span class="o">=</span><span class="k">$(</span>get_memory_usage<span class="k">)</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MEMORY_USAGE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ERROR&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>log<span class="w"> </span><span class="s2">&quot;ОШИБКА: Не удалось получить данные о памяти!&quot;</span>
+<span class="w">            </span>sleep<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CHECK_INTERVAL</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="k">continue</span>
+<span class="w">        </span><span class="k">fi</span>
+
+<span class="w">        </span>log<span class="w"> </span><span class="s2">&quot;Использование памяти: </span><span class="si">${</span><span class="nv">MEMORY_USAGE</span><span class="si">}</span><span class="s2">%&quot;</span>
+
+<span class="w">        </span><span class="c1"># Проверяем пороговые значения</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MEMORY_USAGE</span><span class="s2">&quot;</span><span class="w"> </span>-ge<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CRITICAL_THRESHOLD</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>send_alert<span class="w"> </span><span class="s2">&quot;Критическая нехватка памяти: </span><span class="si">${</span><span class="nv">MEMORY_USAGE</span><span class="si">}</span><span class="s2">%!&quot;</span><span class="w"> </span><span class="s2">&quot;CRITICAL&quot;</span>
+<span class="w">            </span>get_memory_info<span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="w">            </span>perform_reboot
+<span class="w">            </span><span class="k">break</span>
+<span class="w">        </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MEMORY_USAGE</span><span class="s2">&quot;</span><span class="w"> </span>-ge<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MEMORY_THRESHOLD</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span>send_alert<span class="w"> </span><span class="s2">&quot;Высокое использование памяти: </span><span class="si">${</span><span class="nv">MEMORY_USAGE</span><span class="si">}</span><span class="s2">%!&quot;</span><span class="w"> </span><span class="s2">&quot;WARNING&quot;</span>
+<span class="w">            </span><span class="c1"># Пытаемся очистить кэш</span>
+<span class="w">            </span>cleanup_memory
+<span class="w">        </span><span class="k">fi</span>
+
+<span class="w">        </span>sleep<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CHECK_INTERVAL</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">done</span>
+
+<span class="w">    </span><span class="c1"># Удаляем PID-файл при выходе</span>
+<span class="w">    </span>rm<span class="w"> </span>-f<span class="w"> </span>/var/run/memory_monitor.pid
+<span class="o">}</span>
+
+<span class="c1"># Обработка сигналов для корректного завершения</span>
+<span class="nb">trap</span><span class="w"> </span><span class="s2">&quot;log &#39;Получен сигнал завершения. Остановка мониторинга...&#39;; rm -f /var/run/memory_monitor.pid; exit 0&quot;</span><span class="w"> </span>SIGTERM<span class="w"> </span>SIGINT
+
+<span class="c1"># Запуск</span>
+main<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</code></pre></div>
+</div>
+<h2 id="bash_3">Ограничения bash</h2>
+<div class="admonition note">
+<p class="admonition-title">Когда bash не подходит</p>
+<p><strong>Сложная логика и большие программы</strong></p>
+<p>Bash не предназначен для написания сложных алгоритмов. Для этого лучше использовать Python, Go или другие языки программирования.</p>
+<p><strong>Работа с JSON, XML, сложными структурами данных</strong></p>
+<p>Bash плохо работает с вложенными структурами данных. Для JSON лучше использовать jq, Python или специализированные инструменты.</p>
+<p><strong>Математические вычисления</strong></p>
+<p>Bash поддерживает только целочисленную арифметику. Для сложных вычислений используйте bc, awk или Python.</p>
+<p><strong>Параллельное выполнение и многопоточность</strong></p>
+<p>Bash выполняет команды последовательно. Параллельность возможна через фоновые процессы, но управление ими затруднено.</p>
+<p><strong>Переносимость между ОС</strong></p>
+<p>Скрипты, написанные под Linux, могут не работать в macOS или BSD без модификаций (различия в утилитах date, sed, awk и др.).</p>
+<p><strong>Обработка ошибок</strong></p>
+<p>В bash сложно писать надёжный код с обработкой исключений. Нет структурированной обработки ошибок, как в современных языках.</p>
+<p><strong>Работа с базами данных</strong></p>
+<p>Хотя можно вызывать CLI-клиенты (mysql, psql), bash не является лучшим выбором для сложной работы с БД.</p>
+<p><strong>Безопасность</strong></p>
+<p>Bash-скрипты уязвимы к инъекциям, если неправильно обрабатываются входные данные. Требуют внимательного подхода к экранированию спецсимволов.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["toc.integrate", "toc.follow", "navigation.tracking"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

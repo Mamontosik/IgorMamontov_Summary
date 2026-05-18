@@ -1,0 +1,1563 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://Mamontosik.github.io/IgorMamontov_Summary/admin_filesystem/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../admin_network/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Файловая система и мониторинг - Summary Igor Mamontov ver.1</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Summary Igor Mamontov ver.1" class="md-header__button md-logo" aria-label="Summary Igor Mamontov ver.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Summary Igor Mamontov ver.1
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Файловая система и мониторинг
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Summary Igor Mamontov ver.1" class="md-nav__button md-logo" aria-label="Summary Igor Mamontov ver.1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Summary Igor Mamontov ver.1
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обо мне
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Руководство DevOps инженера
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Руководство DevOps инженера
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux команды
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux команды
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Файловая система и мониторинг
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Файловая система и мониторинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проверка места на дисках
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Мониторинг ресурсов
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Работа с файлами
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Управление процессами
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Диски и файловые системы
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сеть и порты
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Управление пользователями
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_sec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Про DevSecOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Полезные метрики
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Про Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_kafka/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Блокер сообщений Kafka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git команды
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash_faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила работы с bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_llm_faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Погружение в LLM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Подготовка к assesment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Подготовка к assesment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ответы для assesment (unsorted)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_unsorted_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список примеров assesment сотрудников
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Популярные команды на собеседовании
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_handbook_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Названия, краткий справочник
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_port_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список используемых портов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Все о мониторинге
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_kafka_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с kafka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_linux_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_kubernetes_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с k8s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_docker_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assesment_ansible_unswer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Взаимодействие с ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a href="/IgorMamontov_Summary/">Обо мне</a> / Руководство DevOps инженера / Linux команды</p>
+<h1 id="_1">Файловая система и мониторинг</h1>
+<h2 id="_2">Проверка места на дисках</h2>
+<div class="admonition note">
+<p class="admonition-title">Команды для анализа дискового пространства</p>
+<p><strong>df</strong> — использование дисков
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w">          </span><span class="c1"># Размеры в человекочитаемом формате</span>
+<span class="c1"># Filesystem      Size  Used Avail Use% Mounted on</span>
+<span class="c1"># /dev/sda1       100G   85G   15G  85% /</span>
+df<span class="w"> </span>-i<span class="w">          </span><span class="c1"># Количество инодов</span>
+df<span class="w"> </span>-T<span class="w">          </span><span class="c1"># Типы файловых систем</span>
+</code></pre></div></p>
+<p><strong>du</strong> — анализ размера директорий
+<div class="highlight"><pre><span></span><code>du<span class="w"> </span>-sh<span class="w"> </span>/path<span class="w">                    </span><span class="c1"># Размер конкретной директории</span>
+du<span class="w"> </span>-sh<span class="w"> </span>*<span class="w">                        </span><span class="c1"># Размер всех поддиректорий</span>
+du<span class="w"> </span>-h<span class="w"> </span>--max-depth<span class="o">=</span><span class="m">1</span><span class="w">             </span><span class="c1"># Иерархия с глубиной 1</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Найти, что занимает место</strong>
+<div class="highlight"><pre><span></span><code>du<span class="w"> </span>-sh<span class="w"> </span>/*<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-hr<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+<span class="c1"># 50G     /var</span>
+<span class="c1"># 20G     /home</span>
+<span class="c1"># 10G     /opt</span>
+<span class="c1">#  5G     /usr</span>
+<span class="c1">#  2G     /tmp</span>
+</code></pre></div></p>
+<hr />
+<p><strong>Сценарий 2: Найти большие файлы</strong>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>/<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-size<span class="w"> </span>+100M<span class="w"> </span>-exec<span class="w"> </span>ls<span class="w"> </span>-lh<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+<span class="c1"># -rwxr-xr-x 1 root root 500M /var/lib/docker/overlay2/...</span>
+<span class="c1"># -rw-r--r-- 1 root root 200M /var/log/nginx/access.log</span>
+<span class="c1"># -rwxr-xr-x 1 root root 150M /opt/java/java8.jar</span>
+</code></pre></div></p>
+<hr />
+<p><strong>smartctl</strong> — SMART-информация дисков
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>smartctl<span class="w"> </span>-a<span class="w"> </span>/dev/sda<span class="w">   </span><span class="c1"># Полная SMART-информация</span>
+sudo<span class="w"> </span>smartctl<span class="w"> </span>-H<span class="w"> </span>/dev/sda<span class="w">   </span><span class="c1"># Быстрая проверка здоровья</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Проверить SMART-здоровье диска</strong>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>smartctl<span class="w"> </span>-H<span class="w"> </span>/dev/sda
+<span class="c1"># === START OF READ SMART DATA SECTION ===</span>
+<span class="c1"># SMART overall-health self-assessment test result: PASSED</span>
+sudo<span class="w"> </span>smartctl<span class="w"> </span>-a<span class="w"> </span>/dev/sda<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;Power_On_Hours|Temperature&quot;</span>
+<span class="c1"># Power_On_Hours          0x0032   096   096   000    Old_age   -       12345</span>
+<span class="c1"># Temperature_Celsius     0x0022   045   045   000    Old_age   -       35</span>
+</code></pre></div></p>
+<hr />
+<p><strong>Состояние RAID-массива</strong>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/proc/mdstat
+<span class="c1"># Personalities : [raid1]</span>
+<span class="c1"># md0 : active raid1 sda1[1] sdb1[0]</span>
+<span class="c1">#       488286464 blocks super 1.2 [2/2] [UU]</span>
+</code></pre></div></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Диск заполнен</p>
+<p><br></p>
+<ol>
+<li><code>df -h</code> — проверить Use% и найти заполненный раздел</li>
+<li><code>du -sh /* | sort -hr | head -10</code> — найти виновника</li>
+<li><code>journalctl --vacuum-size=100M</code> — очистить systemd-логи</li>
+<li><code>docker system prune -a</code> — очистить неиспользуемые образы и контейнеры</li>
+</ol>
+</div>
+<h2 id="_3">Мониторинг ресурсов</h2>
+<div class="admonition note">
+<p class="admonition-title">Проверка процессора, памяти и дисков</p>
+<p><strong>top</strong> — список процессов и системная информация
+<div class="highlight"><pre><span></span><code>top<span class="w">                       </span><span class="c1"># Обновление в реальном времени</span>
+top<span class="w"> </span>-u<span class="w"> </span>username<span class="w">           </span><span class="c1"># Фильтр по пользователю</span>
+top<span class="w"> </span>-p<span class="w"> </span>PID<span class="w">                </span><span class="c1"># Мониторинг конкретного PID</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Мониторинг в реальном времени (pipeline)</strong>
+<div class="highlight"><pre><span></span><code>watch<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s1">&#39;df -h | grep -E &quot;^/dev&quot;; echo &quot;---&quot;; ps aux --sort=-%cpu | head -5&#39;</span>
+<span class="c1"># Каждую секунду обновляется вывод: использование дисков + топ-5 процессов по CPU</span>
+</code></pre></div></p>
+<hr />
+<p><strong>Горячие клавиши top:</strong>
+| Клавиша | Действие |
+| --- | --- |
+| <code>Пробел</code> | Обновить вывод |
+| <code>M</code> | Сортировка по памяти |
+| <code>P</code> | Сортировка по CPU (по умолчанию) |
+| <code>T</code> | Сортировка по времени |
+| <code>A</code> | Показать max потребление ресурсов |
+| <code>u</code> | Фильтр по пользователю |
+| <code>k</code> | Завершить процесс (ввести PID) |
+| <code>c</code> | Показать полный путь процесса |
+| <code>n</code> | Изменить количество процессов |
+| <code>q</code> | Выход |</p>
+<p><strong>iotop</strong> — мониторинг дискового I/O по процессам
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>iotop<span class="w">                </span><span class="c1"># Интерактивный мониторинг</span>
+sudo<span class="w"> </span>iotop<span class="w"> </span>-b<span class="w">             </span><span class="c1"># Пакетный режим (для логов)</span>
+sudo<span class="w"> </span>iotop<span class="w"> </span>-p<span class="w"> </span>PID<span class="w">          </span><span class="c1"># Мониторинг конкретного процесса</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Кто грузит диски</strong>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>iotop<span class="w"> </span>-b<span class="w"> </span>-o<span class="w"> </span>-d<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
+<span class="c1"># Total DISK READ:       0.00 B/s | Total DISK WRITE:       0.00 B/s</span>
+<span class="c1"># Current DISK READ:       0.00 B/s | Current DISK WRITE:     523.00 K/s</span>
+<span class="c1">#   TID  PRIO  USER  DISK READ  DISK WRITE  COMMAND</span>
+<span class="c1">#    123 be/3 root        0.00 B    523.00 K/s rsyslogd</span>
+</code></pre></div></p>
+<hr />
+<p><strong>iostat</strong> — мониторинг CPU и дискового I/O
+<div class="highlight"><pre><span></span><code>iostat<span class="w"> </span>-x<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span><span class="w">              </span><span class="c1"># Расширенная статистика, обновление каждые 1 сек, 5 раз</span>
+iostat<span class="w"> </span>-dx<span class="w"> </span>/dev/sda<span class="w">        </span><span class="c1"># Статистика конкретного устройства</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Анализ I/O через iostat</strong>
+<div class="highlight"><pre><span></span><code>iostat<span class="w"> </span>-x<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;Device|%&quot;</span>
+<span class="c1"># Device  r/s    w/s    rkB/s   wkB/s  await  %util</span>
+<span class="c1"># sda     2.50  10.30  128.00  528.00  2.35  15.20</span>
+<span class="c1"># sdb     0.00   0.00    0.00    0.00  0.00  0.00</span>
+</code></pre></div></p>
+<hr />
+<p><strong>htop</strong> — улучшенный top (нужно установить)
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>htop<span class="w">     </span><span class="c1"># Установка в Debian/Ubuntu</span>
+htop<span class="w">                      </span><span class="c1"># Интерактивный мониторинг</span>
+</code></pre></div></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Процесс грузит CPU</p>
+<p><br></p>
+<ol>
+<li><code>top</code> → найти PID с высоким %CPU</li>
+<li><code>ps -ef | grep PID</code> — что запущено и родительский процесс</li>
+<li><code>strace -p PID</code> — посмотреть системные вызовы (耗资源, использовать кратко)</li>
+<li><code>kill -STOP PID</code> — приостановить для анализа</li>
+<li><code>cpulimit -p PID -l 50</code> — ограничить CPU до 50%</li>
+</ol>
+</div>
+<h2 id="_4">Работа с файлами</h2>
+<div class="admonition note">
+<p class="admonition-title">Управление файлами</p>
+<p><strong>find</strong> — поиск файлов
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>/<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-size<span class="w"> </span>+100M<span class="w">         </span><span class="c1"># Файлы больше 100M</span>
+find<span class="w"> </span>/<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.log&quot;</span><span class="w"> </span>-mtime<span class="w"> </span>+30<span class="w">    </span><span class="c1"># Логи старше 30 дней</span>
+find<span class="w"> </span>/<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-perm<span class="w"> </span><span class="m">777</span><span class="w">            </span><span class="c1"># Файлы с правами 777</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Найти и очистить старые логи</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Найти логи старше 30 дней</span>
+find<span class="w"> </span>/var/log<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.log&quot;</span><span class="w"> </span>-mtime<span class="w"> </span>+30<span class="w"> </span>-ls
+<span class="c1"># 12345  -rw-r--r--  1 root 100M /var/log/nginx/access.log.3</span>
+<span class="c1"># Проверить перед удалением, затем очистить:</span>
+find<span class="w"> </span>/var/log<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.log&quot;</span><span class="w"> </span>-mtime<span class="w"> </span>+30<span class="w"> </span>-exec<span class="w"> </span>truncate<span class="w"> </span>-s<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+</code></pre></div></p>
+<hr />
+<p><strong>Сценарий 2: Массовое изменение прав</strong>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>/var/www<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span><span class="w">    </span><span class="c1"># Файлы: rw-r--r--</span>
+find<span class="w"> </span>/var/www<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span><span class="w">    </span><span class="c1"># Директории: rwxr-xr-x</span>
+chown<span class="w"> </span>-R<span class="w"> </span>www-data:www-data<span class="w"> </span>/var/www<span class="w">          </span><span class="c1"># Сменить владельца</span>
+<span class="c1"># Проверить:</span>
+ls<span class="w"> </span>-la<span class="w"> </span>/var/www
+<span class="c1"># drwxr-xr-x  www-data www-data 4096 Jan 15 10:00 /var/www/html</span>
+</code></pre></div></p>
+<hr />
+<p><strong>Сценарий 3: Найти дубликаты по MD5</strong>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>/path<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-exec<span class="w"> </span>md5sum<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-d<span class="w"> </span>-w32
+<span class="c1"># d41d8cd98f00b204e9800998ecf8427e  ./file1.txt</span>
+<span class="c1"># d41d8cd98f00b204e9800998ecf8427e  ./file2.txt</span>
+</code></pre></div></p>
+<hr />
+<p><strong>grep</strong> — поиск в файлах
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span><span class="s2">&quot;pattern&quot;</span><span class="w"> </span>file<span class="w">              </span><span class="c1"># Найти строку</span>
+grep<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;pattern&quot;</span><span class="w"> </span>dir/<span class="w">            </span><span class="c1"># Рекурсивный поиск</span>
+grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;pattern&quot;</span><span class="w"> </span>file<span class="w">            </span><span class="c1"># Показать номера строк</span>
+grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;pattern&quot;</span><span class="w"> </span>file<span class="w">            </span><span class="c1"># Инвертированный поиск</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Рекурсивный поиск в логах</strong>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>-rn<span class="w"> </span><span class="s2">&quot;ERROR&quot;</span><span class="w"> </span>/var/log/<span class="w"> </span>--include<span class="o">=</span><span class="s2">&quot;*.log&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
+<span class="c1"># /var/log/nginx/error.log:145:2024-01-15 ERROR: Connection timeout</span>
+<span class="c1"># /var/log/nginx/error.log:156:2024-01-15 ERROR: 502 Bad Gateway</span>
+grep<span class="w"> </span>-rn<span class="w"> </span><span class="s2">&quot;ERROR\|WARN&quot;</span><span class="w"> </span>/var/log/<span class="w"> </span>--include<span class="o">=</span><span class="s2">&quot;*.log&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F:<span class="w"> </span><span class="s1">&#39;{print $1,$2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
+<span class="c1"># 15 /var/log/nginx/error.log:145</span>
+<span class="c1"># 3 /var/log/syslog:234</span>
+</code></pre></div></p>
+<hr />
+<p><strong>Навигация по каталогам</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">pwd</span><span class="w">                       </span><span class="c1"># Текущий каталог</span>
+<span class="nb">cd</span><span class="w"> </span>dir<span class="w">                    </span><span class="c1"># Перейти в dir</span>
+<span class="nb">cd</span><span class="w">                        </span><span class="c1"># Домашний каталог</span>
+<span class="nb">cd</span><span class="w"> </span>..<span class="w">                     </span><span class="c1"># На уровень выше</span>
+<span class="nb">cd</span><span class="w"> </span>-<span class="w">                      </span><span class="c1"># Предыдущий каталог</span>
+</code></pre></div></p>
+<p><strong>Просмотр содержимого</strong>
+<div class="highlight"><pre><span></span><code>ls<span class="w">                        </span><span class="c1"># Список файлов</span>
+ls<span class="w"> </span>-la<span class="w">                    </span><span class="c1"># Форматированный список со скрытыми</span>
+ls<span class="w"> </span>-lh<span class="w">                    </span><span class="c1"># Размеры в человекочитаемом формате</span>
+ls<span class="w"> </span>-lt<span class="w">                    </span><span class="c1"># Сортировка по времени</span>
+</code></pre></div></p>
+<p><strong>Создание и удаление</strong>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>dir<span class="w">                 </span><span class="c1"># Создать директорию</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>path/to/dir<span class="w">     </span><span class="c1"># Создать вложенные директории</span>
+touch<span class="w"> </span>file<span class="w">               </span><span class="c1"># Создать пустой файл</span>
+rm<span class="w"> </span>file<span class="w">                   </span><span class="c1"># Удалить файл</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>dir<span class="w">                </span><span class="c1"># Удалить директорию рекурсивно</span>
+</code></pre></div></p>
+<p><strong>Копирование и перемещение</strong>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>file1<span class="w"> </span>file2<span class="w">            </span><span class="c1"># Копировать файл</span>
+cp<span class="w"> </span>-r<span class="w"> </span>dir1<span class="w"> </span>dir2<span class="w">           </span><span class="c1"># Копировать директорию</span>
+mv<span class="w"> </span>file1<span class="w"> </span>file2<span class="w">            </span><span class="c1"># Переместить или переименовать</span>
+</code></pre></div></p>
+<p><strong>Символические ссылки</strong>
+<div class="highlight"><pre><span></span><code>ln<span class="w"> </span>-s<span class="w"> </span>file<span class="w"> </span>link<span class="w">           </span><span class="c1"># Создать симлинк</span>
+ls<span class="w"> </span>-la<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;^l&quot;</span><span class="w">        </span><span class="c1"># Найти все симлинки</span>
+</code></pre></div></p>
+<p><strong>Просмотр содержимого файлов</strong>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>file<span class="w">                  </span><span class="c1"># Весь файл</span>
+head<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>file<span class="w">           </span><span class="c1"># Первые 20 строк</span>
+tail<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>file<span class="w">          </span><span class="c1"># Последние 20 строк</span>
+tail<span class="w"> </span>-f<span class="w"> </span>file<span class="w">             </span><span class="c1"># Следить за изменениями</span>
+more<span class="w"> </span>file<span class="w">                 </span><span class="c1"># Постраничный просмотр</span>
+less<span class="w"> </span>file<span class="w">                 </span><span class="c1"># Интерактивный просмотр (q — выход)</span>
+</code></pre></div></p>
+<p><strong>Запись в файл</strong>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;<span class="w"> </span>file<span class="w">                </span><span class="c1"># Запись со stdin</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>file<span class="w">       </span><span class="c1"># Перезаписать файл</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>file<span class="w">       </span><span class="c1"># Добавить в конец</span>
+</code></pre></div></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Удалили не тот файл</p>
+<p><br></p>
+<ol>
+<li><code>ls -la /proc/$(lsof +D / | grep filename | awk '{print $2}')/fd</code> — найти дескриптор</li>
+<li><code>cp /proc/PID/fd/N /restore/path</code> — восстановить из дескриптора процесса</li>
+<li><code>debugfs -R "ls -d /path" /dev/sda1</code> — поиск в ext4 (если файловая ext4)</li>
+</ol>
+</div>
+<h2 id="_5">Управление процессами</h2>
+<div class="admonition note">
+<p class="admonition-title">Мониторинг и управление процессами</p>
+<p><strong>ps</strong> — просмотр процессов
+<div class="highlight"><pre><span></span><code>ps<span class="w"> </span>aux<span class="w">                    </span><span class="c1"># Все процессы</span>
+ps<span class="w"> </span>-ef<span class="w">                    </span><span class="c1"># Подробный формат</span>
+ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>nginx<span class="w">       </span><span class="c1"># Найти процесс</span>
+pgrep<span class="w"> </span>-f<span class="w"> </span>nginx<span class="w">            </span><span class="c1"># PID по имени</span>
+pstree<span class="w">                    </span><span class="c1"># Дерево процессов</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Найти и убить зависший процесс</strong>
+<div class="highlight"><pre><span></span><code>ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;nginx|python&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>grep
+<span class="c1"># root      1234  0.5  0.2  45678 12345 ?        S    10:00   0:00 nginx: worker</span>
+<span class="c1"># user     5678  2.1  1.5  98765 45678 ?        S    10:00   5:23 python app.py</span>
+pgrep<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;nginx worker&quot;</span><span class="w">              </span><span class="c1"># Получить PID</span>
+<span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span><span class="k">$(</span>pgrep<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;nginx worker&quot;</span><span class="k">)</span><span class="w">   </span><span class="c1"># Принудительно завершить</span>
+</code></pre></div></p>
+<hr />
+<p><strong>kill</strong> — управление процессами
+<div class="highlight"><pre><span></span><code><span class="nb">kill</span><span class="w"> </span>PID<span class="w">                  </span><span class="c1"># Завершить процесс</span>
+<span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span>PID<span class="w">               </span><span class="c1"># Принудительное завершение</span>
+<span class="nb">kill</span><span class="w"> </span>-STOP<span class="w"> </span>PID<span class="w">            </span><span class="c1"># Приостановить</span>
+<span class="nb">kill</span><span class="w"> </span>-CONT<span class="w"> </span>PID<span class="w">            </span><span class="c1"># Продолжить</span>
+pkill<span class="w"> </span>-f<span class="w"> </span>nginx<span class="w">            </span><span class="c1"># Завершить по имени</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Безопасное завершение процесса</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Сначала попробовать SIGTERM (мягкое завершение)</span>
+<span class="nb">kill</span><span class="w"> </span>PID
+<span class="c1"># Подождать и проверить</span>
+sleep<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ps<span class="w"> </span>-p<span class="w"> </span>PID
+<span class="c1"># Если не завершился — SIGKILL (принудительное)</span>
+<span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span>PID
+</code></pre></div></p>
+<hr />
+<p><strong>nice/renice</strong> — приоритеты процессов
+<div class="highlight"><pre><span></span><code>nice<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="nb">command</span><span class="w">        </span><span class="c1"># Запустить с пониженным приоритетом</span>
+renice<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>-p<span class="w"> </span>PID<span class="w">        </span><span class="c1"># Изменить приоритет работающего</span>
+top<span class="w">                       </span><span class="c1"># Интерактивное управление</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Ограничить CPU процесса</strong>
+<div class="highlight"><pre><span></span><code>cpulimit<span class="w"> </span>-p<span class="w"> </span>PID<span class="w"> </span>-l<span class="w"> </span><span class="m">50</span><span class="w">                </span><span class="c1"># Ограничить до 50%</span>
+<span class="c1"># или через nice</span>
+renice<span class="w"> </span>+10<span class="w"> </span>-p<span class="w"> </span>PID<span class="w">                    </span><span class="c1"># Понизить приоритет (nice: -20...+20)</span>
+ps<span class="w"> </span>-o<span class="w"> </span>pid,nice,comm<span class="w"> </span>-p<span class="w"> </span>PID
+<span class="c1">#   PID  NI COMMAND</span>
+<span class="c1">#  12345  10 python</span>
+</code></pre></div></p>
+<hr />
+<p><strong>lsof</strong> — мониторинг открытых файлов
+<div class="highlight"><pre><span></span><code>lsof<span class="w">                      </span><span class="c1"># Все открытые файлы</span>
+lsof<span class="w"> </span>-i<span class="w">                    </span><span class="c1"># Открытые сетевые соединения</span>
+lsof<span class="w"> </span>-p<span class="w"> </span>PID<span class="w">               </span><span class="c1"># Файлы конкретного процесса</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Что держит файл</strong>
+<div class="highlight"><pre><span></span><code>lsof<span class="w"> </span>/var/log/syslog
+<span class="c1"># COMMAND  PID   USER  FD  TYPE DEVICE SIZE/OFF NODE NAME</span>
+<span class="c1"># rsyslogd  123   root  3w  reg  8,1    1024    456 /var/log/syslog</span>
+lsof<span class="w"> </span>-i<span class="w"> </span>:80<span class="w">                         </span><span class="c1"># Процессы на порту 80</span>
+<span class="c1"># COMMAND   PID   USER  FD  TYPE DEVICE SIZE/OFF NODE NAME</span>
+<span class="c1"># nginx     123   root  6u  IPv4  7890      0t0   TCP *:http (LISTEN)</span>
+</code></pre></div></p>
+<hr />
+<p><strong>Фоновые процессы</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">command</span><span class="w"> </span><span class="p">&amp;</span><span class="w">                 </span><span class="c1"># Запустить в фоне</span>
+nohup<span class="w"> </span><span class="nb">command</span><span class="w"> </span><span class="p">&amp;</span><span class="w">           </span><span class="c1"># Игнорировать сигнал HUP</span>
+<span class="nb">jobs</span><span class="w">                      </span><span class="c1"># Список фоновых задач</span>
+<span class="nb">fg</span><span class="w">                        </span><span class="c1"># Перевести в foreground</span>
+<span class="nb">bg</span><span class="w">                        </span><span class="c1"># Продолжить в фоне</span>
+</code></pre></div></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Процесс не завершается (zombie)</p>
+<p><br></p>
+<ol>
+<li><code>ps aux | grep -w Z</code> — найти zombie-процессы
+  <code>USER       PID  STAT COMMAND</code>
+  <code>root      5678  Z   [defunct]</code></li>
+<li>Найти родителя: <code>ps -o ppid= -p 5678</code></li>
+<li>Перезапустить родительский процесс: <code>kill -HUP родитель</code></li>
+<li>Если не помогает — reboot (zombie нельзя kill -9)</li>
+</ol>
+</div>
+<h2 id="_6">Диски и файловые системы</h2>
+<div class="admonition note">
+<p class="admonition-title">Работа с дисками</p>
+<p><strong>lsblk</strong> — список блочных устройств
+<div class="highlight"><pre><span></span><code>lsblk<span class="w">                     </span><span class="c1"># Список блочных устройств</span>
+<span class="c1"># NAME        SIZE  TYPE  MOUNTPOINT</span>
+<span class="c1"># sda          100G  disk</span>
+<span class="c1"># sda1         100G  part  /</span>
+<span class="c1"># sdb           50G  disk</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Найти новый диск</strong>
+<div class="highlight"><pre><span></span><code>lsblk
+<span class="c1"># NAME  SIZE  TYPE  MOUNTPOINT</span>
+<span class="c1"># sda   100G  disk</span>
+<span class="c1"># sdb    50G  disk     # &lt;-- новый, неразмеченный</span>
+fdisk<span class="w"> </span>-l<span class="w"> </span>/dev/sdb<span class="w">      </span><span class="c1"># Проверить таблицу разделов</span>
+</code></pre></div></p>
+<hr />
+<p><strong>mount</strong> — монтирование
+<div class="highlight"><pre><span></span><code>mount<span class="w"> </span>/dev/sdb1<span class="w"> </span>/mnt<span class="w">      </span><span class="c1"># Монтировать</span>
+umount<span class="w"> </span>/mnt<span class="w">               </span><span class="c1"># Размонтировать</span>
+df<span class="w"> </span>-T<span class="w">                     </span><span class="c1"># Типы файловых систем</span>
+findmnt<span class="w">                   </span><span class="c1"># Текущие монтирования</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Создать и смонтировать новый диск</strong>
+<div class="highlight"><pre><span></span><code>lsblk<span class="w">                     </span><span class="c1"># Найти новый диск (sdb)</span>
+<span class="c1"># NAME  SIZE  TYPE  MOUNTPOINT</span>
+<span class="c1"># sda   100G  disk</span>
+<span class="c1"># sdb    50G  disk</span>
+mkfs.ext4<span class="w"> </span>/dev/sdb<span class="w">       </span><span class="c1"># Создать файловую систему ext4</span>
+mount<span class="w"> </span>/dev/sdb<span class="w"> </span>/mnt/data<span class="w"> </span><span class="c1"># Примонтировать</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;/dev/sdb /mnt/data ext4 defaults 0 2&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/fstab<span class="w">  </span><span class="c1"># Автомонтирование</span>
+mount<span class="w"> </span>-a<span class="w">                  </span><span class="c1"># Проверить fstab</span>
+</code></pre></div></p>
+<hr />
+<p><strong>LVM</strong> — логические тома
+<div class="highlight"><pre><span></span><code>pvcreate<span class="w"> </span>/dev/sdb<span class="w">         </span><span class="c1"># Создать Physical Volume</span>
+vgextend<span class="w"> </span>vg_name<span class="w"> </span>/dev/sdb<span class="w"> </span><span class="c1"># Расширить Volume Group</span>
+lvextend<span class="w"> </span>-L<span class="w"> </span>+10G<span class="w"> </span>/dev/vg_name/lv_root<span class="w">  </span><span class="c1"># Расширить Logical Volume</span>
+resize2fs<span class="w"> </span>/dev/vg_name/lv_root<span class="w">         </span><span class="c1"># Применить изменения</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Расширить раздел (LVM)</strong>
+<div class="highlight"><pre><span></span><code>lsblk<span class="w">                     </span><span class="c1"># Найти PV</span>
+<span class="c1"># NAME        SIZE  TYPE MOUNTPOINT</span>
+<span class="c1"># sdb          10G   disk</span>
+pvcreate<span class="w"> </span>/dev/sdb<span class="w">         </span><span class="c1"># Создать Physical Volume</span>
+vgdisplay<span class="w">                 </span><span class="c1"># Найти VG name</span>
+vgextend<span class="w"> </span>vg_name<span class="w"> </span>/dev/sdb<span class="w"> </span><span class="c1"># Расширить Volume Group</span>
+lvextend<span class="w"> </span>-L<span class="w"> </span>+10G<span class="w"> </span>/dev/vg_name/lv_root<span class="w">  </span><span class="c1"># Расширить Logical Volume</span>
+resize2fs<span class="w"> </span>/dev/vg_name/lv_root<span class="w">         </span><span class="c1"># Применить изменения</span>
+df<span class="w"> </span>-h<span class="w">                     </span><span class="c1"># Проверить</span>
+</code></pre></div></p>
+<hr />
+<p><strong>mkfs</strong> — создание файловых систем
+<div class="highlight"><pre><span></span><code>mkfs.ext4<span class="w"> </span>/dev/sdb1<span class="w">       </span><span class="c1"># Создать ext4</span>
+mkfs.xfs<span class="w"> </span>/dev/sdb1<span class="w">        </span><span class="c1"># Создать xfs</span>
+mkfs<span class="w"> </span>-t<span class="w"> </span>ext4<span class="w"> </span>/dev/sdb1<span class="w">    </span><span class="c1"># Аналогично</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Создать XFS с меткой</strong>
+<div class="highlight"><pre><span></span><code>mkfs.xfs<span class="w"> </span>-L<span class="w"> </span>data<span class="w"> </span>/dev/sdb1
+<span class="c1"># meta-data=/dev/sdb1              isize=512    agcount=4</span>
+<span class="c1"># data      =                     bsize=4096   blocks=524288</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;LABEL=data /mnt/data xfs defaults 0 0&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/fstab
+</code></pre></div></p>
+<hr />
+<p><strong>df -i</strong> — проверка inodes
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-i<span class="w">                     </span><span class="c1"># Проверить использование inodes</span>
+<span class="c1"># Filesystem  Inodes  IUsed  IFree  IUse%  Mounted on</span>
+<span class="c1"># /dev/sda1   65536  65536      0  100%   /</span>
+</code></pre></div></p>
+<p><strong>Сценарий 1: Очистить inodes (если закончились)</strong>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-i<span class="w">                     </span><span class="c1"># Проверить использование inodes</span>
+<span class="c1"># Filesystem  Inodes  IUsed  IFree  IUse%  Mounted on</span>
+<span class="c1"># /dev/sda1   65536  65536      0  100%   /</span>
+find<span class="w"> </span>/var/spool<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>d<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ls<span class="w"> </span>-A<span class="w"> </span><span class="nv">$d</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2"> </span><span class="nv">$d</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+<span class="c1"># Очистка:</span>
+find<span class="w"> </span>/var/spool/mail<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-mtime<span class="w"> </span>+30<span class="w"> </span>-delete
+</code></pre></div></p>
+<hr />
+<p><strong>fdisk/parted</strong> — работа с разделами
+<div class="highlight"><pre><span></span><code>fdisk<span class="w"> </span>-l<span class="w">                  </span><span class="c1"># Таблица разделов</span>
+parted<span class="w"> </span>-l<span class="w">                 </span><span class="c1"># Подробная информация о разделах</span>
+blkid<span class="w">                     </span><span class="c1"># UUID и типы файловых систем</span>
+</code></pre></div></p>
+<p><strong>fsck</strong> — проверка и восстановление
+<div class="highlight"><pre><span></span><code>fsck<span class="w"> </span>/dev/sdb1<span class="w">            </span><span class="c1"># Проверка</span>
+fsck<span class="w"> </span>-a<span class="w"> </span>/dev/sdb1<span class="w">         </span><span class="c1"># Автоматическое восстановление</span>
+e2fsck<span class="w"> </span>-f<span class="w"> </span>/dev/sdb1<span class="w">       </span><span class="c1"># Принудительная проверка</span>
+</code></pre></div></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Диск в readonly</p>
+<p><br></p>
+<ol>
+<li><code>dmesg | grep -E "sd[a-z]|error"</code> — посмотреть ошибки ядра</li>
+<li><code>mount | grep /dev/sda</code> — проверить флаги монтирования (ro/rw)</li>
+<li><code>smartctl -H /dev/sda</code> — SMART-проверка (диск может умирать)</li>
+<li><code>dd if=/dev/sda of=/dev/null bs=1M count=100</code> — проверить чтение</li>
+<li>Если диск сыпется — бекап и замена</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["toc.integrate", "toc.follow", "navigation.tracking"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
