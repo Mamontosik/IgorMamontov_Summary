@@ -1,28 +1,51 @@
-name: ci 
+# Pipeline: CI/CD для публикации сайта на GitHub Pages
+# Триггер: push в ветку master
+
+name: ci
 on:
   push:
     branches:
       - master
+
+# Права на запись в репозиторий необходимы для mkdocs gh-deploy (push в gh-pages)
 permissions:
   contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1. Клонирование репозитория в рабочую директорию
       - uses: actions/checkout@v4
+
+      # 2. Настройка git-credentials для bot-аккаунта GitHub Actions
+      # Без этого mkdocs gh-deploy не сможет выполнить push (Author identity unknown)
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      # 3. Установка Python 3.x
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+
+      # 4. Генерация cache_id — номер недели по UTC (01-52/53)
+      # Каждую неделю новый ключ кэша, старый игнорируется
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+
+      # 5. Кэширование директории .cache (MkDocs Material)
+      # restore-keys позволяет находить кэш по префиксу при cache miss
       - uses: actions/cache@v4
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache
           restore-keys: |
             mkdocs-material-
+
+      # 6. Установка зависимостей: mkdocs, mkdocs-material, плагины
       - run: pip install -r requirements.txt
+
+      # 7. Сборка и публикация сайта в ветку gh-pages
+      # --force перезаписывает существующую gh-pages
       - run: mkdocs gh-deploy --force
