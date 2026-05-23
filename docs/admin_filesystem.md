@@ -69,7 +69,6 @@
     ```
 
 !!! warning "Диск заполнен"
-    <br>
 
     1. `df -h` — проверить Use% и найти заполненный раздел
     2. `du -sh /* | sort -hr | head -10` — найти виновника
@@ -150,7 +149,6 @@
     ```
 
 !!! warning "Процесс грузит CPU"
-    <br>
 
     1. `top` → найти PID с высоким %CPU
     2. `ps -ef | grep PID` — что запущено и родительский процесс
@@ -278,7 +276,6 @@
     ```
 
 !!! warning "Удалили не тот файл"
-    <br>
 
     1. `ls -la /proc/$(lsof +D / | grep filename | awk '{print $2}')/fd` — найти дескриптор
     2. `cp /proc/PID/fd/N /restore/path` — восстановить из дескриптора процесса
@@ -377,7 +374,6 @@
     ```
 
 !!! warning "Процесс не завершается (zombie)"
-    <br>
 
     1. `ps aux | grep -w Z` — найти zombie-процессы
       `USER       PID  STAT COMMAND`
@@ -506,7 +502,7 @@
     ```
 
 !!! warning "Диск в readonly"
-    <br>
+
 
     1. `dmesg | grep -E "sd[a-z]|error"` — посмотреть ошибки ядра
     2. `mount | grep /dev/sda` — проверить флаги монтирования (ro/rw)

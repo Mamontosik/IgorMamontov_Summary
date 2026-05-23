@@ -32,7 +32,7 @@
     COPY src/ /app/src/
     ```
     **Не используйте `ADD` для загрузки файлов из интернета, используем RUN curl + COPY**
-    <br>
+
     ```yaml
     RUN curl -L -o /tmp/file.tar.gz https://example.com/file.tar.gz
     COPY file.tar.gz /app/
@@ -55,6 +55,7 @@
     1. Переходим на страницу "Add Clusters from kuberconfig"
     <br>
     2.  Находим настройки kuberconfig в каталоге через команду
+   
     ```bash
     cat .kube/config
     ```
@@ -65,15 +66,15 @@
 !!! note "Переключение между openshift и kubernetes"
 
     **Что такое контекст?**
-    <br>
+
     Это набор параметров, которые определяют, с каким кластером Kubernetes и пространством имен вы работаете.
 
     **Команды для работы с context**
-    <br>
+
     ```bash
     kubectl config get-contexts - доступные контаксты и указание активного
     ```
-    <br>
+
     ``` bash
     kubectl config use-context <context-name> - переключение на нужный контекст
     ```
