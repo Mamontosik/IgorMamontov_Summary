@@ -102,5 +102,38 @@
     | Подробная информация о сети | `docker network inspect bridge` |
     | Создать сеть | `docker network create mynet` |
     | Удалить сеть | `docker network rm mynet` |
-    | Подключить контейнер к сети | `docker network connect mynet app1` |
-    | Отключить контейнер от сети | `docker network disconnect mynet app1` |
+| Подключить контейнер к сети | `docker network connect mynet app1` |
+| Отключить контейнер от сети | `docker network disconnect mynet app1` |
+
+### Рекомендации настроек docker-compose.yml
+
+| Настройка | Описание | Рекомендация | Пример |
+| --- | --- | --- | --- |
+| Лимиты памяти и CPU | Без лимитов контейнер использует всю память и ядра хоста. OOM-киллер убивает соседние сервисы. | Ставьте `limits` (потолок) и `reservations` (минимум). Для Postgres `shared_buffers` ≈ 25% от лимита. | `deploy:\n  resources:\n    limits:\n      memory: 512M\n      cpus: "1.0"` |
+| Restart policy | По умолчанию `no` — контейнер после падения не перезапускается. | `unless-stopped` для сервисов, `on-failure` для одноразовых задач (миграции). | `restart: unless-stopped` |
+| Ротация логов | Docker пишет логи без ограничения размера — диск заполняется (до 80 ГБ). | Настроить `max-size` и `max-file`. Можно задать глобально в `/etc/docker/daemon.json`. | `logging:\n  driver: json-file\n  options:\n    max-size: "10m"\n    max-file: "3"` |
+| Healthcheck | Docker считает контейнер работающим, пока жив процесс, даже если сервис завис. | Добавить `healthcheck` с `start_period`. Полезно с `depends_on.condition: service_healthy`. | `healthcheck:\n  test: ["CMD", "curl", "-f", "http://localhost:8080/health"]\n  interval: 30s\n  timeout: 5s\n  retries: 3\n  start_period: 10s` |
+| Бэкап volumes | Named volume не спасает от `docker compose down -v` или отказа хоста. | Минимум — pg_dump раз в сутки + сжатие + автоудаление старых дампов. Синхронизировать на S3. | См. сервис backup с pg_dump, gzip и find -mtime +7 -delete |
+
+!!! note "Пример сервиса backup"
+
+    ```yaml
+    services:
+      backup:
+        image: postgres:16-alpine
+        depends_on:
+          postgres:
+            condition: service_healthy
+        volumes:
+          - ./backups:/backups
+        entrypoint: >
+          sh -c "while true; do
+            PGPASSWORD=$$POSTGRES_PASSWORD pg_dump -h postgres -U postgres mydb |
+            gzip > /backups/backup_$$(date +%Y%m%d_%H%M%S).sql.gz;
+            find /backups -mtime +7 -delete;
+            sleep 86400;
+          done"
+        environment:
+          POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        restart: unless-stopped
+    ```
