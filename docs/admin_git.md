@@ -162,4 +162,62 @@
     1. Git Flow — основная ветка main/master, разработка в develop, релизы и фичи — отдельные ветки.
     2.  GitHub Flow — коммиты прямо в main через pull-request'ы.
     3.  GitLab Flow — сочетание Git Flow и CI/CD: возможность работать как с protected branches, так и напрямую.
-    4.  Trunk-Based Development — вся работа в одной главной ветке (main), feature flags для управления выпуском.
+     4.  Trunk-Based Development — вся работа в одной главной ветке (main), feature flags для управления выпуском.
+
+!!! note Игнорирование файлов в Git (три уровня)
+
+    Файлы можно игнорировать на трёх разных уровнях, а не только через `.gitignore`.
+
+    **1. `.gitignore`**
+
+    Коммитится в репозиторий вместе с кодом. Действует для всех участников проекта.
+    ```
+    .DS_Store
+    node_modules/
+    *.log
+    ```
+
+    **2. `.git/info/exclude`**
+
+    Лежит в директории `.git` каждого репозитория, но **не коммитится**. Удобно для локальных файлов, которые не должны попасть в общий `.gitignore` (личные заметки, локальные конфиги).
+    ```
+    notes.txt
+    local-config.env
+    ```
+
+    **3. `~/.config/git/ignore` (глобальный)**
+
+    Глобальный файл для всей системы. Не привязан к репозиторию. Идеально для файлов вроде `.DS_Store` на macOS.
+    ```
+    .DS_Store
+    Thumbs.db
+    ```
+
+    **Кастомный путь к глобальному файлу**
+
+    Можно переопределить путь через `core.excludesFile`:
+    ```
+    git config --global core.excludesFile ~/.gitignore_global
+    ```
+    Вернуть стандартный путь:
+    ```
+    git config --global --unset core.excludesFile
+    ```
+
+    **Диагностика: какой файл игнорирует конкретный файл**
+
+    Команда `git check-ignore -v <file>` показывает, какой именно файл и какая строка отвечает за игнорирование:
+    ```
+    git check-ignore -v .DS_Store
+    ```
+
+    Примеры вывода `git check-ignore -v .DS_Store`:
+
+    | Уровень | Файл | Вывод команды |
+    |---------|------|---------------|
+    | Локальный (коммитится) | `.gitignore` | `.gitignore:1:.DS_Store` |
+    | Локальный (не коммитится) | `.git/info/exclude` | `.git/info/exclude:7:.DS_Store` |
+    | Глобальный (система) | `~/.config/git/ignore` | `/Users/user/.config/git/ignore:2:.DS_Store` |
+    | Кастомный глобальный | `~/.gitignore_global` | `/Users/user/.gitignore_global:1:.DS_Store` |
+
+    Если файл ничем не игнорируется — команда не выдаёт ничего.
