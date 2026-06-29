@@ -102,8 +102,8 @@
     | Подробная информация о сети | `docker network inspect bridge` |
     | Создать сеть | `docker network create mynet` |
     | Удалить сеть | `docker network rm mynet` |
-| Подключить контейнер к сети | `docker network connect mynet app1` |
-| Отключить контейнер от сети | `docker network disconnect mynet app1` |
+    | Подключить контейнер к сети | `docker network connect mynet app1` |
+    | Отключить контейнер от сети | `docker network disconnect mynet app1` |
 
 ### Рекомендации настроек docker-compose.yml
 
@@ -137,3 +137,21 @@
           POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
         restart: unless-stopped
     ```
+
+### Рекомендации настроек безопасности Docker
+
+| Настройка | Описание | Рекомендация | Пример |
+| --- | --- | --- | --- |
+| `security_opt: no-new-privileges:true` | Запрещает повышение прав через setuid/setgid бинарники | Включать всегда. Процесс внутри контейнера не сможет получить права выше стартовых | `security_opt:\n  - no-new-privileges:true` |
+| `cap_drop: ALL` + `cap_add` | Отбирает все Linux capabilities, возвращает только нужные | Отбирать всё (`ALL`), добавлять минимум. Контейнер с root будет максимально «кастрирован» | `cap_drop:\n  - ALL\ncap_add:\n  - NET_BIND_SERVICE` |
+| `read_only: true` | Делает root filesystem доступным только для чтения | Включать всегда. Дополнительно прописать `tmpfs` для `/tmp` и `volumes` для каталогов с записью | `read_only: true\ntmpfs:\n  - /tmp` |
+| `pids_limit` | Ограничивает количество процессов (защита от fork-бомб) | Ставить 100 для большинства сервисов, 300+ для Java/PostgreSQL | `pids_limit: 100` |
+| `user` | Запуск процесса не от root | Запускать от обычного пользователя (`1000:1000` или `nobody`). Лучше сразу зашить в образ через `USER app` | `user: "1000:1000"` |
+| `mem_limit` + `cpus` | Лимиты ресурсов через cgroups | Задавать всегда. Без лимитов контейнер может сожрать все ресурсы хоста | `mem_limit: 512m\ncpus: 1.5` |
+| `seccomp` | Фильтрация системных вызовов к ядру Linux | Docker уже включает профиль по умолчанию. Кастомные — только для высокозащищённых сред, легко сломать приложение | `security_opt:\n  - seccomp=custom.json` |
+| `privileged: true` | Снимает ВСЕ ограничения безопасности | **Не использовать.** Только для DIND, отладки, LXC/LXD. Резко увеличивает поверхность атаки | `privileged: true` (избегать) |
+| `network_mode: none` | Полная изоляция от сети | Использовать для микросервисов без сетевых вызовов (конверторы, утилиты) | `network_mode: none` |
+| `init: true` | Корректная обработка сигналов и zombie-процессов | Рекомендуется всегда. Docker запускает `docker-init` (tini) перед приложением | `init: true` |
+
+!!! info "Источник"
+    [Безопасность Docker контейнеров. Важные настройки](https://bashdays.ru/posts/2026/bezopasnost-docker-kontejnerov-vazhnye-nastrojki-kotorye-pochti-nikto-ne-ispolzuet/)
