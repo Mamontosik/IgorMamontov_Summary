@@ -86,7 +86,7 @@ SYSTEM You are a helpful AI assistant.
 
 **API-доступ:**
 
-```
+```bash
 localhost:1234/v1/chat/completions
 localhost:1234/v1/completions
 ```
@@ -160,7 +160,7 @@ type: highest_score
 
 ### Архитектура RAG
 
-```
+```text
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
 │ Документы   │ →  │  Chunking   │ →  │ Embedding   │ →  │ Vector DB   │
 └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
@@ -965,7 +965,7 @@ Markdown report с findings.
 
 **Директории конфигурации:**
 
-```
+```text
 ~/.config/opencode/           # Global
 ├── opencode.json
 ├── AGENTS.md
@@ -1009,3 +1009,4 @@ Markdown report с findings.
 - `allow` — разрешено
 - `ask` — запросить подтверждение
 - `deny` — запрещено
+  

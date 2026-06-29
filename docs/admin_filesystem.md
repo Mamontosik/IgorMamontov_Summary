@@ -503,7 +503,6 @@
 
 !!! warning "Диск в readonly"
 
-
     1. `dmesg | grep -E "sd[a-z]|error"` — посмотреть ошибки ядра
     2. `mount | grep /dev/sda` — проверить флаги монтирования (ro/rw)
     3. `smartctl -H /dev/sda` — SMART-проверка (диск может умирать)

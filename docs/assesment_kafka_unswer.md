@@ -12,12 +12,12 @@
 | Consumer Group | Группа консьюмеров, читающая topic совместно | Каждая партиция назначается одному члену группы |
 
 !!! note "Производительность"
-  Правильное планирование числа партиций и репликации критично: слишком мало партиций ограничит параллелизм, а слишком много — создаст накладные расходы на метаданные.
+    Правильное планирование числа партиций и репликации критично: слишком мало партиций ограничит параллелизм, а слишком много — создаст накладные расходы на метаданные.
 
 ### Репликация и роли
 
 | Тема | Кратко | На что смотреть |
-|---|---|---|
+| --- | --- | --- |
 | Replication | Копирование партиций на несколько брокеров (leader/followers) | ISR, replication lag, under_replicated_partitions |
 | Leader / Follower | Лидер обслуживает записи/чтение, followers реплицируют | Election, failover, impact on availability |
 | Offset | Позиция в партиции — целое число | Управление offset'ами важно для семантики доставки |
@@ -32,7 +32,7 @@
 ### Координация и доп. сервисы
 
 | Сервис | Назначение | Комментарий |
-|---|---|---|
+| --- | --- | --- |
 | Zookeeper / KRaft | Координация метаданных (ZK — старые версии, KRaft — newer) | Миграция ZK → KRaft требует планирования |
 | Schema Registry | Хранение/валидация схем (Avro/JSON/Protobuf) | Облегчает эволюцию форматов |
 | Exactly‑once (EOS) | Транзакционные механизмы для "ровно один раз" | Сложнее в настройке; влияет на throughput |
@@ -40,7 +40,7 @@
 #### Краткая таблица этапов
 
 | Шаг | Что происходит | Что показывать/проверять |
-|---|---|---|
+| --- | --- | --- |
 | Produce | Producer отправляет запись в topic → партиция (append) | produce rate, request latency, errors (RecordTooLarge) |
 | Persist | Leader пишет в лог, репликация followers | leader, ISR, replication lag, under_replicated_partitions |
 | Consume | Consumer читает по offset и коммитит | consumer lag, offsets, rebalances |
@@ -49,7 +49,7 @@
 ### Популярные ошибки и как их диагностировать/исправлять
 
 | Ошибка / симптом | Типичная причина | Диагностика (команды / признаки) | Быстрое решение |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | "Leader not available" | Лидер партиции недоступен / контроллер проблемен | `kafka-topics.sh --describe --topic <topic>` (leader = -1); controller/broker logs | Перезапустить broker, проверить контроллер; preferred‑replica‑election при необходимости |
 | Under‑replicated partitions (URP) | Реплики отстают или недоступны | `kafka-topics.sh --describe` (under_replicated_partitions), broker logs, метрики | Проверить IO/сеть; восстановить реплики; изменить настройки replica.fetch* при необходимости |
 | Consumer lag (большая задержка) | Консьюмер не успевает, горячие партиции | `kafka-consumer-groups.sh --describe --group <group>`; Prometheus consumer lag | Увеличить parallelism, оптимизировать обработку, увеличить партиции/consumer'ов |
