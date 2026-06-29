@@ -46,7 +46,7 @@
 ### Команды и ключевые понятия docker compose
 
 | Компонент / команда | Описание | Параметры | Пример |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | docker-compose.yml | Файл описания стека: services, networks, volumes, configs | version / services / volumes / networks / deploy и т.д. | `version: "3.8"\nservices:\n  web:\n    image: nginx` |
 | docker compose up | Создать и запустить все сервисы из конфигурации | `-d` (detached), `--build`, `--remove-orphans` | `docker compose up -d --build` |
 | docker compose down | Остановить и удалить контейнеры/сети/тома (опционально) | `--volumes`, `--rmi local|all` | `docker compose down --volumes` |
@@ -142,13 +142,13 @@
 
 | Настройка | Описание | Рекомендация | Пример |
 | --- | --- | --- | --- |
-| `security_opt: no-new-privileges:true` | Запрещает повышение прав через setuid/setgid бинарники | Включать всегда. Процесс внутри контейнера не сможет получить права выше стартовых | `security_opt:\n  - no-new-privileges:true` |
-| `cap_drop: ALL` + `cap_add` | Отбирает все Linux capabilities, возвращает только нужные | Отбирать всё (`ALL`), добавлять минимум. Контейнер с root будет максимально «кастрирован» | `cap_drop:\n  - ALL\ncap_add:\n  - NET_BIND_SERVICE` |
-| `read_only: true` | Делает root filesystem доступным только для чтения | Включать всегда. Дополнительно прописать `tmpfs` для `/tmp` и `volumes` для каталогов с записью | `read_only: true\ntmpfs:\n  - /tmp` |
+| `security_opt: no-new-privileges:true` | Запрещает повышение прав через setuid/setgid бинарники | Включать всегда. Процесс внутри контейнера не сможет получить права выше стартовых | `security_opt:`<br> `- no-new-privileges:true` |
+| `cap_drop: ALL` + `cap_add` | Отбирает все Linux capabilities, возвращает только нужные | Отбирать всё (`ALL`), добавлять минимум. Контейнер с root будет максимально «кастрирован» | `cap_drop:`<br>  `- ALL` <br> `cap_add:` <br>  `- NET_BIND_SERVICE` |
+| `read_only: true` | Делает root filesystem доступным только для чтения | Включать всегда. Дополнительно прописать `tmpfs` для `/tmp` и `volumes` для каталогов с записью | `read_only: true` <br> `tmpfs:` <br>  `- /tmp` |
 | `pids_limit` | Ограничивает количество процессов (защита от fork-бомб) | Ставить 100 для большинства сервисов, 300+ для Java/PostgreSQL | `pids_limit: 100` |
 | `user` | Запуск процесса не от root | Запускать от обычного пользователя (`1000:1000` или `nobody`). Лучше сразу зашить в образ через `USER app` | `user: "1000:1000"` |
-| `mem_limit` + `cpus` | Лимиты ресурсов через cgroups | Задавать всегда. Без лимитов контейнер может сожрать все ресурсы хоста | `mem_limit: 512m\ncpus: 1.5` |
-| `seccomp` | Фильтрация системных вызовов к ядру Linux | Docker уже включает профиль по умолчанию. Кастомные — только для высокозащищённых сред, легко сломать приложение | `security_opt:\n  - seccomp=custom.json` |
+| `mem_limit` + `cpus` | Лимиты ресурсов через cgroups | Задавать всегда. Без лимитов контейнер может сожрать все ресурсы хоста | `mem_limit: 512m` <br> `cpus: 1.5` |
+| `seccomp` | Фильтрация системных вызовов к ядру Linux | Docker уже включает профиль по умолчанию. Кастомные — только для высокозащищённых сред, легко сломать приложение | `security_opt:` <br>  `- seccomp=custom.json` |
 | `privileged: true` | Снимает ВСЕ ограничения безопасности | **Не использовать.** Только для DIND, отладки, LXC/LXD. Резко увеличивает поверхность атаки | `privileged: true` (избегать) |
 | `network_mode: none` | Полная изоляция от сети | Использовать для микросервисов без сетевых вызовов (конверторы, утилиты) | `network_mode: none` |
 | `init: true` | Корректная обработка сигналов и zombie-процессов | Рекомендуется всегда. Docker запускает `docker-init` (tini) перед приложением | `init: true` |
