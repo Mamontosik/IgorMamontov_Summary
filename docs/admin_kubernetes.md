@@ -2,79 +2,63 @@
 
 ## Работа с файлом Dockerfile при формировании контейнера
 
-!!! note "Лучшие практики инструкций dockerfile"
-
-    **Используйте `COPY` вместо `ADD`, если не нужно распаковывать архивы, явное распаковывание в RUN**
+!!! tip "COPY вместо ADD"
+    Если не нужно распаковывать архив — используйте `COPY`. Распаковка — явно в `RUN`.
     ``` yaml
     COPY app.tar.gz /tmp/
     RUN tar -xzf /tmp/app.tar.gz -C /app && rm /tmp/app.tar.gz
     ```
-    **Минимизируйте число `COPY` и `ADD`, чтобы уменьшить размер образа, копируем только нужные файлы**
-    ``` yaml
-    COPY src/ /app/src/
-    COPY requirements.txt /app/
+
+!!! warning "Не копируйте лишнее"
+    Каждый `COPY`/`ADD` — новый слой образа. Используйте `.dockerignore`, чтобы исключить мусор:
     ```
-    ``` yaml
-    Добавьте .dockerignore
     .git
     node_modules
     __pycache__
     *.log
     ```
-    **Копируйте только изменяемые файлы, чтобы ускорить кэширование, сначала зависимости, потом код**
+
+!!! tip "Кэширование слоёв: сначала зависимости, потом код"
+    | Порядок | Что копировать |
+    |---------|---------------|
+    | 1 | `requirements.txt` / `package.json` |
+    | 2 | `RUN pip install` / `npm install` |
+    | 3 | `COPY src/` / остальной код |
+
+!!! warning "Не используйте ADD для скачивания из интернета"
+    `ADD` по URL — недетерминировано, не кэшируется. Используйте `RUN curl` + `COPY`.
     ``` yaml
-    COPY requirements.txt /app/
-    RUN pip install -r /app/requirements.txt
-
-    COPY src/ /app/src/
-    ```
-    **Не используйте `ADD` для загрузки файлов из интернета, используем RUN curl + COPY**
-
-    ```yaml
     RUN curl -L -o /tmp/file.tar.gz https://example.com/file.tar.gz
     COPY file.tar.gz /app/
     ```
 
 ## Использование и настройка дашборда Lens
 
-!!! note "Установка и настройка Lens"
+!!! tip "Скачивание"
+    Перейдите на [k8slens.dev/download](https://k8slens.dev/download) и скачайте дистрибутив под свою ОС.
 
-    **Скачивание и установка дистрибутива**
+!!! info "Документация"
+    Шаги по настройке и управлению Lens: [docs.k8slens.dev/getting-started/activate-lens-desktop/](https://docs.k8slens.dev/getting-started/activate-lens-desktop/)
 
-    Необходимо перейти на сайт https://k8slens.dev/download и скачать необходимый дистрибутив под свою операционную систему
-
-    **Документация по работе с Lens**
-
-    Ознакомитья с шагами по настройке и управлению Lens можно по ссылке https://docs.k8slens.dev/getting-started/activate-lens-desktop/
-
-    **Подключение доступного кластера и созданных namespace для отображения в Lens через загрузку kuberconfig**
-    
-    1. Переходим на страницу "Add Clusters from kuberconfig"
-    
-    2.  Находим настройки kuberconfig в каталоге через команду
-   
-    ```bash
-    cat .kube/config
-    ```
-    3. Сохраняем получившийся результат на локальной машине по адресу /kuber/config в разделе приложения Lens
+!!! note "Подключение кластера через kubeconfig"
+    1. Добавить кластер: "Add Clusters from kubeconfig"
+    2. Скопировать конфиг:
+       ```bash
+       cat ~/.kube/config
+       ```
+    3. Сохранить в `/kuber/config` в Lens
 
 ## Управление контекстами в рамках оркестрации
 
-!!! note "Переключение между openshift и kubernetes"
+!!! info "Что такое контекст"
+    Набор параметров, которые определяют, с каким кластером Kubernetes и пространством имён вы работаете.
 
-    **Что такое контекст?**
-
-    Это набор параметров, которые определяют, с каким кластером Kubernetes и пространством имен вы работаете.
-
-    **Команды для работы с context**
-
-    ```bash
-    kubectl config get-contexts - доступные контаксты и указание активного
-    ```
-
-    ``` bash
-    kubectl config use-context <context-name> - переключение на нужный контекст
-    ```
+!!! tip "Команды для работы с context"
+    | Команда | Описание |
+    |---------|----------|
+    | `kubectl config get-contexts` | Список контекстов (активный помечен `*`) |
+    | `kubectl config use-context <name>` | Переключиться на нужный контекст |
+    | `kubectl config current-context` | Показать текущий контекст |
 
 ## Лучшие практики по настройке конфигураций в Kubernetes
 
